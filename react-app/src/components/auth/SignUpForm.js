@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp, login } from '../../store/session';
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -23,11 +24,17 @@ const SignUpForm = () => {
     }
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login('demo@aa.io', 'password'));
+  }
+
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
+    <>
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
@@ -89,6 +96,8 @@ const SignUpForm = () => {
       <div>I certify that I am 18 years of age or older, agree to the User Agreement, and acknowledge the Privacy Policy.</div>
       <button type='submit'>Create free account</button>
     </form>
+      <button onClick={(e) => demoLogin(e)}>Demo</button>
+    </>
   );
 };
 

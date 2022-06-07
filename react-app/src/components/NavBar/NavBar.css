@@ -1,0 +1,11 @@
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.navbar-container > li {
+  all: unset;
+  cursor: default;
+  padding: 0px 10px;
+}
