@@ -7,7 +7,7 @@ ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=True
 
-EXPOSE 8000
+# EXPOSE 8000
 
 # Set the directory for upcoming commands to /var/www
 WORKDIR /var/www
@@ -22,4 +22,4 @@ RUN pip install -r requirements.txt
 RUN pip install psycopg2
 
 # Start the flask environment by setting our
-CMD gunicorn --worker-class eventlet -w 1 app:app
+CMD gunicorn app:app
