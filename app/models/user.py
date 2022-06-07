@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
 
     transactions = db.relationship("Transaction", back_populates='user')
     watchlists = db.relationship("Watchlist", back_populates='user')
-    watching = db.relationship("Watchlist", back_populates='users', secondary=join_watchlist)
+    # watching = db.relationship("Watchlist", back_populates='cryptoList', secondary=join_watchlist)
 
 
     @property
@@ -45,15 +45,8 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            'watching': [crypto.to_dict() for crypto in self.watching],
-            'email': self.email,
-        }
-
-    def to_names(self):
-        return {
-            'id': self.id,
-            'firstName': self.firstName,
-            'lastName': self.lastName,
+            # 'watching': [crypto.to_dict() for crypto in self.watching],
+            'watchlists': self.watchlists,
         }
 
 
@@ -66,13 +59,13 @@ class Watchlist(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     user = db.relationship("User", back_populates='watchlists')
 
-    users = db.relationship("User", back_populates='watching', secondary=join_watchlist)
+    cryptoList = db.relationship("Crypto", back_populates='watchlists', secondary=join_watchlist)
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'users': [user.to_names() for user in self.users]
+            'crypto': [crypto.to_dict() for crypto in self.cryptoList]
         }
 
 class Crypto(db.Model):
@@ -84,7 +77,8 @@ class Crypto(db.Model):
   price = db.Column(db.Integer)
 
   transactions = db.relationship("Transaction", back_populates='crypto')
-  watchlists = db.relationship("Watchlist", back_populates='crypto')
+
+  watchlists = db.relationship("Watchlist", back_populates='cryptoList', secondary=join_watchlist)
 
   def to_dict(self):
     return {

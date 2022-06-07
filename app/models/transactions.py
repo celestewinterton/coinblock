@@ -16,7 +16,7 @@ class Transaction(db.Model):
   user = db.relationship("User", back_populates='transactions')
 
   crypto_id = db.Column(db.Integer, db.ForeignKey("crypto.id"))
-  crypto = db.relationship("Crypto", back_populates='crypto')
+  crypto = db.relationship("Crypto", back_populates='transactions')
 
   created_at = db.Column(db.DateTime(timezone=True), default=datetime.now())
 
