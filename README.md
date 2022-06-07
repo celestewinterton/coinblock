@@ -1,6 +1,31 @@
-# Flask React Project
+<h1 align="center"><img height="24px" width="24px" src="./react-app/public/favicon.ico" alt=""><img> Coinblock</h1>
 
-This is the starter for the Flask React project.
+Coinblock is a full-stack clone of the popular crypto trading application, <a href="https://www.coinbase.com/">Coinbase</a>. Coinblock allows users to view a portfolio, make transactions, and maintain a watchlist. Transactions on Coinblock are simulated and no actual money will be changing hands. 
+
+<!-- <a href="" target="_blank"><strong>Explore the website »</strong></a><br/> -->
+
+
+<details open="open">
+  <summary id="table-of-contents">Table of Contents</summary>
+  <ol>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#database-schema">Database Schema</a></li>
+    <li><a href="#future-features">Future Features</a></li>
+  </ol>
+ </details>
+
+## Technologies Used
+
+![Python](https://img.shields.io/badge/-Python-F9DC3E.svg?logo=Python&style=for-the-badge)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
+
 
 ## Getting started
 1. Clone this repository (only this branch)
