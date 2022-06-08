@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import TradeFormModal from '../Dashboard/TradeFormModal';
 import './NavBar.css'
 
 
@@ -10,9 +10,7 @@ const NavBar = ({title}) => {
       <nav className='navbar-container'>
         <h6>{title}</h6>
         <div>
-          <NavLink to='/users' exact={true} className="navlink" activeClassName='active'>
-            Users
-          </NavLink>
+          <TradeFormModal />
           <LogoutButton />
         </div>
       </nav>

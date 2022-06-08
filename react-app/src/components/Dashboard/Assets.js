@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
+// import axios from 'axios'
 // import {FiArrowUpRight, FiArrowDown} from 'react-icons/fa'
-import NavBar from '../NavBars'
 
 
 const Assets = () => {
-  const [data, setData] = useState();
-  const no = 6;
-  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${no}&page=1&sparkline=false`
+  // const [data, setData] = useState();
+  // const no = 6;
+  // const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${no}&page=1&sparkline=false`
 
 
   // useEffect(() => {
