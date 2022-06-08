@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const TradeForm = ({setShowModal}) => {
-    // const user = useSelector(state => state.session.user)
+const TradeForm = () => {
+    const user = useSelector(state => state.session.user)
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // let errors;
-        // const formData = new FormData();
-        // formData.append('name', name)
-        // formData.append('owner_id', user.id)
+        let errors;
+        const formData = new FormData();
+        formData.append('amount', amount)
+        formData.append('user_id', user.id)
     }
 
     useEffect(() => {
