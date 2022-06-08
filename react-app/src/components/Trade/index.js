@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import TradeForm from './TradeForm';
 import './Trade.css'
+import { toBillions, toDate, toUnix } from '../../utils/calc';
 
 const Trade = () => {
   const [data, setData] = useState();
-  const no = 6;
+
+  const no = 20;
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${no}&page=1&sparkline=false`
 
   useEffect(() => {
@@ -16,7 +18,19 @@ const Trade = () => {
     })
   }, [url])
 
-  console.log(data)
+  // historical url...
+  // const url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=max&interval=monthly`
+
+  // useEffect(() => {
+  //   axios.get(url).then((response) => {
+  //     setData(response.data)
+  //   }).catch((error) => {
+  //     console.log(error)
+  //   })
+  // }, [url])
+
+
+  // console.log(data)
 
   return (
     <div className='dashboard-sections'>
@@ -34,16 +48,23 @@ const Trade = () => {
             </thead>
                 {data?.map(crypto =>
                 <tbody>
-                  <td>{crypto?.name} {crypto?.symbol.toUpperCase()}</td>
+                  <td>
+                    <div className='row'>
+                      <img height="36px" src={crypto?.image} alt=""></img>
+                      <div className='column'>
+                        <div>{crypto?.name}</div>
+                        <div>{crypto?.symbol.toUpperCase()}</div>
+                      </div>
+                    </div>
+                  </td>
                   <td>{crypto?.current_price}</td>
                   <td>{crypto?.name}</td>
-                  <td>{crypto?.market_cap}</td>
+                  <td>${toBillions(crypto?.market_cap)}B</td>
                   <td>
-                    {/* <i class="fa-solid fas-star"></i> */}
+                    <i class="fa-solid fas-star"></i>
                     <i class="fa-regular fa-star"></i>
                   </td>
-                </tbody>
-                )}
+                </tbody>)}
           </table>
         </div>
       </div>
