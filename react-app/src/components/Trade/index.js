@@ -36,8 +36,10 @@ const Trade = () => {
     <div className='dashboard-sections'>
       <div className='left-section'>
         <div className='card'>
-          <table className='crypto-table'>
-            <thead><h2>Table</h2>
+          <h2 className='padded'>Categories</h2>
+          <div className='padded'>Search bar ??? w/ select option for "All assets" or "Watchlist"</div>
+          <table className='crypto-table padded'>
+            <thead>
               <tr>
                 <th>Name</th>
                 <th>Price</th>

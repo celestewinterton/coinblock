@@ -5,11 +5,11 @@ class Transaction(db.Model):
   __tablename__ = 'transactions'
 
   id = db.Column(db.Integer, primary_key=True)
-  amount = db.Column(db.Numeric)
-  price = db.Column(db.Numeric)
-  quantity = db.Column(db.Numeric)
-  credit = db.Column(db.Numeric)
-  debit = db.Column(db.Numeric)
+  amount = db.Column(db.Float)
+  price = db.Column(db.Float)
+  quantity = db.Column(db.Float)
+  credit = db.Column(db.Float)
+  debit = db.Column(db.Float)
   type = db.Column(db.String(100))
   status = db.Column(db.String(50))
 

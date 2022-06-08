@@ -21,14 +21,14 @@ const TradeForm = () => {
         setErrors(errors)
     }, [errors]);
 
+    console.log(user)
 
     return (
         <div className="column">
             <div className="row">
-                <h6 onClick={e => (setSell(false), setBuy(true))} activeClassName="activeFormTab">Buy</h6>
-                <h6 onClick={e => (setSell(true), setBuy(false))} activeClassName="activeFormTab">Sell</h6>
+                <h6 onClick={e => (setSell(false), setBuy(true))} className="padded">Buy</h6>
+                <h6 onClick={e => (setSell(true), setBuy(false))} className="padded">Sell</h6>
             </div>
-            {buy ?
             <form onSubmit={handleSubmit}>
                 <div>
                     <div className="form-errors">
@@ -41,9 +41,28 @@ const TradeForm = () => {
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder='$0'></input>
                 </div>
+                <div>
+                    <div className="form-errors">
+                        {errors.amount && <p>{errors.amount}</p>}
+                    </div>
+                    <input
+                        type='text'
+                        value={amount}
+                        required
+                        onChange={(e) => setAmount(e.target.value)}
+                        placeholder='$0'></input>
+                </div>
+                <div>
+                    <label>{buy ? "Pay with" : "Add to"}</label>
+                    <input
+                        type='text'
+                        value={amount}
+                        required
+                        onChange={(e) => setAmount(e.target.value)}
+                        placeholder='$0'></input>
+                </div>
                 <button id='create-channel' className="green-button" type="submit">Save</button>
             </form>
-            : <h6>SELLING</h6>}
         </div>
     );
 };
