@@ -32,7 +32,7 @@
 }
 
 .logo {
-  padding: 14px;
+  padding: 12px 14px 24px 14px;
 }
 
 .navbar-container > li {
@@ -57,7 +57,7 @@
   line-height: 1.2;
   font-weight: 600;
   padding: 16px 18px;
-  margin: 5px 0x;
+  margin: 2px 0px;
   border-radius: 25px;
 }
 
@@ -66,5 +66,10 @@
 }
 
 .sidenav:hover {
+  background-color: var(--background);
+}
+
+.active {
+  color: var(--primary);
   background-color: var(--background);
 }

@@ -14,7 +14,7 @@ const Splash = () => {
           <h3>The future of money is here</h3>
           <h5>Over 98 million people and businesses trust us to buy, sell, and manage crypto.</h5>
           <div>Sign up and get crypto*</div>
-          <NavLink to='/signup' exact={true} className="button" activeClassName='active'>
+          <NavLink to='/signup' exact={true} className="button">
             Sign up
           </NavLink>
         </div>

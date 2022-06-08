@@ -16,7 +16,7 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(50, 53, 61, 0.33);
 }
 
 #modal-content {
@@ -29,5 +29,5 @@
   align-items: center;
   height: fit-content;
 
-  box-shadow: 10px 10px 20px rgb(37, 37, 37);
+  box-shadow: 10px 10px 50px rgba(50, 53, 61, 0.1);
 }

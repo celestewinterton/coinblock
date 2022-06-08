@@ -116,7 +116,7 @@ const SignUpForm = () => {
           </form>
           <button onClick={(e) => demoLogin(e)}>Demo</button>
           <div>Already have an account?<span> </span>
-            <NavLink to='/login' className="link" exact={true} activeClassName='active'>
+            <NavLink to='/login' className="link" exact={true}>
               Sign in
             </NavLink>
           </div>

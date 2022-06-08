@@ -1,3 +1,32 @@
 .dashboard-container {
   background-color: var(--background);
 }
+
+.dashboard-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 16px 16px;
+}
+
+.left-section {
+  margin: .2rem .5rem;
+  width: 70%;
+  max-width: 800px;
+}
+
+.right-section {
+  margin: .2rem .5rem;
+  width: 30%;
+  max-width: 500px;
+}
+
+.card {
+  background-color: var(--elements);
+  border-radius: 4px;
+  border: .8px solid var(--line);
+}
+
+.top-margin {
+  margin-top: 12px;
+}

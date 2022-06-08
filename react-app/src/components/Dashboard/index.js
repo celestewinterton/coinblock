@@ -5,7 +5,7 @@ import SideNav from '../NavBars/SideNav';
 import { Switch } from 'react-router-dom';
 import ProtectedRoute from '../auth/ProtectedRoute';
 import Assets from './Assets'
-import Trade from './Trade'
+import Trade from '../Trade'
 
 
 const Dashboard = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import LogoutButton from '../auth/LogoutButton';
-import TradeFormModal from '../Dashboard/TradeFormModal';
+import TradeFormModal from '../Trade/TradeFormModal';
 import './NavBar.css'
 
 

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const TradeForm = ({setShowModal}) => {
     // const user = useSelector(state => state.session.user)
     const [errors, setErrors] = useState({});
-    const [name, setName] = useState()
+    const [amount, setAmount] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -28,9 +28,9 @@ const TradeForm = ({setShowModal}) => {
                         </div>
                         <input
                             type='text'
-                            value={name}
+                            value={amount}
                             required
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => setAmount(e.target.value)}
                             placeholder='$0'></input>
                     </div>
                       <button id='create-channel' className="green-button" type="submit">Save</button>

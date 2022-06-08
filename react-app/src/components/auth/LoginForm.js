@@ -69,7 +69,7 @@ const LoginForm = () => {
       </form>
       <button onClick={(e) => demoLogin(e)}>Demo</button>
       <div>Don't have an account?<span> </span>
-        <NavLink to='/signup' exact={true} className="link" activeClassName='active'>
+        <NavLink to='/signup' exact={true} className="link">
           Sign Up
         </NavLink>
       </div>
