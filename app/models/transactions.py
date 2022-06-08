@@ -5,6 +5,7 @@ class Transaction(db.Model):
   __tablename__ = 'transactions'
 
   id = db.Column(db.Integer, primary_key=True)
+  amount = db.Column(db.Integer)
   price = db.Column(db.Integer)
   quantity = db.Column(db.Integer)
   type = db.Column(db.String(100))
@@ -24,6 +25,7 @@ class Transaction(db.Model):
   def to_dict(self):
     return {
       'id': self.id,
+      'amount': self.amount,
       'price': self.price,
       'quantity': self.quantity,
       'type': self.type,

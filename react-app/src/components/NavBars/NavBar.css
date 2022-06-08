@@ -59,6 +59,8 @@
   padding: 16px 18px;
   margin: 2px 0px;
   border-radius: 25px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .fa-solid {

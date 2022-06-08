@@ -47,6 +47,7 @@ class User(db.Model, UserMixin):
             'email': self.email,
             # 'watching': [crypto.to_dict() for crypto in self.watching],
             'watchlists': self.watchlists,
+            'transactions': self.transactions,
         }
 
 
