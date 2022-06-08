@@ -1,3 +1,4 @@
+from email.policy import default
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -22,6 +23,7 @@ class User(db.Model, UserMixin):
     lastName = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    cash = db.Column(db.Numeric, default=1000)
 
     transactions = db.relationship("Transaction", back_populates='user')
     watchlists = db.relationship("Watchlist", back_populates='user')
@@ -46,6 +48,7 @@ class User(db.Model, UserMixin):
             'lastName': self.lastName,
             'email': self.email,
             # 'watching': [crypto.to_dict() for crypto in self.watching],
+            'cash': self.cash,
             'watchlists': self.watchlists,
             'transactions': self.transactions,
         }
@@ -75,7 +78,7 @@ class Crypto(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), unique=True)
   symbol = db.Column(db.String(50), unique=True)
-  price = db.Column(db.Integer)
+  price = db.Column(db.Numeric)
 
   transactions = db.relationship("Transaction", back_populates='crypto')
 
