@@ -12,7 +12,7 @@ transaction_routes = Blueprint('transactions', __name__)
 @transaction_routes.route('')
 def get_user_transactions():
   transactions = Transaction.query.all()
-  return {'channels': [txn.to_dict() for txn in transactions]}
+  return {'transactions': [txn.to_dict() for txn in transactions]}
 
 
 @transaction_routes.route('' , methods=['POST'])

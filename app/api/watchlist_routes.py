@@ -6,4 +6,8 @@ from ..models.db import db
 from flask_login import current_user
 from ..utils import form_validation_errors
 
-transaction_routes = Blueprint('watchlist', __name__)
+watchlist_routes = Blueprint('watchlist', __name__)
+
+@watchlist_routes.route('')
+def get_user_watchlist():
+  pass
