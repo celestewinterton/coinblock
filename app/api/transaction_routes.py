@@ -1,15 +1,13 @@
 from copyreg import remove_extension
 from flask import Blueprint, jsonify, render_template, request
 from datetime import datetime
-
-from app.utils.form_validation_errors import form_validation_errors
 from ..models import User, Transaction
 from ..models.db import db
 from ..forms import TransactionForm
 from flask_login import current_user
 from ..utils import form_validation_errors
 
-transaction_routes = Blueprint('channels', __name__)
+transaction_routes = Blueprint('transactions', __name__)
 
 @transaction_routes.route('')
 def get_user_transactions():
