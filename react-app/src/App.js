@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
-import SplashNav from './components/NavBar/SplashNav';
+import SplashNav from './components/NavBars/SplashNav';
 import Splash from './components/Splash';
 import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import UsersList from './components/auth/UsersList';
+import User from './components/auth/User';
 import { authenticate } from './store/session';
+import notFound from './components/images/notFound.svg'
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -54,11 +54,25 @@ function App() {
 
         {user &&
         <ProtectedRoute path='/' exact={true} >
-          <NavBar />
           <Dashboard />
         </ProtectedRoute>}
+        {user &&
+        <ProtectedRoute path='/dashboard' exact={true} >
+          <Dashboard />
+        </ProtectedRoute>}
+        {user &&
+        <ProtectedRoute path='/trade' exact={true} >
+          <Dashboard />
+        </ProtectedRoute>}
+
+
         <Route>
-          <h1>Page Not Found</h1>
+          <div className='column center padded'>
+            <img src={notFound} alt=""></img>
+            <div>Page Not Found</div>
+            <div className='muted1 padded'>Sorry we couldn't find what you were looking for.</div>
+            <NavLink to='/' className='button' exact={true}>Back to Coinblock</NavLink>
+          </div>
         </Route>
       </Switch>
     </BrowserRouter>

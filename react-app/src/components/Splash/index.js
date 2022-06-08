@@ -1,7 +1,6 @@
 import React from 'react';
 import url from '../images/Splash.png'
 import './Splash.css'
-import SplashNav from '../NavBar/SplashNav';
 import { NavLink } from 'react-router-dom';
 
 
