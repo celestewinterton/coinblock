@@ -1,7 +1,17 @@
+.splash-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-bottom: .8px solid var(--line);
+}
+
 .navbar-container {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border-bottom: .8px solid var(--line);
 }
 
 .navbar-container > li {

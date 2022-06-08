@@ -1,1 +1,139 @@
 /* TODO Add site wide styles */
+
+/*
+Heebo:wght@100;300;400;500;600;700
+Poppins:wght@100;200;300;400;500;600;700
+Roboto:wght@100;300;400;500;700
+Yantramanav:wght@400;500;700
+*/
+
+:root {
+  --primary: #0052FF;
+  --background: #003EC108;
+  --elements: #fff;
+  --black: #0A0B0D;
+  --gray: #5B616E;
+  --green: #098551;
+  --red: #CF202F;
+  --line: rgba(91, 97, 110, 0.05);
+}
+
+.primary {
+  color: var(--primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: 'Heebo', sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
+  /* font-family: 'Yantramanav', sans-serif; */
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--background);
+}
+
+.container {
+  max-width: 1240px;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+h1 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 2.6rem;
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.button {
+  padding: 6px 10px;
+  border: 1px solid var(--primary);
+  background-color: var(--primary);
+  transition: background-color .25s, color .25s;
+  color: #fff;
+  border-radius: 4px;
+  font-size: .7rem;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0A46E4;
+}
+
+label, .label {
+  font-size: .6rem;
+  font-weight: 500;
+}
+
+input {
+  padding: 16px;
+  border: .4px solid rgba(91, 97, 110, 0.66);
+  background-color: transparent;
+  border-radius: 10px;
+  margin: 5px 0px;
+}
+
+.link {
+  color: var(--primary);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  width: 100%;
+}
+
+form {
+  max-width: 500px;
+}
