@@ -4,11 +4,11 @@ import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 
 
-const NavBar = () => {
+const NavBar = ({title}) => {
   return (
     <>
       <nav className='navbar-container'>
-        <h6>Assets (Placeholder)</h6>
+        <h6>{title}</h6>
         <div>
           <NavLink to='/users' exact={true} className="navlink" activeClassName='active'>
             Users

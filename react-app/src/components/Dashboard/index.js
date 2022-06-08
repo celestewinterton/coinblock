@@ -15,15 +15,17 @@ const Dashboard = () => {
     <div className="dashboard-container row">
       <SideNav />
       <div className="column">
-      <NavBar />
       <Switch>
         <ProtectedRoute path='/' exact={true} >
+          <NavBar title={"Assets"} />
           <Assets />
         </ProtectedRoute>
         <ProtectedRoute path='/dashboard' exact={true} >
+          <NavBar title={"Assets"} />
           <Assets />
         </ProtectedRoute>
         <ProtectedRoute path='/trade' exact={true} >
+          <NavBar title={"Trade"} />
           <Trade />
         </ProtectedRoute>
       </Switch>
