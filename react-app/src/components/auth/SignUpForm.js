@@ -122,7 +122,8 @@ const SignUpForm = () => {
           </div>
         </div>
         <div className='column'>
-          <h5>Get $5 in Bitcoin for setting up an account</h5>
+          <h4>Get $1,000 in pseudo<br /> money for setting up an<br /> account today!</h4>
+          <div className='muted1 padded'>Set up your account and verify to get started<br /> on trading fake crypto. No Terms Apply</div>
           <img src={svg} alt="" height="240px"></img>
         </div>
       </div>

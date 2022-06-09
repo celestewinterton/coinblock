@@ -138,6 +138,8 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  vertical-align: middle;
 }
 
 form {

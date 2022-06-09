@@ -19,3 +19,8 @@
 .buy-tab:hover, .sell-tab:hover {
   background-color: rgba(250, 250, 250, .98);
 }
+
+.trade-modal-button {
+  position: absolute;
+  margin-right: 50px;
+}

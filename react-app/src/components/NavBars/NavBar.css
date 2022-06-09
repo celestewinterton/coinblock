@@ -19,6 +19,47 @@
   z-index: 4;
 }
 
+.navbar-right-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.profile-button {
+  position: absolute;
+  margin: 0px 4px;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 230px;
+  padding: 40px 10px 20px 10px;
+  position: absolute;
+  top: 72px;
+  right: 20px;
+}
+
+.profile-dropdown > div {
+  padding: 10px 30px;
+}
+
+.profile-dropdown > button {
+  padding: 10px 60px;
+  border: none;
+  border-top: .8px solid var(--line);
+  background-color: transparent;
+  font-weight: 600;
+  color: var(--red);
+  transition: background-color .25s, color .25s;
+}
+
+.profile-dropdown > button:hover {
+  background-color: rgba(250, 250, 250, .98);
+}
+
 .side-nav-container {
   display: flex;
   flex-direction: column;

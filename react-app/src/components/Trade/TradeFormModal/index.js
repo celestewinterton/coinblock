@@ -7,7 +7,7 @@ function TradeFormModal() {
 
     return (
         <>
-            <button className='button' onClick={() => setShowModal(true)}>Buy / Sell</button>
+            <button className='button trade-modal-button' onClick={() => setShowModal(true)}>Buy / Sell</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <TradeForm setShowModal={setShowModal} />
