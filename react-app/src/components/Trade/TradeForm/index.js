@@ -42,6 +42,9 @@ const TradeForm = () => {
         e.preventDefault()
         let errors;
         const formData = new FormData();
+
+        if (!amount || typeof amount != "number") setErrors({amount: "Please enter an dollar amount you would like to trade (example: 100)"})
+
         formData.append('amount', amount);
         formData.append('user_id', user.id);
         formData.append('crypto_id', cryptoId);
@@ -52,6 +55,7 @@ const TradeForm = () => {
         formData.append('debit', (type === "sell" ? coins[cryptoId].symbol : "cash"));
 
         errors = await dispatch(postTransaction(formData))
+        setAmount('')
     }
 
     useEffect(() => {
@@ -68,15 +72,15 @@ const TradeForm = () => {
             </div>
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <div>
-                    <div className="form-errors">
-                        {errors.amount && <p>{errors.amount}</p>}
-                    </div>
                     <input
                         type='text'
                         value={amount}
                         required
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder='$0'></input>
+                    <div className="form-errors">
+                        {errors.amount && <p>{errors.amount}</p>}
+                    </div>
                 </div>
                 <div>
                     <label>{type === "buy" ? "Buy" : "Sell"}

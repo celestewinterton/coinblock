@@ -2,6 +2,7 @@ from email.policy import default
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+import simplejson as json
 
 
 join_watchlist = db.Table(
@@ -86,5 +87,5 @@ class Crypto(db.Model):
       'id': self.id,
       'name': self.name,
       'symbol': self.symbol,
-      'price': self.price
+      'price': json.dumps(self.price, use_decimal=True)
     }

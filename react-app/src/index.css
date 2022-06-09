@@ -155,3 +155,9 @@ form {
   color: var(--gray);
   font-size: .8rem;
 }
+
+.form-errors > p {
+  color: var(--red);
+  font-size: .6rem;
+  font-weight: 500;
+}
