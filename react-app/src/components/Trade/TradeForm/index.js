@@ -46,8 +46,8 @@ const TradeForm = () => {
         formData.append('price', price); //get current price
         formData.append('type', type);
         formData.append('quantity', (amount/price)); //amt / current price
-        formData.append('credit', crypto.symbol);
-        formData.append('debit', crypto.symbol);
+        // formData.append('credit', crypto.symbol);
+        // formData.append('debit', crypto.symbol);
 
         console.log("From submit...", formData, amount, price)
         errors = await dispatch(postTransaction(formData))
@@ -98,7 +98,7 @@ const TradeForm = () => {
                         onChange={(e) => setBank(e.target.value)}
                         placeholder='$0'>
                             <option>Cash (USD)</option>
-                            <option>Bank of Satoshi</option>
+                            {/* <option>Bank of Satoshi</option> */}
                     </select>
                     </label>
                 </div>
