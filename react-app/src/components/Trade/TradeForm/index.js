@@ -1,19 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom"
+import { useSelector, useDispatch, batch } from "react-redux";
+import { NavLink } from "react-router-dom"
 import { postTransaction } from "../../../store/transactions";
+import axios from "axios"
+import { loadCrypto } from "../../../store/crypto";
+
+const coins = {
+   1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
+   2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'}
+}
 
 const TradeForm = () => {
     const dispatch = useDispatch();
-    const history = useHistory()
     const user = useSelector(state => state.session.user)
+    const test = useSelector(state => state.crypto)
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState()
-    const [crypto, setCrypto] = useState("Crypto")
+    const [cryptoId, setCryptoId] = useState(1)
     const [bank, setBank] = useState()
     const [type, setType] = useState("buy")
-    const price = "GET PRICE"
+    const [price, setPrice] = useState();
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coins[cryptoId]}&vs_currencies=usd`
 
+    useEffect(() => {
+        dispatch(loadCrypto(test));
+    }, [dispatch])
+
+    useEffect(() => {
+        axios.get(url).then((response) => {
+            setPrice(response.price)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }, [url])
+
+    console.log("Form presubmit... ", crypto, amount, price, test)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -21,13 +42,14 @@ const TradeForm = () => {
         const formData = new FormData();
         formData.append('amount', amount);
         formData.append('user_id', user.id);
-        formData.append('crypto_id', crypto.id);
-        formData.append('price', price);
+        formData.append('crypto_id', cryptoId);
+        formData.append('price', price); //get current price
         formData.append('type', type);
-        formData.append('amount', amount);
-        formData.append('amount', amount);
-        formData.append('amount', amount);
+        formData.append('quantity', (amount/price)); //amt / current price
+        formData.append('credit', crypto.symbol);
+        formData.append('debit', crypto.symbol);
 
+        console.log("From submit...", formData, amount, price)
         errors = await dispatch(postTransaction(formData))
     }
 
@@ -43,7 +65,7 @@ const TradeForm = () => {
                 <NavLink to="#" className="buy-tab" style={type === "buy" ? {color: "#0052FF", borderBottom: "none"} : null}><h6 onClick={e => setType("buy")}>Buy</h6></NavLink>
                 <NavLink to="#" className="sell-tab" style={type === "sell" ? {color: "#0052FF", borderBottom: "none"} : null}><h6 onClick={e => setType("sell")}>Sell</h6></NavLink>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form autoComplete="off" onSubmit={handleSubmit}>
                 <div>
                     <div className="form-errors">
                         {errors.amount && <p>{errors.amount}</p>}
@@ -59,13 +81,11 @@ const TradeForm = () => {
                     <label>{type === "buy" ? "Buy" : "Sell"}
                     <select
                         type='text'
-                        value={crypto}
+                        value={cryptoId}
                         required
-                        onChange={(e) => setCrypto(e.target.value)}
+                        onChange={(e) => setCryptoId(e.target.value)}
                         placeholder='$0'>
-                            <option>Bitcoin</option>
-                            <option>Ethereum</option>
-                            <option>Tether</option>
+                            {Object.values(coins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))}
                     </select>
                     </label>
                 </div>
@@ -82,7 +102,7 @@ const TradeForm = () => {
                     </select>
                     </label>
                 </div>
-                <button className="" type="submit">{type === "buy" ? `Buy ${crypto}` : `Sell ${crypto}`}</button>
+                <button className="" type="submit">{type === "buy" ? `Buy ${coins[cryptoId].name}` : `Sell ${coins[cryptoId].name}`}</button>
             </form>
         </div>
     );

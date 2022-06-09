@@ -73,8 +73,8 @@ class Crypto(db.Model):
   __tablename__ = 'crypto'
 
   id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String(50), unique=True)
   symbol = db.Column(db.String(50), unique=True)
+  name = db.Column(db.String(50))
   price = db.Column(db.Numeric)
 
   transactions = db.relationship("Transaction", back_populates='crypto')

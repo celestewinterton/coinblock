@@ -20,11 +20,18 @@ def post_transaction():
   form = TransactionForm()
   params = {
     'amount': form.data['amount'],
+    'price': form.data['price'],
+    'quantity': form.data['quantity'],
+    'type': form.data['type'],
+    'credit': form.data['credit'],
+    'debit': form.data['debit'],
+    'user_id': form.data['user_id'],
+    'crypto_id': form.data['crypto_id'],
   }
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     transaction = Transaction(**params)
-    transaction.users.append(current_user)
+    # User.transactions.append(transaction)
     db.session.add(transaction)
     db.session.commit()
     return transaction.to_dict()
@@ -32,23 +39,23 @@ def post_transaction():
 
 
 
-@transaction_routes.route('/<int:id>',methods=['PUT'])
-def edit_transaction(id):
-  form = TransactionForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
-  if form.validate_on_submit():
-    transaction = Transaction.query.get(id)
-    # transaction.name = form.data['amount']
-    # transaction.topic = form.data['type']
-    db.session.commit()
-    return transaction.to_dict()
-  return {'errors': form_validation_errors(form.errors)}, 401
+# @transaction_routes.route('/<int:id>',methods=['PUT'])
+# def edit_transaction(id):
+#   form = TransactionForm()
+#   form['csrf_token'].data = request.cookies['csrf_token']
+#   if form.validate_on_submit():
+#     transaction = Transaction.query.get(id)
+#     # transaction.name = form.data['amount']
+#     # transaction.topic = form.data['type']
+#     db.session.commit()
+#     return transaction.to_dict()
+#   return {'errors': form_validation_errors(form.errors)}, 401
 
 
 
-@transaction_routes.route('/<int:id>',methods=['DELETE'])
-def delete_transaction(id):
-  remove_transaction = Transaction.query.get(id)
-  db.session.delete(remove_transaction)
-  db.session.commit()
-  return {'id': id}
+# @transaction_routes.route('/<int:id>',methods=['DELETE'])
+# def delete_transaction(id):
+#   remove_transaction = Transaction.query.get(id)
+#   db.session.delete(remove_transaction)
+#   db.session.commit()
+#   return {'id': id}

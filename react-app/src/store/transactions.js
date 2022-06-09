@@ -5,8 +5,6 @@ import { easyFetch } from "../utils/easyFetch"
 
 const LOAD_TRANSACTIONS = 'transactions/LOAD_TRANSACTIONS'
 const POST_TRANSACTION = 'transactions/POST_TRANSACTION'
-const EDIT_TRANSACTION = 'transactions/EDIT_TRANSACTION'
-const DELETE_TRANSACTION = 'transactions/DELETE_TRANSACTION'
 
 
 const loadTransactions = transactions => ({
@@ -17,16 +15,6 @@ const loadTransactions = transactions => ({
 const postNewTransaction = transaction => ({
   type: POST_TRANSACTION,
   transaction
-})
-
-const changeTransaction = transaction => ({
-  type: EDIT_TRANSACTION,
-  transaction
-})
-
-const removeTransaction = transactionId => ({
-  type: DELETE_TRANSACTION,
-  transactionId
 })
 
 export const getTransactions = () => async (dispatch) => {
@@ -41,46 +29,24 @@ export const getTransactions = () => async (dispatch) => {
 }
 
 export const postTransaction = (formData) => async (dispatch) => {
-  const res = await easyFetch(`/api/transactions`, {
+  const res = await fetch(`/api/transactions`, {
     method: 'POST',
+    headers: {'ContentType': 'application/json'},
+    // body: JSON.stringify(formData)
     body: formData
   })
 
+  console.log("Inside thunk...", formData)
   const data = await res.json()
   if (res.ok) {
     dispatch(postNewTransaction(data))
   } else {
     return data
   }
-}
-
-export const editTransaction = (formData) => async (dispatch) => {
-  const res = await easyFetch(`/api/transactions`, {
-    method: 'PUT',
-    body: formData
-  })
-
-  const data = await res.json()
-
-  if (res.ok) {
-      dispatch(changeTransaction(data))
-  } else {
-      return data
-  }
-}
-
-export const deleteTransactions = (transactionId) => async (dispatch) => {
-  const res = await easyFetch(`/api/transactions/${transactionId}`, {
-    method: 'DELETE'
-  })
-
-  const data = await res.json()
-
-  if (res.ok) {
-      dispatch(removeTransaction(data.id))
-  } else {
-      return data
-  }
+  // if (res.ok) {
+  //   const data = await res.json()
+  //   dispatch(postNewTransaction(data))
+  // }
 }
 
 
@@ -99,15 +65,61 @@ const transactionsReducer = (state = initialState, action) => {
       case POST_TRANSACTION:
           newState[action.transaction.id] = action.transaction
           return newState
-      case EDIT_TRANSACTION:
-          newState[action.transaction.id] = action.transaction
-          return newState
-      case DELETE_TRANSACTION:
-          delete newState[action.transactionId]
-          return newState
+      // case EDIT_TRANSACTION:
+      //     newState[action.transaction.id] = action.transaction
+      //     return newState
+      // case DELETE_TRANSACTION:
+      //     delete newState[action.transactionId]
+      //     return newState
       default:
           return state;
   };
 };
 
 export default transactionsReducer;
+
+
+// const EDIT_TRANSACTION = 'transactions/EDIT_TRANSACTION'
+// const DELETE_TRANSACTION = 'transactions/DELETE_TRANSACTION'
+
+
+// const changeTransaction = transaction => ({
+//   type: EDIT_TRANSACTION,
+//   transaction
+// })
+
+// const removeTransaction = transactionId => ({
+//   type: DELETE_TRANSACTION,
+//   transactionId
+// })
+
+
+
+// export const editTransaction = (formData) => async (dispatch) => {
+//   const res = await easyFetch(`/api/transactions`, {
+//     method: 'PUT',
+//     body: formData
+//   })
+
+//   const data = await res.json()
+
+//   if (res.ok) {
+//       dispatch(changeTransaction(data))
+//   } else {
+//       return data
+//   }
+// }
+
+// export const deleteTransactions = (transactionId) => async (dispatch) => {
+//   const res = await easyFetch(`/api/transactions/${transactionId}`, {
+//     method: 'DELETE'
+//   })
+
+//   const data = await res.json()
+
+//   if (res.ok) {
+//       dispatch(removeTransaction(data.id))
+//   } else {
+//       return data
+//   }
+// }

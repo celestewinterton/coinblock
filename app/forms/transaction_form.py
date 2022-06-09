@@ -1,13 +1,16 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
+from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import DataRequired
 from app.models import User
 
 
 class TransactionForm(FlaskForm):
     amount = IntegerField('Amount', validators=[DataRequired()])
-    price = StringField('Password')
-    quantity = StringField('Password') # qty = $amt / $currentAssetPrice
-    type = StringField('Password') # buy/sell/transfer
-    credit = StringField('Password') # buying "BTC"
-    debit = StringField('Password') # from "cash balance"
+    price = StringField('Price')
+    quantity = StringField('Quantity') # qty = $amt / $currentAssetPrice
+    type = StringField('Type') # buy/sell/transfer
+    credit = StringField('Credit') # buying "BTC"
+    debit = StringField('Debit') # from "cash balance"
+    user_id = StringField('user_id')
+    crypto_id = StringField('crypto_id')
+    submit = SubmitField('Submit')
