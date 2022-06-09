@@ -31,12 +31,11 @@ export const getTransactions = () => async (dispatch) => {
 export const postTransaction = (formData) => async (dispatch) => {
   const res = await fetch(`/api/transactions`, {
     method: 'POST',
-    headers: {'ContentType': 'application/json'},
-    // body: JSON.stringify(formData)
     body: formData
   })
 
-  console.log("Inside thunk...", formData)
+  for (let data of formData.entries()) console.log("formData", data)
+
   const data = await res.json()
   if (res.ok) {
     dispatch(postNewTransaction(data))

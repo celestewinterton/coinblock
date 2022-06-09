@@ -8,9 +8,9 @@ class Transaction(db.Model):
   amount = db.Column(db.Float)
   price = db.Column(db.Float)
   quantity = db.Column(db.Float)
-  credit = db.Column(db.Float)
-  debit = db.Column(db.Float)
-  type = db.Column(db.String(100))
+  credit = db.Column(db.String(50))
+  debit = db.Column(db.String(50))
+  type = db.Column(db.String(50))
   status = db.Column(db.String(50))
 
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))

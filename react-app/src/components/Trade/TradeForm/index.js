@@ -6,8 +6,8 @@ import axios from "axios"
 import { loadCrypto } from "../../../store/crypto";
 
 const coins = {
-   1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
-   2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'}
+    1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
+    2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'},
 }
 
 const TradeForm = () => {
@@ -17,10 +17,12 @@ const TradeForm = () => {
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState()
     const [cryptoId, setCryptoId] = useState(1)
-    const [bank, setBank] = useState()
+    const [bank, setBank] = useState("Cash (USD)")
     const [type, setType] = useState("buy")
-    const [price, setPrice] = useState();
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coins[cryptoId]}&vs_currencies=usd`
+    const [price, setPrice] = useState(10);
+
+    const coin = coins[cryptoId].name.toLowerCase()
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
 
     useEffect(() => {
         dispatch(loadCrypto(test));
@@ -28,13 +30,13 @@ const TradeForm = () => {
 
     useEffect(() => {
         axios.get(url).then((response) => {
-            setPrice(response.price)
+            setPrice(response.data[coin].usd)
         }).catch((error) => {
             console.log(error)
         })
     }, [url])
 
-    console.log("Form presubmit... ", crypto, amount, price, test)
+    console.log("Form presubmit... ", test)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -46,10 +48,9 @@ const TradeForm = () => {
         formData.append('price', price); //get current price
         formData.append('type', type);
         formData.append('quantity', (amount/price)); //amt / current price
-        // formData.append('credit', crypto.symbol);
-        // formData.append('debit', crypto.symbol);
+        formData.append('credit', (type === "buy" ? coins[cryptoId].symbol : "cash"));
+        formData.append('debit', (type === "sell" ? coins[cryptoId].symbol : "cash"));
 
-        console.log("From submit...", formData, amount, price)
         errors = await dispatch(postTransaction(formData))
     }
 
