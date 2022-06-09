@@ -7,7 +7,7 @@ import { toBillions, toDate, toUnix } from '../../utils/calc';
 const Trade = () => {
   const [data, setData] = useState();
 
-  const no = 200;
+  const no = 10;
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${no}&page=1&sparkline=false`
 
   useEffect(() => {
@@ -29,9 +29,7 @@ const Trade = () => {
   //   })
   // }, [url])
 
-
-  console.log(data)
-  let i = 1
+  // console.log(data)
   return (
     <div className='dashboard-sections'>
       <div className='left-section'>
@@ -48,7 +46,7 @@ const Trade = () => {
                 <th>Watch</th>
               </tr>
             </thead>
-                {/* {data?.map(crypto =>
+                {data?.map(crypto =>
                 <tbody>
                   <td>
                     <div className='row'>
@@ -66,12 +64,12 @@ const Trade = () => {
                     <i class="fa-solid fas-star"></i>
                     <i class="fa-regular fa-star"></i>
                   </td>
-                </tbody>)} */}
-                {data?.map(crypto =>
+                </tbody>)}
+                {/* {data?.map(crypto =>
                 <>
-                  <div>{crypto?.symbol} = Crypto(name="{crypto?.name}", symbol="{crypto?.symbol}", price={crypto?.current_price}),</div>
+                  <div>{crypto?.symbol} = Crypto(name="{crypto?.name}", symbol="{crypto?.symbol}", price={crypto?.current_price})</div>
                   <div>db.session.add({crypto?.symbol})</div>
-                </>)}
+                </>)} */}
           </table>
         </div>
       </div>
