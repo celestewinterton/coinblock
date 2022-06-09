@@ -7,7 +7,7 @@ import { toBillions, toDate, toUnix } from '../../utils/calc';
 const Trade = () => {
   const [data, setData] = useState();
 
-  const no = 20;
+  const no = 10;
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${no}&page=1&sparkline=false`
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Trade = () => {
   // }, [url])
 
 
-  // console.log(data)
+  console.log(data)
 
   return (
     <div className='dashboard-sections'>
