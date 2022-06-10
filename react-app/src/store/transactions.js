@@ -35,17 +35,12 @@ export const postTransaction = (formData) => async (dispatch) => {
   })
 
   // for (let data of formData.entries()) console.log("formData", data)
-
   const data = await res.json()
   if (res.ok) {
     dispatch(postNewTransaction(data))
   } else {
     return data
   }
-  // if (res.ok) {
-  //   const data = await res.json()
-  //   dispatch(postNewTransaction(data))
-  // }
 }
 
 

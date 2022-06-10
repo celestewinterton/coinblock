@@ -75,6 +75,8 @@ const TradeForm = ({showModal, setShowModal}) => {
     // Cases to control for...
     // user can't sell crypto they don't own (filter dropdown list)
     // user can only buy up to their buying power, then show errors!!
+    // add num validation so users can't enter negatives
+    // for Add Funds, should there be a way to transfer out too??
 
     return (
         <div className="transaction-form-container column">
@@ -118,6 +120,8 @@ const TradeForm = ({showModal, setShowModal}) => {
                         required
                         onChange={(e) => setBank(e.target.value)}>
                             <option key={bank} value="Bank of Satoshi">Bank of Satoshi</option>
+                            <option key={bank} value="Bank of America">Bank of America</option>
+                            <option key={bank} value="Chase">Chase</option>
                     </select>
                     </label>}
                 </div>
