@@ -5,17 +5,18 @@ import { postTransaction, getTransactions } from "../../../store/transactions";
 import axios from "axios"
 import { loadCrypto } from "../../../store/crypto";
 import { currency } from "../../../utils/calc";
+import { authenticate } from "../../../store/session"
 
 // Dummy Data...
-const coins = {
-    1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
-    2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'},
-}
+// const coins = {
+//     1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
+//     2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'},
+// }
 
 const TradeForm = ({showModal, setShowModal}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    // const coins = useSelector(state => state.crypto)
+    const coins = useSelector(state => state.crypto)
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState()
     const [cryptoId, setCryptoId] = useState(1)
@@ -50,7 +51,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         if (type !== "transfer") formData.append('crypto_id', cryptoId)
         formData.append('price', price); //get current price
         formData.append('type', type);
-        formData.append('quantity', (amount/price)); //amt / current price
+        formData.append('quantity', (type === "sell" ? -amount/price : amount/price)); //amt / current price
         formData.append('credit', (type === "buy" ? coins[cryptoId].symbol : "cash"));
         formData.append('debit', (type === "sell" ? coins[cryptoId].symbol : type === "transfer" ? "bank" : "cash"));
 
@@ -60,6 +61,7 @@ const TradeForm = ({showModal, setShowModal}) => {
             return
         }
 
+        await dispatch(authenticate());
         setErrors({})
         setAmount('')
         if (showModal) setShowModal(false)

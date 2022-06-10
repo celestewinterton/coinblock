@@ -47,8 +47,10 @@ class User(db.Model, UserMixin):
                 balances['cash'] += txn.amount
             elif str(txn.crypto_id) in balances:
                 balances[str(txn.crypto_id)] += txn.quantity
+                balances['cash'] -= txn.amount
             else:
                 balances.update({str(txn.crypto_id): txn.quantity})
+                balances['cash'] -= txn.amount
         return balances
 
     def to_dict(self):
