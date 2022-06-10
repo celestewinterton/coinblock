@@ -46,30 +46,30 @@ const Trade = () => {
                 <th>Watch</th>
               </tr>
             </thead>
-                {data?.map(crypto =>
-                <tbody>
-                  <td>
-                    <div className='row'>
-                      <img height="36px" src={crypto?.image} alt=""></img>
-                      <div className='column'>
-                        <div>{crypto?.name}</div>
-                        <div>{crypto?.symbol.toUpperCase()}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{crypto?.current_price}</td>
-                  <td>{crypto?.name}</td>
-                  <td>${toBillions(crypto?.market_cap)}B</td>
-                  <td>
-                    <i class="fa-solid fas-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                  </td>
-                </tbody>)}
-                {/* {data?.map(crypto =>
-                <>
-                  <div>{crypto?.symbol} = Crypto(name="{crypto?.name}", symbol="{crypto?.symbol}", price={crypto?.current_price})</div>
-                  <div>db.session.add({crypto?.symbol})</div>
-                </>)} */}
+            {data?.map(crypto =>
+            <tbody>
+              <td>
+                <div className='row'>
+                  <img height="36px" src={crypto?.image} alt=""></img>
+                  <div className='column'>
+                    <div>{crypto?.name}</div>
+                    <div>{crypto?.symbol.toUpperCase()}</div>
+                  </div>
+                </div>
+              </td>
+              <td>{crypto?.current_price}</td>
+              <td>{crypto?.name}</td>
+              <td>${toBillions(crypto?.market_cap)}B</td>
+              <td>
+                <i class="fa-solid fas-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </td>
+            </tbody>)}
+              {/* {data?.map(crypto =>
+              <>
+                <div>{crypto?.symbol} = Crypto(name="{crypto?.name}", symbol="{crypto?.symbol}", price={crypto?.current_price})</div>
+                <div>db.session.add({crypto?.symbol})</div>
+              </>)} */}
           </table>
         </div>
       </div>

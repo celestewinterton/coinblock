@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch, batch } from "react-redux";
 import { NavLink } from "react-router-dom"
-import { postTransaction, getTransactions, getBalances } from "../../../store/transactions";
+import { postTransaction, getTransactions } from "../../../store/transactions";
 import axios from "axios"
 import { loadCrypto } from "../../../store/crypto";
 import { currency } from "../../../utils/calc";
 
 // Dummy Data...
-// const coins = {
-//     1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
-//     2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'},
-// }
+const coins = {
+    1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
+    2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'},
+}
 
 const TradeForm = ({showModal, setShowModal}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const coins = useSelector(state => state.crypto)
-    const txns = useSelector(state => state.transactions)
+    // const coins = useSelector(state => state.crypto)
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState()
     const [cryptoId, setCryptoId] = useState(1)
@@ -27,8 +26,6 @@ const TradeForm = ({showModal, setShowModal}) => {
 
     useEffect(() => {
         dispatch(loadCrypto());
-        // dispatch(getTransactions())
-        dispatch(getBalances())
     }, [dispatch])
 
     const coin = coins[cryptoId].name.toLowerCase()
@@ -42,7 +39,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         })
     }, [url])
 
-    // console.log("Form test... ", crypto, txns)
+    console.log("Form test... ", user.balances )
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -72,8 +69,6 @@ const TradeForm = ({showModal, setShowModal}) => {
         setErrors(errors)
     }, [errors]);
 
-    console.log(user)
-
     return (
         <div className="transaction-form-container column">
             <div className="row">
@@ -83,6 +78,7 @@ const TradeForm = ({showModal, setShowModal}) => {
             </div>
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <div>Current Price: {currency(price)}</div>
+                <div>Cash Balance: {currency(user.balances.cash)}</div>
                 <div>
                     <input
                         type='text'

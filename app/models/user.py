@@ -40,6 +40,17 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def balances(self):
+        balances = {'cash': 0}
+        for txn in self.transactions:
+            if str(txn.crypto_id) == 'None':
+                balances['cash'] += txn.amount
+            elif str(txn.crypto_id) in balances:
+                balances[str(txn.crypto_id)] += txn.quantity
+            else:
+                balances.update({str(txn.crypto_id): txn.quantity})
+        return balances
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -49,6 +60,8 @@ class User(db.Model, UserMixin):
             # 'cash': self.cash,
             'watchlists': [item.to_dict() for item in self.watchlists],
             'transactions': [transaction.to_dict() for transaction in self.transactions],
+            'testBalances': [{transaction.crypto_id: transaction.to_dict()} for transaction in self.transactions if transaction.crypto_id ],
+            'balances': self.balances()
         }
 
 

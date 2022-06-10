@@ -28,18 +28,6 @@ export const getTransactions = () => async (dispatch) => {
   }
 }
 
-export const getBalances = () => async (dispatch) => {
-  const res = await easyFetch(`/api/transactions/balances`)
-  const data = await res.json()
-
-  console.log("THUNK ====>", data)
-  if (res.ok) {
-      dispatch(loadTransactions(data.transactions))
-  } else {
-      return data
-  }
-}
-
 export const postTransaction = (formData) => async (dispatch) => {
   const res = await fetch(`/api/transactions`, {
     method: 'POST',
