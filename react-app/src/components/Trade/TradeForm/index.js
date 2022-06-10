@@ -29,7 +29,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         dispatch(loadCrypto());
     }, [dispatch])
 
-    const coin = coins[cryptoId].name.toLowerCase()
+    const coin = coins[cryptoId]?.name.toLowerCase()
     const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
 
     useEffect(() => {
@@ -124,7 +124,7 @@ const TradeForm = ({showModal, setShowModal}) => {
                     </select>
                     </label>
                 </div>
-                <button className="" type="submit">{type === "transfer" ? "Deposit Funds" : type === "buy" ? `Buy ${coins[cryptoId].name}` : `Sell ${coins[cryptoId].name}`}</button>
+                <button className="" type="submit">{type === "transfer" ? "Deposit Funds" : type === "buy" ? `Buy ${coins[cryptoId]?.name}` : `Sell ${coins[cryptoId]?.name}`}</button>
             </form>
             {true && <form></form>}
         </div>
