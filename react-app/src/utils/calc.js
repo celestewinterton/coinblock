@@ -23,6 +23,11 @@ export const currency = (num) => {
   return dollars
 }
 
+export const round = (num, decimalPlaces=2) => {
+  const factor = Math.pow(10, decimalPlaces)
+  return Math.round(num * factor) / factor
+}
+
 
 
 // testing...

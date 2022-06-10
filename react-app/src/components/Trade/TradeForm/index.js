@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 import { postTransaction, getTransactions } from "../../../store/transactions";
 import axios from "axios"
 import { loadCrypto } from "../../../store/crypto";
-import { currency } from "../../../utils/calc";
+import { currency, round } from "../../../utils/calc";
 import { authenticate } from "../../../store/session"
 
 // Dummy Data...
@@ -17,6 +17,7 @@ const TradeForm = ({showModal, setShowModal}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const coins = useSelector(state => state.crypto)
+    const ownedCoins = Object.values(coins).filter(coin => Object.keys(user.balances).includes(`${coin.id}`))
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState()
     const [cryptoId, setCryptoId] = useState(1)
@@ -40,7 +41,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         })
     }, [url])
 
-    console.log("Form test... ", user.balances )
+    console.log("Form test... ", user.balances, ownedCoins)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -71,6 +72,10 @@ const TradeForm = ({showModal, setShowModal}) => {
         setErrors(errors)
     }, [errors]);
 
+    // Cases to control for...
+    // user can't sell crypto they don't own (filter dropdown list)
+    // user can only buy up to their buying power, then show errors!!
+
     return (
         <div className="transaction-form-container column">
             <div className="row">
@@ -79,8 +84,8 @@ const TradeForm = ({showModal, setShowModal}) => {
                 <NavLink to="#" className="fund-tab" style={type === "transfer" ? {color: "#0052FF", borderBottom: "none"} : null} onClick={e => setType("transfer")}>Add Funds</NavLink>
             </div>
             <form autoComplete="off" onSubmit={handleSubmit}>
-                <div>Current Price: {currency(price)}</div>
-                <div>Cash Balance: {currency(user.balances.cash)}</div>
+                <div>{type === "transfer" ? null : `Current Price: ${currency(price)}`}</div>
+                <div>{type === "sell" ? `${coins[cryptoId]?.name} qty: ${round(user.balances[cryptoId])}, value: ${currency(user.balances[cryptoId]*price)}` : `Cash Balance: ${currency(user.balances.cash)}`}</div>
                 <div>
                     <input
                         type='text'
@@ -101,7 +106,8 @@ const TradeForm = ({showModal, setShowModal}) => {
                         required
                         onChange={(e) => setCryptoId(e.target.value)}
                         placeholder='$0'>
-                            {Object.values(coins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))}
+                            {type === "buy" ? Object.values(coins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))
+                            : Object.values(ownedCoins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))}
                     </select>
                     </label>}
                     {type === "transfer" &&
