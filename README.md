@@ -2,7 +2,7 @@
 
 Coinblock is a full-stack clone of the popular crypto trading application, <a href="https://www.coinbase.com/">Coinbase</a>. Coinblock allows users to view a portfolio, make transactions, and maintain a watchlist. Transactions on Coinblock are simulated and no actual money will be changing hands. 
 
-<!-- <a href="" target="_blank"><strong>Explore the website »</strong></a><br/> -->
+<h4 align="center"><a href="https://coinblock-trading.herokuapp.com/" target="_blank">Explore the website »</a></h4>
 
 
 <details open="open">
@@ -69,24 +69,24 @@ Coinblock is a full-stack clone of the popular crypto trading application, <a hr
 
 ### Splash Page
 Description...TBD
-![Splash Page](ScreenshotURL)
+<!-- ![Splash Page](ScreenshotURL) -->
 
 ### Portfolio Dashboard
 Description...TBD
-![Portfolio Dashboard](ScreenshotURL)
+<!-- ![Portfolio Dashboard](ScreenshotURL) -->
 
 ### Watchlist
 Description...TBD
-![Watchlist](ScreenshotURL)
+<!-- ![Watchlist](ScreenshotURL) -->
 
 ### Making a Trade
 Description...TBD
-![Making a Trade](ScreenshotURL)
+<!-- ![Making a Trade](ScreenshotURL) -->
 
 ## Database Schema
 [Back to top](#table-of-contents)
 
-![Database Schema](ScreenshotURL)
+<!-- ![Database Schema](ScreenshotURL) -->
 
 ## Future Features
 [Back to top](#table-of-contents)
