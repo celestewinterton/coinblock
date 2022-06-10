@@ -10,11 +10,14 @@ export const loadAllCrypto = crypto => ({
 })
 
 export const loadCrypto = () => async dispatch => {
-  const response = await easyFetch(`/api/crypto`)
-  const data = await response.json()
+  const res = await easyFetch(`/api/crypto`)
+  const data = await res.json()
 
-  if (response.ok) dispatch(loadAllCrypto(crypto));
-  else return data
+  if (res.ok) {
+    dispatch(loadAllCrypto(data.crypto))
+  } else {
+      return data
+  }
 }
 
 const initialState = {};
@@ -25,7 +28,7 @@ const cryptoReducer = (state = initialState, action) => {
     case LOAD_CRYPTO:
       if (action.crypto.length) {
         action.crypto.forEach(coin => {
-            newState[coin.id] = coin;
+          newState[coin.id] = coin;
         });
       }
       return newState;

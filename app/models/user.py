@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
     lastName = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    cash = db.Column(db.Float, default=1000)
+    cash = db.Column(db.Float)
 
     transactions = db.relationship("Transaction", back_populates='user')
     watchlists = db.relationship("Watchlist", back_populates='user')
@@ -46,7 +46,7 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            'cash': self.cash,
+            # 'cash': self.cash,
             'watchlists': [item.to_dict() for item in self.watchlists],
             'transactions': [transaction.to_dict() for transaction in self.transactions],
         }

@@ -28,6 +28,18 @@ export const getTransactions = () => async (dispatch) => {
   }
 }
 
+export const getBalances = () => async (dispatch) => {
+  const res = await easyFetch(`/api/transactions/balances`)
+  const data = await res.json()
+
+  console.log("THUNK ====>", data)
+  if (res.ok) {
+      dispatch(loadTransactions(data.transactions))
+  } else {
+      return data
+  }
+}
+
 export const postTransaction = (formData) => async (dispatch) => {
   const res = await fetch(`/api/transactions`, {
     method: 'POST',
@@ -55,15 +67,15 @@ const transactionsReducer = (state = initialState, action) => {
   const newState = { ...state }
   switch (action.type) {
       case LOAD_TRANSACTIONS:
-          if (action.transactions.length) {
-              action.transactions.forEach(transaction => {
-                  newState[transaction.id] = transaction;
-              });
-          }
-          return newState;
+        if (action.transactions.length) {
+          action.transactions.forEach(transaction => {
+            newState[transaction.id] = transaction;
+          });
+        }
+        return newState;
       case POST_TRANSACTION:
-          newState[action.transaction.id] = action.transaction
-          return newState
+        newState[action.transaction.id] = action.transaction
+        return newState
       // case EDIT_TRANSACTION:
       //     newState[action.transaction.id] = action.transaction
       //     return newState
@@ -71,7 +83,7 @@ const transactionsReducer = (state = initialState, action) => {
       //     delete newState[action.transactionId]
       //     return newState
       default:
-          return state;
+        return state;
   };
 };
 

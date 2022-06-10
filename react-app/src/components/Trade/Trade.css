@@ -2,21 +2,25 @@
 
 }
 
-.buy-tab, .sell-tab {
+.buy-tab, .sell-tab, .fund-tab {
   color: var(--black);
-  padding: 20px;
+  padding: 20px 8px;
   width: 100%;
   border-bottom: .8px solid var(--line);
   text-align: center;
   vertical-align: middle;
   transition: background-color .25s, color .25s;
+  white-space: nowrap;
+  font-size: .8rem;
+  font-weight: 600;
+  font-size: .9rem;
 }
 
-.sell-tab {
+.sell-tab, .fund-tab {
   border-left: .8px solid var(--line);
 }
 
-.buy-tab:hover, .sell-tab:hover {
+.buy-tab:hover, .sell-tab:hover, .fund-tab {
   background-color: rgba(250, 250, 250, .98);
 }
 

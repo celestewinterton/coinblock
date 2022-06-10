@@ -15,19 +15,32 @@ def get_user_transactions():
   return {'transactions': [txn.to_dict() for txn in transactions]}
 
 
+
+@transaction_routes.route('/balances')
+def get_balances():
+  transactions = Transaction.query.all()
+  print("TXNS ROUTER ========>", transactions)
+  return {'transactions': [txn.to_dict() for txn in transactions]}
+
+
+
 @transaction_routes.route('' , methods=['POST'])
 def post_transaction():
   form = TransactionForm()
+
   params = {
     'amount': form.data['amount'],
-    'price': form.data['price'],
-    'quantity': form.data['quantity'],
     'type': form.data['type'],
     'credit': form.data['credit'],
     'debit': form.data['debit'],
     'user_id': form.data['user_id'],
-    'crypto_id': form.data['crypto_id'],
   }
+
+  if form.data['crypto_id']:
+    params['crypto_id'] = form.data['crypto_id']
+    params['price']= form.data['price']
+    params['quantity']= form.data['quantity']
+
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
     transaction = Transaction(**params)
