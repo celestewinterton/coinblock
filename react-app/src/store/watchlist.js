@@ -24,6 +24,7 @@ export const loadWatchlist = () => async (dispatch) => {
   const res = await easyFetch(`/api/watchlist`)
   const data = await res.json()
 
+
   if (res.ok) {
       dispatch(loadUserWatchlist(data.watchlist))
   } else {
@@ -37,10 +38,12 @@ export const addToWatchlist = (formData) => async (dispatch) => {
     body: formData
   })
 
+  for (let data of formData.entries()) console.log("formData", data)
   const data = await res.json()
   if (res.ok) {
     dispatch(addToUserWatchlist(data))
   } else {
+    console.log(data)
     return data
   }
 }
@@ -74,7 +77,7 @@ const watchlistReducer = (state = initialState, action) => {
           }
           return newState;
       case ADD_TO_WATCHLIST:
-          newState[action.items.id] = action.items
+          newState[action.item.id] = action.item
           return newState
       case REMOVE_FROM_WATCHLIST:
           delete newState[action.itemId]

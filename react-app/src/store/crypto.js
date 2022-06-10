@@ -20,6 +20,7 @@ export const loadCrypto = () => async dispatch => {
   }
 }
 
+
 const initialState = {};
 
 const cryptoReducer = (state = initialState, action) => {

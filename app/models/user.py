@@ -71,7 +71,7 @@ class Watchlist(db.Model):
     __tablename__ = "watchlists"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50))
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     user = db.relationship("User", back_populates='watchlists')
@@ -91,7 +91,7 @@ class Crypto(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   symbol = db.Column(db.String(50), unique=True)
   name = db.Column(db.String(50))
-  price = db.Column(db.Numeric)
+  price = db.Column(db.Float)
 
   transactions = db.relationship("Transaction", back_populates='crypto')
 

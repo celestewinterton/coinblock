@@ -22,6 +22,7 @@ def post_transaction():
 
   params = {
     'type': form.data['type'],
+    'quantity': form.data['quantity'],
     'credit': form.data['credit'],
     'debit': form.data['debit'],
     'user_id': form.data['user_id'],
@@ -35,7 +36,6 @@ def post_transaction():
   if form.data['crypto_id']:
     params['crypto_id'] = form.data['crypto_id']
     params['price'] = form.data['price']
-    params['quantity'] = form.data['quantity']
 
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():

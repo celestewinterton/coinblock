@@ -161,3 +161,8 @@ form {
   font-size: .6rem;
   font-weight: 500;
 }
+
+.unset {
+  all: unset;
+  cursor: pointer;
+}

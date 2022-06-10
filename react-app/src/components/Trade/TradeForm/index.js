@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch, batch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom"
-import { postTransaction, getTransactions } from "../../../store/transactions";
+import { postTransaction } from "../../../store/transactions";
 import axios from "axios"
 import { loadCrypto } from "../../../store/crypto";
 import { currency, round } from "../../../utils/calc";
@@ -40,8 +40,6 @@ const TradeForm = ({showModal, setShowModal}) => {
             console.log(error)
         })
     }, [url])
-
-    console.log("Form test... ", user.balances, ownedCoins)
 
     const handleSubmit = async (e) => {
         e.preventDefault()

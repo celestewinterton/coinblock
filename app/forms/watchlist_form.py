@@ -5,6 +5,6 @@ from app.models import User
 
 
 class WatchlistForm(FlaskForm):
-    user_id = IntegerField('user_id', validators=[DataRequired()])
-    name = StringField('Name')
-    submit = SubmitField('Submit')
+    user_id = StringField('user_id', validators=[DataRequired()])
+    crypto_id = StringField('crypto_id', validators=[DataRequired()])
+    # name = StringField('Name')
