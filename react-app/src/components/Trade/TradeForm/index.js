@@ -47,7 +47,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         e.preventDefault()
         let errors;
         const formData = new FormData();
-        formData.append('amount', (type === "sell" ? -amount : amount));
+        formData.append('amount', amount);
         formData.append('user_id', user.id);
         if (type !== "transfer") formData.append('crypto_id', cryptoId)
         formData.append('price', price); //get current price

@@ -34,6 +34,7 @@ class Transaction(db.Model):
       'debit': self.debit,
       'status': self.status,
       'user_id': self.user_id,
+      # 'crypto': [coin.to_dict() for coin in self.crypto],
       'crypto_id': self.crypto_id,
       'created_at': self.created_at
     }
