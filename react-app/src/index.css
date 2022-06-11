@@ -85,7 +85,7 @@ p {
   font-size: 1.2rem;
 }
 
-.button {
+.button, button {
   padding: 8px 12px;
   border: 1px solid var(--primary);
   background-color: var(--primary);
@@ -102,6 +102,17 @@ p {
 
 .button:hover {
   background-color: #0A46E4;
+}
+
+.muted-button {
+  border: 1px solid var(--line);
+  background-color: transparent;
+  color: var(--black);
+  margin: 8px 12px;
+}
+
+.wide {
+  width: 100%;
 }
 
 label, .label {
@@ -165,4 +176,14 @@ form {
 .unset {
   all: unset;
   cursor: pointer;
+}
+
+.bold1 {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.bold2 {
+  font-weight: bold;
+  font-size: .9rem;
 }

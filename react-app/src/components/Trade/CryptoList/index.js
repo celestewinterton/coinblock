@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios'
-import { bigNum } from '../../../utils/calc';
+import { bigNum, currency } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
 
@@ -12,7 +12,7 @@ const CryptoList = () => {
   const watching = user.watchlist.map(item => item.crypto[0].id)
   const [data, setData] = useState({}); // set by CoinGecko API data
   const [cryptoId, setCryptoId] = useState()
-  const [resultsCount, setResultsCount] = useState(15)
+  const [resultsCount, setResultsCount] = useState(12)
 
   const addToWatch = async (e) => {
     e.preventDefault()
@@ -71,11 +71,11 @@ const CryptoList = () => {
 
   return (
     <>
-      <h2 className='padded'>Categories</h2>
+      <div className='bold1 padded'>Categories</div>
       <div className='padded'>Search bar ??? w/ select option for "All assets" or "Watchlist"</div>
-      <table className='crypto-table padded'>
+      <table className='crypto-table'>
         <thead>
-          <tr>
+          <tr className='table-headers'>
             <th>Name</th>
             <th>Price</th>
             <th>Change</th>
@@ -83,33 +83,31 @@ const CryptoList = () => {
             <th>Watch</th>
           </tr>
         </thead>
-        {Object.values(coins)?.slice(0, resultsCount).map((crypto, idx) =>
-        <tbody>
-          {data[crypto.symbol] && <tr>
-          <td>
-            <div className='row'>
-              <img height="36px" src={data[crypto.symbol]?.image} alt=""></img>
-              <div className='column'>
-                <div>{crypto?.name}</div>
-                <div>{crypto?.symbol.toUpperCase()}</div>
+        <tbody>{Object.values(coins)?.slice(0, resultsCount).map((crypto, idx) =>
+          <tr>
+            <td>
+              <div className='row'>
+                <img height="36px" src={data[crypto.symbol]?.image} alt=""></img>
+                <div className='column table-coin-name-cell'>
+                  <div className='bold2'>{crypto?.name}</div>
+                  <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
+                </div>
               </div>
-            </div>
-          </td>
-          <td>{data[crypto.symbol]?.current_price}</td>
-          <td>{data[crypto.symbol]?.name}</td>
-          <td>{(bigNum(data[crypto.symbol]?.market_cap))}</td>
-          <td>
-            {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'><i class="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
-            {watching.includes(crypto.id) &&
-            <button id={crypto.id} onClick={removeFromWatch} className='unset'><i class="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
-
-          </td>
-          </tr>}
-        </tbody>)}
-
+            </td>
+            <td>{currency(data[crypto.symbol]?.current_price)}</td>
+            <td>{data[crypto.symbol]?.name}</td>
+            <td>${(bigNum(data[crypto.symbol]?.market_cap))}</td>
+            <td>
+              {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'>
+                <i class="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+              {watching.includes(crypto.id) && <button id={crypto.id} onClick={removeFromWatch} className='unset'>
+                <i class="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+            </td>
+          </tr>)}
+        </tbody>
         <div className='row'>
-          {resultsCount < 195 && <div onClick={e => setResultsCount(resultsCount+15)}>View more</div>}
-          {resultsCount > 15 && <div onClick={e => setResultsCount(resultsCount-15)}>View less</div>}
+          {resultsCount < 192 && <button onClick={e => setResultsCount(resultsCount+12)} className="muted-button wide">View more</button>}
+          {resultsCount > 12 && <button onClick={e => setResultsCount(resultsCount-12)} className="muted-button wide">View less</button>}
         </div>
 
         {/* Use to make Crypto seeder... */}

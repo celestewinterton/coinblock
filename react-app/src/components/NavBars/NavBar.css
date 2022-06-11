@@ -12,11 +12,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
+  padding: 10px 30px 10px 260px;
   border-bottom: .8px solid var(--line);
   height: 68px;
   background-color: var(--elements);
   z-index: 4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .navbar-right-buttons {
@@ -28,7 +32,7 @@
 
 .profile-button {
   position: absolute;
-  margin: 0px 4px;
+  margin: 0px 0px 0px 10px;
 }
 
 .profile-dropdown {
@@ -40,6 +44,8 @@
   position: absolute;
   top: 72px;
   right: 20px;
+  z-index: 10;
+  box-shadow: 0px 0px 10px 2400px rgba(50, 53, 61, 0.33);
 }
 
 .profile-dropdown > div {
@@ -70,6 +76,7 @@
   padding: 10px;
   height: 100vh;
   z-index: 5;
+  position: fixed;
 }
 
 .logo {

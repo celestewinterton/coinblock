@@ -1,5 +1,44 @@
 .crypto-table {
+  width: 100%;
+  padding: 10px 0px;
+  display: table;
+}
 
+th, .table-headers {
+  white-space: nowrap;
+  color: var(--gray);
+  font-size: .8rem;
+  font-weight: 400;
+}
+
+td, th {
+  padding: 10px 6px 10px 20px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: .9rem;
+  min-width: 21%;
+}
+
+tr {
+  display: table-row;
+  vertical-align: middle;
+  border-top: .8px solid var(--line);
+  display: flex;
+  align-items: center;
+}
+
+.table-coin-name-cell {
+  padding: 1px 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.fa-regular {
+  color: var(--line);
+}
+
+.fa-solid {
+  color: var(--primary);
 }
 
 .buy-tab, .sell-tab, .fund-tab {
@@ -26,5 +65,6 @@
 
 .trade-modal-button {
   position: absolute;
+  right: 8;
   margin-right: 50px;
 }

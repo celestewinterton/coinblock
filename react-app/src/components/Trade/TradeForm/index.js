@@ -132,7 +132,7 @@ const TradeForm = ({showModal, setShowModal}) => {
                     </select>
                     </label>
                 </div>
-                <button className="" type="submit">{type === "transfer" ? "Deposit Funds" : type === "buy" ? `Buy ${coins[cryptoId]?.name}` : `Sell ${coins[cryptoId]?.name}`}</button>
+                <button className="wide top-margin" type="submit">{type === "transfer" ? "Deposit Funds" : type === "buy" ? `Buy ${coins[cryptoId]?.name}` : `Sell ${coins[cryptoId]?.name}`}</button>
             </form>
             {true && <form></form>}
         </div>
