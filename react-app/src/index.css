@@ -115,6 +115,11 @@ p {
   width: 100%;
 }
 
+.large-button {
+  height: 50px;
+  border-radius: 8px;
+}
+
 label, .label {
   font-size: .6rem;
   font-weight: 500;
@@ -153,9 +158,14 @@ input {
   vertical-align: middle;
 }
 
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 form {
   max-width: 500px;
-  padding: 10px;
+  padding: 18px;
 }
 
 .padded {

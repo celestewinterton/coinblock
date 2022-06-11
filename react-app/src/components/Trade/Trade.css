@@ -55,6 +55,14 @@ tr {
   font-size: .9rem;
 }
 
+.buy-tab {
+  border-top-left-radius: 4px;
+}
+
+.fund-tab {
+  border-top-right-radius: 4px;
+}
+
 .sell-tab, .fund-tab {
   border-left: .8px solid var(--line);
 }
@@ -67,4 +75,70 @@ tr {
   position: absolute;
   right: 8;
   margin-right: 50px;
+}
+
+
+/* Trade Form Styling... */
+.amount-input-container {
+  margin: 45px 5px 30px 5px;
+}
+
+.amount-input {
+  all: unset;
+  font-family: 'Yantramanav', sans-serif;
+  font-weight: 400;
+  width: 30px;
+  height: 40px;
+  font-size: 50px;
+  text-align: center;
+  transition: width 200ms;
+}
+
+.amount-input:focus {
+  color: var(--primary);
+  width: 100%;
+}
+
+.amount-label {
+  font-size: 1.4rem;
+  color: var(--gray);
+  opacity: .90;
+}
+
+.select-inputs {
+  border: .8px solid var(--line);
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-field-last {
+  border-top: .8px solid var(--line);
+}
+
+.select-field, .select-field-last {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-field > select, .select-field-last > select {
+  border: none;
+  outline: none;
+  padding: 16px;
+  margin: 0px 10%;
+  font-size: .8rem;
+  width: 60%;
+}
+
+.select-field > select:active, .select-field-last > select:active {
+  border: transparent;
+}
+
+.select-field > label, .select-field-last > label {
+  margin-left: 10px;
 }

@@ -21,13 +21,13 @@
 
 #modal-content {
   position: absolute;
-  background-color: whitesmoke;
+  background-color: var(--elements);
   width: fit-content;
   border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: fit-content;
-
+  width: 370px;
   box-shadow: 10px 10px 50px rgba(50, 53, 61, 0.1);
 }
