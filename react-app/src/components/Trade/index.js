@@ -11,7 +11,7 @@ const Trade = () => {
   const coins = useSelector(state => state.crypto)
   const [data, setData] = useState();
 
-  console.log("Trade index... ", user, coins)
+  // console.log("Trade index... ", user)
 
   const addToWatchlist = e => {
 

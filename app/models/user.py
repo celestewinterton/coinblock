@@ -60,9 +60,9 @@ class User(db.Model, UserMixin):
             'lastName': self.lastName,
             'email': self.email,
             # 'cash': self.cash,
-            'watchlists': [item.to_dict() for item in self.watchlists],
+            'watchlist': [item.to_dict() for item in self.watchlists],
+            # 'cryptoWatch': [item.cryptoList for item in self.watchlists],
             'transactions': [transaction.to_dict() for transaction in self.transactions],
-            'testBalances': [{transaction.crypto_id: transaction.to_dict()} for transaction in self.transactions if transaction.crypto_id ],
             'balances': self.balances()
         }
 
@@ -86,21 +86,21 @@ class Watchlist(db.Model):
         }
 
 class Crypto(db.Model):
-  __tablename__ = 'crypto'
+    __tablename__ = 'crypto'
 
-  id = db.Column(db.Integer, primary_key=True)
-  symbol = db.Column(db.String(50), unique=True)
-  name = db.Column(db.String(50))
-  price = db.Column(db.Float)
+    id = db.Column(db.Integer, primary_key=True)
+    symbol = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50))
+    price = db.Column(db.Float)
 
-  transactions = db.relationship("Transaction", back_populates='crypto')
+    transactions = db.relationship("Transaction", back_populates='crypto')
 
-  watchlists = db.relationship("Watchlist", back_populates='cryptoList', secondary=join_watchlist)
+    watchlists = db.relationship("Watchlist", back_populates='cryptoList', secondary=join_watchlist)
 
-  def to_dict(self):
-    return {
-      'id': self.id,
-      'name': self.name,
-      'symbol': self.symbol,
-      'price': json.dumps(self.price, use_decimal=True)
-    }
+    def to_dict(self):
+        return {
+        'id': self.id,
+        'name': self.name,
+        'symbol': self.symbol,
+        'price': json.dumps(self.price, use_decimal=True)
+        }

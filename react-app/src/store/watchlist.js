@@ -49,7 +49,7 @@ export const addToWatchlist = (formData) => async (dispatch) => {
 }
 
 export const deleteFromWatchlist = (watchlistId) => async (dispatch) => {
-  const res = await easyFetch(`/api/transactions/${watchlistId}`, {
+  const res = await easyFetch(`/api/watchlist/${watchlistId}`, {
     method: 'DELETE'
   })
 

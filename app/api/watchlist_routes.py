@@ -12,16 +12,14 @@ def get_user_watchlist():
   watchlist = Watchlist.query.all()
   return {'watchlist': [item.to_dict() for item in watchlist]}
 
-# watchlist_id and crypto_id
 
 
-@watchlist_routes.route('' , methods=['POST'])
+@watchlist_routes.route('', methods=['POST'])
 def add_to_watchlist():
   form = WatchlistForm()
   params = {'user_id': form.data['user_id']}
   crypto_id = form.data['crypto_id']
   crypto = Crypto.query.get(crypto_id)
-  print("HERE ======>", form.data, crypto_id)
 
   form['csrf_token'].data = request.cookies['csrf_token']
   if form.validate_on_submit():
@@ -31,3 +29,12 @@ def add_to_watchlist():
     db.session.commit()
     return watchlist.to_dict()
   return {'errors': form_validation_errors(form.errors)}, 401
+
+
+
+@watchlist_routes.route('/<int:id>',methods=['DELETE'])
+def remove_from_watchlist(id):
+  remove_crypto = Watchlist.query.get(id)
+  db.session.delete(remove_crypto)
+  db.session.commit()
+  return {'id': id}

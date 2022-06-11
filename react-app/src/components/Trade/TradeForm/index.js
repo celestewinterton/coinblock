@@ -50,7 +50,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         if (type !== "transfer") formData.append('crypto_id', cryptoId)
         formData.append('price', price); //get current price
         formData.append('type', type);
-        formData.append('quantity', (type === "sell" ? -amount/price : amount/price)); //amt / current price
+        formData.append('quantity', (type === "sell" ? -amount/price : type === "buy" ? amount/price : amount)); //amt / current price
         formData.append('credit', (type === "buy" ? coins[cryptoId].symbol : "cash"));
         formData.append('debit', (type === "sell" ? coins[cryptoId].symbol : type === "transfer" ? "bank" : "cash"));
 
@@ -117,9 +117,9 @@ const TradeForm = ({showModal, setShowModal}) => {
                         value={cryptoId}
                         required
                         onChange={(e) => setBank(e.target.value)}>
-                            <option key={bank} value="Bank of Satoshi">Bank of Satoshi</option>
-                            <option key={bank} value="Bank of America">Bank of America</option>
-                            <option key={bank} value="Chase">Chase</option>
+                            <option key="bank1" value="Bank of Satoshi">Bank of Satoshi</option>
+                            <option key="bank2" value="Bank of America">Bank of America</option>
+                            <option key="bank3" value="Chase">Chase</option>
                     </select>
                     </label>}
                 </div>

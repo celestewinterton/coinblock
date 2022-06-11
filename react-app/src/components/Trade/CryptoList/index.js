@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios'
-import { bigNum, toDate, toUnix, currency } from '../../../utils/calc';
+import { bigNum } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
+import { authenticate } from "../../../store/session"
 
 const CryptoList = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const coins = useSelector(state => state.crypto)
+  const watching = user.watchlist.map(item => item.crypto[0].id)
   const [data, setData] = useState({}); // set by CoinGecko API data
-  const [cryptoId, setCryptoId] = useState(1)
-  const [errors, setErrors] = useState({});
-  const [resultsCount, setResultsCount] = useState(10)
+  const [cryptoId, setCryptoId] = useState()
+  const [resultsCount, setResultsCount] = useState(15)
 
   const addToWatch = async (e) => {
     e.preventDefault()
     let data;
+    // setCryptoId(e.target.id)
+    console.log("val1", e.target.id, "val2", cryptoId)
     const formData = new FormData();
     formData.append('user_id', user.id);
     formData.append('crypto_id', cryptoId);
 
     data = await dispatch(addToWatchlist(formData))
-    // if (data.errors) {
-        // setErrors(data.errors)
-        // return
-        // console.log(data.errors)
-    // }
+    await dispatch(authenticate());
+  }
+
+  const removeFromWatch = async (e) => {
+    e.preventDefault()
+    let id = user.watchlist.find(record => record.crypto[0].id === parseInt(cryptoId)).id
+    await dispatch(deleteFromWatchlist(id))
+    await dispatch(authenticate());
   }
 
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${200}&page=1&sparkline=false`
@@ -63,7 +69,6 @@ const CryptoList = () => {
   //   })
   // }, [url])
 
-  console.log(data)
   return (
     <>
       <h2 className='padded'>Categories</h2>
@@ -80,7 +85,7 @@ const CryptoList = () => {
         </thead>
         {Object.values(coins)?.slice(0, resultsCount).map((crypto, idx) =>
         <tbody>
-          {data[crypto.symbol] && <>
+          {data[crypto.symbol] && <tr>
           <td>
             <div className='row'>
               <img height="36px" src={data[crypto.symbol]?.image} alt=""></img>
@@ -94,10 +99,12 @@ const CryptoList = () => {
           <td>{data[crypto.symbol]?.name}</td>
           <td>{(bigNum(data[crypto.symbol]?.market_cap))}</td>
           <td>
-            {true && <button onClick={addToWatch} className='unset'><i class="fa-regular fa-star"></i></button>}
-            {false && <button className='unset'><i class="fa-solid fa-star"></i></button>}
+            {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'><i class="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+            {watching.includes(crypto.id) &&
+            <button id={crypto.id} onClick={removeFromWatch} className='unset'><i class="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+
           </td>
-          </>}
+          </tr>}
         </tbody>)}
 
         <div className='row'>
