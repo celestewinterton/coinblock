@@ -1,23 +1,51 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { bigNum, currency } from '../../../utils/calc';
+import { compareAsc, format, getUnixTime, fromUnixTime, addDays } from 'date-fns'
 import * as d3 from 'd3';
 
-const Chart = () => {
+const Chart = ({user}) => {
+  // const user = useSelector(state => state.session.user)
+  const [timeFrame, setTimeFrame] = useState("all")
+  // const transactions = user.transactions
+  // const balance = user.balances
+  // const dates = user.transactions.map(txn => txn.created_at)
+  // const today = new Date()
+  // addDays(today, -30)
+  // getUnixTime(new Date(dates[0]))
+  // fromUnixTime(1433424959)
+
+  // const userAssets = user.balances
+  // console.log("CHART ====>", userAssets, "New ====>")
+
+  // const coin = coins[cryptoId]?.name.toLowerCase()
+  // const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
+
+  // useEffect(() => {
+  //     axios.get(url).then((response) => {
+  //         setPrice(response.data[coin].usd)
+  //     }).catch((error) => {
+  //         console.log(error)
+  //     })
+  // }, [url])
+
 
   //DUMMY DATA, need to pull in API...
-  const user = useSelector(state => state.session.user)
   const [data] = useState([25, 50, 10, 89, 37, 89])
   const svgRef = useRef();
 
   useEffect(() => {
+
+
+
     const w = 400;
     const h = 100;
     const svg = d3.select(svgRef.current)
       .attr('width', w)
       .attr('height', h)
-      .style('background', '#d3d3d3')
       .style('margin', '10')
       .style('overflow', 'visible')
+      // .style('background', '#d3d3d3')
 
     //scaling
     const xscale = d3.scaleLinear()
@@ -52,13 +80,30 @@ const Chart = () => {
       .join('path')
         .attr('d', d => generateScaledLine(d))
         .attr('fill', 'none')
-        .attr('stroke', 'black')
+        .attr('stroke', '#0052FF')
 
   }, [data])
 
   return (
-    <div className='App'>Charts coming soon...
-      <svg ref={svgRef}></svg>
+    <div className='chart-container'>
+      <div className='chart-header-container row'>
+        <div className='column'>
+          <div className='muted2'>Your Balance</div>
+          <div>$ (add balance)</div>
+          <div>+$ (money All time)</div>
+        </div>
+        <div className='row muted2'>
+          <div className=''>1D</div>
+          <div className=''>1W</div>
+          <div className=''>1M</div>
+          <div className=''>1Y</div>
+          <div className=''>All</div>
+        </div>
+      </div>
+
+      <div className='For styles later...'>
+        <svg ref={svgRef}></svg>
+      </div>
     </div>
   );
 }

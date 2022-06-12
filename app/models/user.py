@@ -91,7 +91,7 @@ class Crypto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String(50), unique=True)
     name = db.Column(db.String(50))
-    price = db.Column(db.Float)
+    api_id = db.Column(db.String(50))
 
     transactions = db.relationship("Transaction", back_populates='crypto')
 
@@ -102,5 +102,5 @@ class Crypto(db.Model):
         'id': self.id,
         'name': self.name,
         'symbol': self.symbol,
-        'price': json.dumps(self.price, use_decimal=True)
+        'apiId': json.dumps(self.price, use_decimal=True)
         }

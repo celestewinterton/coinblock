@@ -1,11 +1,3 @@
-export const toDate = (val) => {
-  return new Date(val).toLocaleDateString('en-US');
-}
-
-export const toUnix = (val) => {
-  return Math.floor(new Date(val).getTime() / 1000)
-}
-
 export const bigNum = num => {
   if (num >= 1000000000) return Math.floor(num / 1000000000) + 'B'
   if (num >= 1000000) return Math.floor(num / 1000000) + 'M'

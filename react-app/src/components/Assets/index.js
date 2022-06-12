@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from './Chart'
 
 
-const Assets = () => {
+const Assets = ({user}) => {
 
   return (
     <>
@@ -10,7 +10,7 @@ const Assets = () => {
         <div className='left-section'>
           <div className='card'>
             <h2>Portfolio Chart</h2>
-            <Chart />
+            <Chart user={user} />
           </div>
           <div className='card top-margin'>
             <h2>Your assets</h2>

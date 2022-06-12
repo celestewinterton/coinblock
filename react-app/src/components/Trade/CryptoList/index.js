@@ -91,6 +91,7 @@ const CryptoList = () => {
                 <div className='column table-coin-name-cell'>
                   <div className='bold2'>{crypto?.name}</div>
                   <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
+                  <div className='muted1'>{data[crypto.symbol]?.id}</div>
                 </div>
               </div>
             </td>
@@ -111,8 +112,8 @@ const CryptoList = () => {
         </div>
 
         {/* Use to make Crypto seeder... */}
-        {/* {data?.map(crypto => <>
-          <div>{crypto?.symbol} = Crypto(name="{crypto?.name}", symbol="{crypto?.symbol}", price={crypto?.current_price})</div>
+        {/* {Object.values(data)?.map(crypto => <>
+          <div>{crypto?.symbol} = Crypto(name="{crypto?.name}", symbol="{crypto?.symbol}", api_id="{crypto?.id}")</div>
           <div>db.session.add({crypto?.symbol})</div></>)} */}
       </table>
     </>
