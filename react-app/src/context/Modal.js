@@ -37,3 +37,19 @@ export function Modal({ onClose, children, style }) {
         modalNode
     );
 }
+
+export function ProfileModal({ onClose, children, style }) {
+    const modalNode = useContext(ModalContext);
+    if (!modalNode) return null;
+
+
+    return ReactDOM.createPortal(
+        <div id="profile-modal">
+            <div id="modal-background" onClick={onClose} />
+            <div id="profile-modal-content" style={style}>
+                {children}
+            </div>
+        </div>,
+        modalNode
+    );
+}

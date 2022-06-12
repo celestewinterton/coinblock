@@ -1,26 +1,11 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../images/avatar.jpeg"
 import LogoutButton from "../auth/LogoutButton"
+import { ProfileModal } from "../../context/Modal"
+
 
 function ProfileButton({ user }) {
-  const [showMenu, setShowMenu] = useState(false);
-
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
-    document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -28,18 +13,17 @@ function ProfileButton({ user }) {
         className="profile-button"
         style={{height: "40px", width: "40px", borderRadius: "25px", marginLeft: "10px"}}
         src={avatar} alt=""
-        onClick={openMenu} />
-      {showMenu && (
-        <div className="profile-dropdown card">
+        onClick={() => setShowModal(true)} />
+      {showModal && (
+        <ProfileModal onClose={() => setShowModal(false)}>
           <img
-            style={{height: "64px", width: "64px", borderRadius: "100%"}}
+            style={{height: "64px", width: "64px", borderRadius: "100%", marginBottom: "10px"}}
             src={avatar} alt=""
-            onClick={openMenu}
           />
-          <div>{user.firstName} {user.lastName}</div>
-          <div className="muted1">{user.email}</div>
+          <div className="top-margin">{user.firstName} {user.lastName}</div>
+          <div className="muted1 top-margin">{user.email}</div>
           <LogoutButton />
-        </div>
+        </ProfileModal>
       )}
     </>
   );

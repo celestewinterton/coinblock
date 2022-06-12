@@ -197,3 +197,46 @@ form {
   font-weight: bold;
   font-size: .9rem;
 }
+
+
+
+
+
+
+/* Dashboard Structure */
+.dashboard-container {
+  background-color: var(--background);
+}
+
+.dashboard-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 84px 16px 16px 260px;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow: auto;
+}
+
+.left-section {
+  margin: .2rem .5rem;
+  width: 70%;
+  max-width: 800px;
+}
+
+.right-section {
+  margin: .2rem .5rem;
+  width: 30%;
+  max-width: 500px;
+}
+
+.card {
+  background-color: var(--elements);
+  border-radius: 4px;
+  border: .8px solid var(--line);
+  max-width: 800px;
+}
+
+.top-margin {
+  margin-top: 12px;
+}

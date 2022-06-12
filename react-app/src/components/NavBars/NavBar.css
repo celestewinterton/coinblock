@@ -16,7 +16,7 @@
   border-bottom: .8px solid var(--line);
   height: 68px;
   background-color: var(--elements);
-  z-index: 4;
+  z-index: 3;
   position: fixed;
   top: 0;
   right: 0;
@@ -33,28 +33,17 @@
 .profile-button {
   position: absolute;
   margin: 0px 0px 0px 10px;
-}
-
-.profile-dropdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 230px;
-  padding: 40px 10px 20px 10px;
-  position: absolute;
-  top: 72px;
-  right: 20px;
-  z-index: 10;
-  box-shadow: 0px 0px 10px 2400px rgba(50, 53, 61, 0.33);
+  z-index: 6;
 }
 
 .profile-dropdown > div {
   padding: 10px 30px;
 }
 
-.profile-dropdown > button {
+.logout-button {
   padding: 10px 60px;
   border: none;
+  margin-top: 18px;
   border-top: .8px solid var(--line);
   background-color: transparent;
   font-weight: 600;
@@ -75,7 +64,7 @@
   background-color: var(--elements);
   padding: 10px;
   height: 100vh;
-  z-index: 5;
+  z-index: 4;
   position: fixed;
 }
 

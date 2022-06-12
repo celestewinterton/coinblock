@@ -102,7 +102,7 @@ const TradeForm = ({showModal, setShowModal}) => {
                 <div className="muted1">{type === "transfer" ? null : `1 ${coins[cryptoId]?.symbol.toUpperCase()} ≈ ${currency(price)}`}</div>
                 <div className="muted1">Your current cash balance is {currency(user.balances.cash)}</div>
                 <div className="select-inputs">
-                    {type != "transfer" &&
+                    {type !== "transfer" &&
                     <div className="select-field">
                         <label className="muted1">{type === "buy" ? "Buy" : "Sell"}</label>
                         <select
@@ -138,7 +138,7 @@ const TradeForm = ({showModal, setShowModal}) => {
                     </div>
                 </div>
                 <button className="wide top-margin large-button" type="submit">{type === "transfer" ? "Deposit Funds" : type === "buy" ? `Buy ${coins[cryptoId]?.name}` : `Sell ${coins[cryptoId]?.name}`}</button>
-                {type != "transfer" && <div className="top-margin muted1 row space-between">
+                {type !== "transfer" && <div className="top-margin muted1 row space-between">
                     <div>{coins[cryptoId]?.symbol.toUpperCase()} balance</div>
                     <div>{user.balances[cryptoId] ? round(user.balances[cryptoId]) : 0} {coins[cryptoId]?.symbol.toUpperCase()} ≈ {user.balances[cryptoId] ? currency(user.balances[cryptoId]*price) : "$0"}</div>
                 </div>}

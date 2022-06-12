@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -11,6 +11,10 @@ import UsersList from './components/auth/UsersList';
 import User from './components/auth/User';
 import { authenticate } from './store/session';
 import notFound from './components/images/notFound.svg'
+import SideNav from './components/NavBars/SideNav';
+import NavBar from './components/NavBars';
+import Assets from './components/Assets';
+import Trade from './components/Trade';
 
 function App() {
   const user = useSelector(state => state.session.user)
@@ -52,23 +56,31 @@ function App() {
           <User />
         </ProtectedRoute>
 
-        {user &&
-        <ProtectedRoute path='/' exact={true} >
-          <Dashboard />
-        </ProtectedRoute>}
-        {user &&
-        <ProtectedRoute path='/dashboard' exact={true} >
-          <Dashboard />
-        </ProtectedRoute>}
-        {user &&
-        <ProtectedRoute path='/trade' exact={true} >
-          <Dashboard />
-        </ProtectedRoute>}
-        {user &&
-        <ProtectedRoute path='/home' exact={true} >
-          <Dashboard />
-        </ProtectedRoute>}
-
+        <div className="dashboard-container row">
+          <SideNav />
+          <div className="column">
+            <NavBar title={`Welcome ${user?.firstName}`} />
+            <Switch>
+              <ProtectedRoute path='/' exact={true} >
+                {/* <NavBar title={"Assets"} />
+                <Assets /> */}
+                <Redirect to="/home" />
+              </ProtectedRoute>
+              <ProtectedRoute path='/dashboard' exact={true} >
+                <NavBar title={"Assets"} />
+                <Assets />
+              </ProtectedRoute>
+              <ProtectedRoute path='/trade' exact={true} >
+                <NavBar title={"Trade"} />
+                <Trade />
+              </ProtectedRoute>
+              <ProtectedRoute path='/home' exact={true} >
+                <NavBar title={"Home"} />
+                <Assets />
+              </ProtectedRoute>
+            </Switch>
+          </div>
+        </div>
 
         <Route>
           <div className='column center padded'>

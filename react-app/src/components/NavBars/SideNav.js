@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css'
 
 
 const SideNav = () => {
+  const [title, setTitle] = useState("Home")
+
   return (
     <>
       <nav className='side-nav-container'>

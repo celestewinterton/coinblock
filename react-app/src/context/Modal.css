@@ -31,3 +31,31 @@
   width: 370px;
   box-shadow: 10px 10px 50px rgba(50, 53, 61, 0.1);
 }
+
+#profile-modal-content {
+  position: absolute;
+  background-color: var(--elements);
+  width: fit-content;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 220px;
+  box-shadow: 10px 10px 50px rgba(50, 53, 61, 0.1);
+  padding: 40px 10px 20px 10px;
+}
+
+#profile-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  margin: 24px;
+  margin-top: 72px;
+  z-index: 100;
+}
