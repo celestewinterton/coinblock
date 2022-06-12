@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import avatar from "../images/avatar.jpeg"
 import LogoutButton from "../auth/LogoutButton"
 import { ProfileModal } from "../../context/Modal"

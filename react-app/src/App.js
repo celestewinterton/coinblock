@@ -5,7 +5,6 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import SplashNav from './components/NavBars/SplashNav';
 import Splash from './components/Splash';
-import Dashboard from './components/Dashboard';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/auth/UsersList';
 import User from './components/auth/User';
