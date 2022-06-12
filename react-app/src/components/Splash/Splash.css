@@ -1,7 +1,103 @@
+.splash-centering {
+  display: flex;
+  justify-content: center;
+}
+
 .splash-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  background-color: var(--elements);
+}
+
+.splash-row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px 30px;
-  background-color: var(--elements);
+  padding-top: 80px;
+  padding: 30px;
+}
+
+.splash-row-blue {
+  background-color: var(--primary);
+  margin: 738px 0px 60px 0px;
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.splash-row-blue-spacer {
+  margin-top: 100px;
+}
+
+.splash-row-top {
+  z-index: 10;
+}
+
+.horizontal-line {
+  padding-top: 20px;
+  border-bottom: .8px solid var(--line);
+}
+
+.splashtext1 {
+  max-width: 700px;
+  font-size: 3.2rem;
+}
+
+.splashtext2 {
+  font-size: 2.2rem;
+  padding: 20px 0px 40px 0px;
+  max-width: 700px;
+}
+
+.splashtext3 {
+  font-size: 1.2rem;
+  padding: 20px 0px;
+}
+
+.small-text {
+  font-size: .9rem;
+  padding-top: 30px;
+}
+
+.splash-right {
+  padding-right: 20px;
+  max-width: 680px;
+}
+
+.white {color: #fff;}
+
+.margin-left {margin-left: 100px;}
+
+.margin-right {margin-right: 100px;}
+
+.splash-button3 {
+  width: 210px;
+  height: 50px;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-list > div, .footer-list > a {
+  padding-top: 6px;
+}
+
+.footer-list {
+  width: 200px;
+}
+
+.mini-header {
+  font-weight: 600;
+  font-size: .8rem;
+  color: var(--black);
+}
+
+.cover {
+  object-fit: cover;
 }
