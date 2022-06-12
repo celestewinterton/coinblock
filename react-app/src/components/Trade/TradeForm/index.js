@@ -83,7 +83,7 @@ const TradeForm = ({showModal, setShowModal}) => {
                 <NavLink to="#" className="sell-tab" style={type === "sell" ? {color: "#0052FF", borderBottom: "none"} : null} onClick={e => setType("sell")}>Sell</NavLink>
                 <NavLink to="#" className="fund-tab" style={type === "transfer" ? {color: "#0052FF", borderBottom: "none"} : null} onClick={e => setType("transfer")}>Add Funds</NavLink>
             </div>
-            <form className="center column" autoComplete="off" onSubmit={handleSubmit}>
+            <form className="center column trade-form" autoComplete="off" onSubmit={handleSubmit}>
                 <div className="amount-input-container">
                     <label className="row amount-label" >$
                     <input

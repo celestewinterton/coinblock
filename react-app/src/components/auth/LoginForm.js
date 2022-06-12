@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { NavLink } from 'react-router-dom';
+import './Auth.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -37,43 +38,45 @@ const LoginForm = () => {
   }
 
   return (
-    <>
-      <form onSubmit={onLogin}>
-        <h5>Sign in to Coinblock</h5>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+    <div className='login-page-container'>
+      <div className='login-form-demo'>
+        <form onSubmit={onLogin}>
+          <h5>Sign in to Coinblock</h5>
+          <div>
+            {errors.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
+          <div className='column top-margin'>
+            <label htmlFor='email'>Email</label>
+            <input
+              name='email'
+              type='text'
+              placeholder='Email'
+              value={email}
+              onChange={updateEmail}
+            />
+          </div>
+          <div className='column'>
+            <label htmlFor='password'>Password</label>
+            <input
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={updatePassword}
+            />
+            <button className='top-margin wide' type='submit'>Login</button>
+          </div>
+        </form>
+        <button className='top-margin wide' onClick={(e) => demoLogin(e)}>Demo</button>
+        <div className='top-margin muted1'>Don't have an account?<span> </span>
+          <NavLink to='/signup' exact={true} className="link">
+            Sign Up
+          </NavLink>
         </div>
-        <div className='column'>
-          <label htmlFor='email'>Email</label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={updateEmail}
-          />
-        </div>
-        <div className='column'>
-          <label htmlFor='password'>Password</label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-          />
-          <button type='submit'>Login</button>
-        </div>
-      </form>
-      <button onClick={(e) => demoLogin(e)}>Demo</button>
-      <div>Don't have an account?<span> </span>
-        <NavLink to='/signup' exact={true} className="link">
-          Sign Up
-        </NavLink>
       </div>
-    </>
+    </div>
   );
 };
 

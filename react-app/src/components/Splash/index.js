@@ -18,7 +18,7 @@ const Splash = () => {
             <h3 className='splashtext1'>The future of money is here</h3>
             <h5 className='splashtext2'>Over 98 million people and businesses trust us to buy, sell, and manage crypto.</h5>
             <NavLink to='/signup' exact={true} className="button splash-button3">
-              Getting Started!
+              Get Started!
             </NavLink>
             <div className='splashtext3'>Sign up and get crypto*</div>
           </div>
@@ -56,6 +56,9 @@ const Splash = () => {
           <div className='column margin-left'>
             <h5>Take control of your money</h5>
             <h3 className='splashtext1 top-margin'>Start your portfolio today and get crypto</h3>
+            <NavLink to='/signup' exact={true} className="button top-margin splash-button3">
+              Get Started!
+            </NavLink>
           </div>
         </div>
 

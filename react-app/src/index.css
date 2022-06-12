@@ -163,7 +163,7 @@ input {
   justify-content: space-between;
 }
 
-form {
+.trade-form {
   max-width: 500px;
   padding: 18px;
 }

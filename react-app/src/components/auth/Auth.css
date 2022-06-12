@@ -1,0 +1,39 @@
+/* Login route */
+
+.login-page-container {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-form-demo {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px 40px;
+}
+
+
+
+/* Sign up route */
+
+.signup-page-container {
+  padding-top: 100px;
+}
+
+.signup-left, .signup-right {
+  display: flex;
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.signup-right {
+  width: 60%;
+  justify-content: center;
+}
+
+.firstName-input {
+  margin-right: 12px;
+}
+
+.pad-left {padding-left: 10px;}

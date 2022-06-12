@@ -6,6 +6,7 @@
   border-bottom: .8px solid rgba(91, 97, 110, 0.08);
   background-color: var(--elements);
   height: 60px;
+  z-index: 10;
 }
 
 #splash-banner-button {

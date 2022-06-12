@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp, login } from '../../store/session';
 import { NavLink } from 'react-router-dom';
 import svg from '../images/Signup.svg'
+import './Auth.css'
 
 
 const SignUpForm = () => {
@@ -19,6 +20,7 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    if (!checked) errors.push("You must be over 18 years of age to sign up for Coinblock")
     if (password === repeatPassword && checked) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (data) {
@@ -37,97 +39,101 @@ const SignUpForm = () => {
   }
 
   return (
-    <>
+    <div className='signup-page-container'>
       <div className='row'>
-        <div className='column'>
-          <form onSubmit={onSignUp}>
-            <h5>Create an account</h5>
-            <div>
-              {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
-            </div>
-            <div>Required fields have an asterisk: *</div>
-            <div className='row'>
+        <div className='column signup-left'>
+          <div>
+            <form onSubmit={onSignUp}>
+              <h5>Create an account</h5>
+              <div className='top-margin'>
+                {errors.map((error, ind) => (
+                  <div key={ind}>{error}</div>
+                ))}
+              </div>
+              <div className='label'>Required fields have an asterisk: *</div>
+              <div className='row top-margin'>
+                <div className='column'>
+                  <label>First name*</label>
+                  <input
+                    className='firstName-input'
+                    type='text'
+                    name='firstName'
+                    placeholder='First name'
+                    onChange={e => setFirstName(e.target.value)}
+                    value={firstName}
+                  ></input>
+                </div>
+                <div className='column'>
+                  <label>Last name*</label>
+                  <input
+                    type='text'
+                    name='lastName'
+                    placeholder='Last name'
+                    onChange={e => setLastName(e.target.value)}
+                    value={lastName}
+                  ></input>
+                </div>
+              </div>
               <div className='column'>
-                <label>First name*</label>
+                <label>Email*</label>
                 <input
                   type='text'
-                  name='firstName'
-                  placeholder='First name'
-                  onChange={e => setFirstName(e.target.value)}
-                  value={firstName}
+                  name='email'
+                  placeholder='Email'
+                  onChange={e => setEmail(e.target.value)}
+                  value={email}
                 ></input>
               </div>
               <div className='column'>
-                <label>Last name*</label>
+                <label>Password*</label>
                 <input
-                  type='text'
-                  name='lastName'
-                  placeholder='Last name'
-                  onChange={e => setLastName(e.target.value)}
-                  value={lastName}
+                  type='password'
+                  name='password'
+                  placeholder='Minimum 8 characters'
+                  onChange={e => setPassword(e.target.value)}
+                  value={password}
                 ></input>
               </div>
-            </div>
-            <div className='column'>
-              <label>Email*</label>
-              <input
-                type='text'
-                name='email'
-                placeholder='Email'
-                onChange={e => setEmail(e.target.value)}
-                value={email}
-              ></input>
-            </div>
-            <div className='column'>
-              <label>Password*</label>
-              <input
-                type='password'
-                name='password'
-                placeholder='Minimum 8 characters'
-                onChange={e => setPassword(e.target.value)}
-                value={password}
-              ></input>
-            </div>
-            <div className='column'>
-              <label>Repeat Password*</label>
-              <input
-                type='password'
-                name='repeat_password'
-                placeholder='Passwords must match'
-                onChange={e => setRepeatPassword(e.target.value)}
-                value={repeatPassword}
-                required={true}
-              ></input>
-            </div>
-            <div className='row'>
-              <input
-                  type='checkbox'
-                  name='check'
+              <div className='column'>
+                <label>Repeat Password*</label>
+                <input
+                  type='password'
+                  name='repeat_password'
                   placeholder='Passwords must match'
-                  onChange={e => setChecked(!checked)}
-                  value={checked}
+                  onChange={e => setRepeatPassword(e.target.value)}
+                  value={repeatPassword}
                   required={true}
                 ></input>
-              <div>I certify that I am 18 years of age or older, agree to the User Agreement, and acknowledge the Privacy Policy.</div>
+              </div>
+              <div className='row top-margin'>
+                <input
+                    type='checkbox'
+                    name='check'
+                    placeholder='Passwords must match'
+                    onChange={e => setChecked(!checked)}
+                    value={checked}
+                    required={true}
+                  ></input>
+                <div className='pad-left label'>I certify that I am 18 years of age or older, agree to the User Agreement, and acknowledge the Privacy Policy.*</div>
+              </div>
+              <button className="wide top-margin" type='submit'>Create free account</button>
+            </form>
+            <button className="wide top-margin" onClick={(e) => demoLogin(e)}>Demo</button>
+            <div className='top-margin muted1'>Already have an account?<span> </span>
+              <NavLink to='/login' className="link" exact={true}>
+                Sign in
+              </NavLink>
             </div>
-            <button type='submit'>Create free account</button>
-          </form>
-          <button onClick={(e) => demoLogin(e)}>Demo</button>
-          <div>Already have an account?<span> </span>
-            <NavLink to='/login' className="link" exact={true}>
-              Sign in
-            </NavLink>
           </div>
-        </div>
-        <div className='column'>
-          <h4>Get $1,000 in pseudo<br /> money for setting up an<br /> account today!</h4>
-          <div className='muted1 padded'>Set up your account and verify to get started<br /> on trading fake crypto. No Terms Apply</div>
-          <img src={svg} alt="" height="240px"></img>
+          </div>
+
+        <div className='column signup-right'>
+          <h4>Get $1,000 in pseudo money for setting up an account today!</h4>
+          <div className='muted1 top-margin'>Set up your account and verify to get started on trading fake crypto. No Terms Apply</div>
+          <img src={svg} alt="" height="240px" className='top-margin'></img>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
