@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px 10px 260px;
+  padding: 10px 26px 10px 260px;
   border-bottom: .8px solid var(--line);
   height: 68px;
   background-color: var(--elements);

@@ -127,9 +127,10 @@ const SignUpForm = () => {
           </div>
           </div>
 
-        <div className='column signup-right'>
-          <h4>Get $1,000 in pseudo money for setting up an account today!</h4>
-          <div className='muted1 top-margin'>Set up your account and verify to get started on trading fake crypto. No Terms Apply</div>
+        <div className='column signup-right center'>
+          <h4>Get $1,000 in pseudo <br />money for setting up an <br />account today!
+          <div className='muted1 top-margin'>Set up your account and verify to get started on trading <br />fake crypto. No Terms Apply</div>
+          </h4>
           <img src={svg} alt="" height="240px" className='top-margin'></img>
         </div>
       </div>

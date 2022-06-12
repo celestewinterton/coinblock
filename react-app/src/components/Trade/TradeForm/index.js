@@ -71,9 +71,7 @@ const TradeForm = ({showModal, setShowModal}) => {
     }, [errors]);
 
     // Cases to control for...
-    // user can't sell crypto they don't own (filter dropdown list)
     // user can only buy up to their buying power, then show errors!!
-    // add num validation so users can't enter negatives
     // for Add Funds, should there be a way to transfer out too??
 
     return (
