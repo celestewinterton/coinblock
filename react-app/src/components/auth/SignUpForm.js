@@ -114,11 +114,11 @@ const SignUpForm = () => {
                     value={checked}
                     required={true}
                   ></input>
-                <div className='pad-left label'>I certify that I am 18 years of age or older, agree to the User Agreement, and acknowledge the Privacy Policy.*</div>
+                <div className='pad-left label center'>I certify that I am 18 years of age or older, agree to the nonexistant User Agreement, and acknowledge the Privacy Policy.*</div>
               </div>
-              <button className="wide top-margin" type='submit'>Create free account</button>
+              <button className="wide top-margin round" type='submit'>Create free account</button>
             </form>
-            <button className="wide top-margin" onClick={(e) => demoLogin(e)}>Demo</button>
+            <button className="wide top-margin round muted-button" onClick={(e) => demoLogin(e)}>Try a demo</button>
             <div className='top-margin muted1'>Already have an account?<span> </span>
               <NavLink to='/login' className="link" exact={true}>
                 Sign in
@@ -128,9 +128,8 @@ const SignUpForm = () => {
           </div>
 
         <div className='column signup-right center'>
-          <h4>Get $1,000 in pseudo <br />money for setting up an <br />account today!
-          <div className='muted1 top-margin'>Set up your account and verify to get started on trading <br />fake crypto. No Terms Apply</div>
-          </h4>
+          <h4>Get fake Bitcoin <br />for setting up an account</h4>
+          <div className='muted1 top-margin'>Set up your account and verify to get started on trading fake crypto. No Terms Apply</div>
           <img src={svg} alt="" height="240px" className='top-margin'></img>
         </div>
       </div>

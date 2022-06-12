@@ -106,9 +106,13 @@ p {
 
 .muted-button {
   border: 1px solid var(--line);
-  background-color: transparent;
+  background-color: var(--elements);
   color: var(--black);
   margin: 8px 12px;
+}
+
+.muted-button:hover {
+  background-color: rgba(250, 250, 250, .98);
 }
 
 .wide {
@@ -129,7 +133,7 @@ input {
   padding: 16px;
   border: .4px solid rgba(91, 97, 110, 0.66);
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 8px;
   margin: 5px 0px;
 }
 
@@ -175,6 +179,11 @@ input {
 .muted1 {
   color: var(--gray);
   font-size: .8rem;
+}
+
+.small-text {
+  font-size: .9rem;
+  padding-top: 30px;
 }
 
 .form-errors > p {

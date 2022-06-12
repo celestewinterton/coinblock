@@ -66,10 +66,10 @@ const LoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
-            <button className='top-margin wide' type='submit'>Login</button>
+            <button className='top-margin wide login-button' type='submit'>Login</button>
           </div>
         </form>
-        <button className='top-margin wide' onClick={(e) => demoLogin(e)}>Demo</button>
+        <button className='top-margin wide muted-button login-button' onClick={(e) => demoLogin(e)}>Try a demo</button>
         <div className='top-margin muted1'>Don't have an account?<span> </span>
           <NavLink to='/signup' exact={true} className="link">
             Sign Up

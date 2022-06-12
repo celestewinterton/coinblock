@@ -91,7 +91,7 @@ tr {
   height: 40px;
   font-size: 50px;
   text-align: center;
-  transition: width 200ms;
+  transition: width 300ms;
 }
 
 .amount-input:focus {

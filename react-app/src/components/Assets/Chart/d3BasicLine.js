@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as d3 from 'd3';
 
-const Chart = () => {
+const simpleChart = () => {
 
   //DUMMY DATA, need to pull in API...
   const user = useSelector(state => state.session.user)
@@ -57,10 +57,10 @@ const Chart = () => {
   }, [data])
 
   return (
-    <div className='App'>Charts coming soon...
+    <div className='App'>Basic d3 Line Chart
       <svg ref={svgRef}></svg>
     </div>
   );
 }
 
-export default Chart;
+export default simpleChart;
