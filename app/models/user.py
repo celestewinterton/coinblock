@@ -102,5 +102,5 @@ class Crypto(db.Model):
         'id': self.id,
         'name': self.name,
         'symbol': self.symbol,
-        'apiId': json.dumps(self.price, use_decimal=True)
+        'apiId': self.api_id,
         }

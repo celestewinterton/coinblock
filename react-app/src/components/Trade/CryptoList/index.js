@@ -91,7 +91,7 @@ const CryptoList = () => {
                 <div className='column table-coin-name-cell'>
                   <div className='bold2'>{crypto?.name}</div>
                   <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
-                  <div className='muted1'>{data[crypto.symbol]?.id}</div>
+                  {/* <div className='muted1'>{data[crypto.symbol]?.id}</div> */}
                 </div>
               </div>
             </td>
