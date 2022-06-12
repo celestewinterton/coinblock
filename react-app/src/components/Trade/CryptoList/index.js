@@ -99,9 +99,9 @@ const CryptoList = () => {
             <td>${(bigNum(data[crypto.symbol]?.market_cap))}</td>
             <td>
               {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'>
-                <i class="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+                <i className="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
               {watching.includes(crypto.id) && <button id={crypto.id} onClick={removeFromWatch} className='unset'>
-                <i class="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+                <i className="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
             </td>
           </tr>)}
         </tbody>

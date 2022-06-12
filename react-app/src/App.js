@@ -64,6 +64,10 @@ function App() {
         <ProtectedRoute path='/trade' exact={true} >
           <Dashboard />
         </ProtectedRoute>}
+        {user &&
+        <ProtectedRoute path='/home' exact={true} >
+          <Dashboard />
+        </ProtectedRoute>}
 
 
         <Route>

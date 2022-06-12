@@ -4,7 +4,7 @@ import NavBar from '../NavBars';
 import SideNav from '../NavBars/SideNav';
 import { Switch } from 'react-router-dom';
 import ProtectedRoute from '../auth/ProtectedRoute';
-import Assets from './Assets'
+import Assets from '../Assets'
 import Trade from '../Trade'
 
 
@@ -27,6 +27,10 @@ const Dashboard = () => {
         <ProtectedRoute path='/trade' exact={true} >
           <NavBar title={"Trade"} />
           <Trade />
+        </ProtectedRoute>
+        <ProtectedRoute path='/home' exact={true} >
+          <NavBar title={"Home"} />
+          <Assets />
         </ProtectedRoute>
       </Switch>
       </div>

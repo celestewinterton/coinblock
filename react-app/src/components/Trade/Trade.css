@@ -37,7 +37,7 @@ tr {
   color: var(--line);
 }
 
-.fa-solid {
+.unset > .fa-solid {
   color: var(--primary);
 }
 
