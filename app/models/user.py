@@ -82,8 +82,9 @@ class Watchlist(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'crypto': [crypto.to_dict() for crypto in self.cryptoList]
+            'crypto': [crypto.to_dict() for crypto in self.cryptoList][0]
         }
+
 
 class Crypto(db.Model):
     __tablename__ = 'crypto'

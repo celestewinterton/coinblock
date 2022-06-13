@@ -83,6 +83,10 @@ tr {
   margin: 45px 5px 30px 5px;
 }
 
+.fa-xmark {
+  padding: 8px;
+}
+
 .amount-input {
   all: unset;
   font-family: 'Yantramanav', sans-serif;
@@ -100,7 +104,10 @@ tr {
 }
 
 .amount-label {
+  display: flex;
+  justify-content: center;
   font-size: 1.4rem;
+  text-align: center;
   color: var(--gray);
   opacity: .90;
 }

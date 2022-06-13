@@ -43,7 +43,6 @@ const Chart = ({user}) => {
   useEffect(() => {
 
 
-
     const w = 400;
     const h = 100;
     const svg = d3.select(svgRef.current)

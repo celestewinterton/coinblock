@@ -41,7 +41,8 @@ const TradeForm = ({showModal, setShowModal}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        let errors;
+        setErrors({})
+        let data;
         const formData = new FormData();
         formData.append('amount', amount);
         formData.append('user_id', user.id);
@@ -53,21 +54,20 @@ const TradeForm = ({showModal, setShowModal}) => {
         formData.append('debit', (type === "sell" ? coins[cryptoId].symbol : type === "transfer" ? "bank" : "cash"));
         formData.append('limit', (type === "buy" ? user.balances.cash : user.balances[cryptoId] * price))
 
-        errors = await dispatch(postTransaction(formData))
-        console.log("ERRORS", errors)
-        if (errors) setErrors(errors.errors)
-        else {
-            await dispatch(authenticate());
-            setErrors({})
-            setAmount('')
-            if (showModal) setShowModal(false)
-        }
+        data = await dispatch(postTransaction(formData))
+        if (!data) setErrors({})
+        if (data) setErrors(data.errors)
+        console.log("MODAL????", showModal)
+        if (data && showModal) setShowModal(true)
+        if (!data && showModal) setShowModal(false)
+
+        await dispatch(authenticate());
+        setAmount('')
     }
 
     useEffect(() => {
         setErrors(errors)
     }, [errors]);
-
 
     // Cases to control for...
     // user can only buy up to their buying power, then show errors!!
@@ -88,13 +88,12 @@ const TradeForm = ({showModal, setShowModal}) => {
                         // width={`${2 * 10}px`}
                         type='text'
                         value={amount}
+                        style={amount.length ? {width: `${26 * amount.length}px`, maxWidth: "182px"} : {width: "24px"}}
                         required
                         onChange={(e) => setAmount(e.target.value)}
-                        placeholder='0'></input>
+                        placeholder='0'></input>{amount.length ? <i className="fa-solid fa-xmark" onClick={() => setAmount('')}></i> : null}
                     </label>
-                    <div className="form-errors">
-                        {errors.amount && <p>{errors.amount}</p>}
-                    </div>
+                    <div className="form-errors">{errors ? <p>{errors.amount}</p> : null}</div>
                 </div>
                 <div className="muted1">{type === "transfer" ? null : `1 ${coins[cryptoId]?.symbol.toUpperCase()} ≈ ${currency(price)}`}</div>
                 <div className="muted1">Your current cash balance is {currency(user.balances.cash)}</div>

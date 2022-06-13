@@ -22,6 +22,12 @@ class Transaction(db.Model):
 
   created_at = db.Column(db.DateTime(timezone=True), default=datetime.now())
 
+  def crypto_dict(self):
+    if self.crypto:
+      return self.crypto.to_dict()
+    else:
+      return None
+
 
   def to_dict(self):
     return {
@@ -34,8 +40,7 @@ class Transaction(db.Model):
       'debit': self.debit,
       'status': self.status,
       'user_id': self.user_id,
-      # 'crypto': [coin.to_dict() for coin in self.crypto],
-      # 'crypto': Watchlist.query.get(crypto_id)
+      'crypto': self.crypto_dict(),
       'crypto_id': self.crypto_id,
       'created_at': self.created_at
     }

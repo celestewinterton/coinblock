@@ -38,6 +38,7 @@ export const postTransaction = (formData) => async (dispatch) => {
   const data = await res.json()
   if (res.ok) {
     dispatch(postNewTransaction(data))
+    return data
   } else {
     return data
   }

@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FloatField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms.validators import NumberRange
 from app.models import User
 
 class TransactionForm(FlaskForm):
-    amount = FloatField('Amount', validators=[DataRequired(), NumberRange(min=1, max=25000)])
+    amount = FloatField('Amount', validators=[NumberRange(min=1, max=25000)])
     price = FloatField('Price')
     quantity = FloatField('Quantity') # qty = $amt / $currentAssetPrice
     type = StringField('Type') # buy/sell/transfer
@@ -13,4 +13,3 @@ class TransactionForm(FlaskForm):
     user_id = StringField('user_id')
     crypto_id = StringField('crypto_id')
     limit = FloatField('limit')
-    submit = SubmitField('Submit')

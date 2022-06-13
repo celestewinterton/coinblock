@@ -9,7 +9,7 @@ const CryptoList = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user)
   const coins = useSelector(state => state.crypto)
-  const watching = user.watchlist.map(item => item.crypto[0].id)
+  const watching = user.watchlist.map(item => item.crypto.id)
   const [data, setData] = useState({}); // set by CoinGecko API data
   const [cryptoId, setCryptoId] = useState()
   const [resultsCount, setResultsCount] = useState(12)
