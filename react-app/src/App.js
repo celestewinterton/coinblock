@@ -65,7 +65,7 @@ function App() {
               </ProtectedRoute>
               <ProtectedRoute path='/dashboard' exact={true} >
                 <NavBar title={"Assets"} />
-                <Assets user={user} />
+                <Assets user={user} title={"Assets"} />
               </ProtectedRoute>
               <ProtectedRoute path='/trade' exact={true} >
                 <NavBar title={"Trade"} />
@@ -73,7 +73,7 @@ function App() {
               </ProtectedRoute>
               <ProtectedRoute path='/home' exact={true} >
                 <NavBar title={"Home"} />
-                <Assets />
+                <Assets user={user} title={"Home"} />
               </ProtectedRoute>
             </Switch>
           </div>

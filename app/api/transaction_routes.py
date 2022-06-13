@@ -33,6 +33,7 @@ def get_user_transactions():
 @transaction_routes.route('' , methods=['POST'])
 def post_transaction():
   form = TransactionForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
 
   params = {
     'type': form.data['type'],
@@ -51,8 +52,24 @@ def post_transaction():
     params['crypto_id'] = form.data['crypto_id']
     params['price'] = form.data['price']
 
-  form['csrf_token'].data = request.cookies['csrf_token']
+
+  # limit = form.data['limit']
+
+  def validate_user_funds():
+    print("**************************************************")
+    print("**************", form.data['type'], form.data['limit'], form.data['amount'],"**************")
+    print("**************************************************")
+    return form.data['type'] == "buy" or form.data['type'] == "sell" and form.data['limit'] - form.data['amount'] < 0
+
+    # if form.data['type'] == "sell" and form.data['limit'] - form.data['amount'] < 0:
+    #   error = "Cannot sell more than the value of assets owned. Amount must be less than " + form.data['limit'] * form.data['price'] + "USD"
+    #   # return {"errors": error}
+    #   return True
+
+
   if form.validate_on_submit():
+    if validate_user_funds():
+      return {"errors": "Please enter an amount less than or equal to to your cash or asset balance"}
     transaction = Transaction(**params)
     db.session.add(transaction)
     db.session.commit()

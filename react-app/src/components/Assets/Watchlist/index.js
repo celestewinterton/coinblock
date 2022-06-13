@@ -5,7 +5,7 @@ const Watchlist = () => {
   const user = useSelector(state => state.session.user)
 
   return (
-    <div>NEW PAGE
+    <div>Watchlist TBD
 
     </div>
   );

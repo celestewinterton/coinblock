@@ -213,6 +213,9 @@ input {
   font-size: .9rem;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
 
 
 

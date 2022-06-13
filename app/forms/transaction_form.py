@@ -12,4 +12,5 @@ class TransactionForm(FlaskForm):
     debit = StringField('Debit') # from "cash balance"
     user_id = StringField('user_id')
     crypto_id = StringField('crypto_id')
+    limit = FloatField('limit')
     submit = SubmitField('Submit')

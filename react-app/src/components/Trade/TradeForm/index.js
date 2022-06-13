@@ -51,17 +51,17 @@ const TradeForm = ({showModal, setShowModal}) => {
         formData.append('quantity', (type === "sell" ? -amount/price : type === "buy" ? amount/price : amount)); //amt / current price
         formData.append('credit', (type === "buy" ? coins[cryptoId].symbol : "cash"));
         formData.append('debit', (type === "sell" ? coins[cryptoId].symbol : type === "transfer" ? "bank" : "cash"));
+        formData.append('limit', (type === "buy" ? user.balances.cash : user.balances[cryptoId] * price))
 
         errors = await dispatch(postTransaction(formData))
-        if (errors) {
-            setErrors(errors.errors)
-            return
+        console.log("ERRORS", errors)
+        if (errors) setErrors(errors.errors)
+        else {
+            await dispatch(authenticate());
+            setErrors({})
+            setAmount('')
+            if (showModal) setShowModal(false)
         }
-
-        await dispatch(authenticate());
-        setErrors({})
-        setAmount('')
-        if (showModal) setShowModal(false)
     }
 
     useEffect(() => {
@@ -91,10 +91,10 @@ const TradeForm = ({showModal, setShowModal}) => {
                         required
                         onChange={(e) => setAmount(e.target.value)}
                         placeholder='0'></input>
+                    </label>
                     <div className="form-errors">
                         {errors.amount && <p>{errors.amount}</p>}
                     </div>
-                    </label>
                 </div>
                 <div className="muted1">{type === "transfer" ? null : `1 ${coins[cryptoId]?.symbol.toUpperCase()} ≈ ${currency(price)}`}</div>
                 <div className="muted1">Your current cash balance is {currency(user.balances.cash)}</div>
