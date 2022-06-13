@@ -61,8 +61,6 @@ function App() {
             <NavBar title={`Welcome ${user?.firstName}`} />
             <Switch>
               <ProtectedRoute path='/' exact={true} >
-                {/* <NavBar title={"Assets"} />
-                <Assets /> */}
                 <Redirect to="/home" />
               </ProtectedRoute>
               <ProtectedRoute path='/dashboard' exact={true} >

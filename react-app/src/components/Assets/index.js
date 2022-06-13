@@ -13,7 +13,7 @@ const Assets = ({user}) => {
             <Chart user={user} />
           </div>
           <div className='card top-margin'>
-            <AssetsTable />
+            <AssetsTable user={user} />
           </div>
           <div className='card top-margin'>
             <h2>Watchlist</h2>

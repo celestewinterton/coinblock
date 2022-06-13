@@ -7,11 +7,6 @@ import { loadCrypto } from "../../../store/crypto";
 import { currency, round } from "../../../utils/calc";
 import { authenticate } from "../../../store/session"
 
-// Dummy Data...
-// const coins = {
-//     1: {id: '1', symbol: 'btc', name: 'Bitcoin', price: '30000'},
-//     2: {id: '2', symbol: 'eth', name: 'Ethereum', price: '1800'},
-// }
 
 const TradeForm = ({showModal, setShowModal}) => {
     const dispatch = useDispatch();
