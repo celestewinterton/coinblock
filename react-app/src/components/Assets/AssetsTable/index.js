@@ -10,7 +10,7 @@ const AssetsTable = () => {
   const user = useSelector(state => state.session.user)
   const coins = useSelector(state => state.crypto)
   const userCoins = Object.values(coins).filter(coin => Object.keys(user.balances).includes(`${coin.id}`))
-  const totalValue = Object.keys(user.balances).reduce((sum, id) => {return sum + (user.balances[id] * (id === "cash" ? 1 : data[coins[id].symbol]?.current_price))}, 0)
+  const totalValue = Object.keys(user.balances).reduce((sum, id) => {return sum + (user.balances[id] * (id === "cash" ? 1 : data[coins[id]?.symbol]?.current_price))}, 0)
 
 
 
