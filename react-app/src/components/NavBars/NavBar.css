@@ -61,7 +61,7 @@
   transition: background-color .25s, color .25s;
 }
 
-.profile-dropdown > button:hover {
+.logout-button:hover {
   background-color: rgba(250, 250, 250, .98);
 }
 
