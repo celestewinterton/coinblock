@@ -1,0 +1,8 @@
+
+#assets-table > tbody > tr > td, #assets-table > thead > tr > th {
+  padding: 10px 6px 10px 20px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: .8rem;
+  min-width: 26%;
+}

@@ -113,7 +113,7 @@ const TradeForm = ({showModal, setShowModal}) => {
                             required
                             onChange={(e) => setCryptoId(e.target.value)}
                             placeholder='$0'>
-                                {type === "buy" ? Object.values(coins).map(coin => (<option key={coin.id} value={coin.apiId}>{coin.name}</option>))
+                                {type === "buy" ? Object.values(coins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))
                                 : Object.values(ownedCoins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))}
                         </select>
                         </div>}

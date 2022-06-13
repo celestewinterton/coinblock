@@ -1,7 +1,7 @@
 from copyreg import remove_extension
 from flask import Blueprint, jsonify, render_template, request
 from datetime import datetime
-from ..models import User, Transaction
+from ..models import User, Transaction, Crypto
 from ..models.db import db
 from ..forms import TransactionForm
 from flask_login import current_user
@@ -12,7 +12,21 @@ transaction_routes = Blueprint('transactions', __name__)
 @transaction_routes.route('')
 def get_user_transactions():
   transactions = Transaction.query.all()
-  return {'transactions': [txn.to_dict() for txn in transactions]}
+
+  # userTransactions = [txn.to_dict() for txn in transactions if txn.user_id == current_user.id]
+
+  # new_dict = {'cash': []}
+  # for txn in userTransactions:
+  #   if str(txn.crypto_id) == 'None':
+  #     new_dict['cash'].append(txn)
+  #   elif str(Crypto.query.get(txn.crypto_id).symbol) in new_dict:
+  #     new_dict[str(Crypto.query.get(txn.crypto_id).symbol)].append(txn)
+  #   else:
+  #     new_dict.update({str(Crypto.query.get(txn.crypto_id).symbol): [txn]})
+
+  # return { 'transactions': new_dict }
+
+  return {'transactions': [txn.to_dict() for txn in transactions if txn.user_id == current_user.id]}
 
 
 

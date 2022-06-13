@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { bigNum, currency } from '../../../utils/calc';
 import { compareAsc, format, getUnixTime, fromUnixTime, addDays } from 'date-fns'
+import { getTransactions } from '../../../store/transactions'
 import * as d3 from 'd3';
 
 const Chart = ({user}) => {
-  // const user = useSelector(state => state.session.user)
+  const transactions = useSelector(state => state.transactions)
   const [timeFrame, setTimeFrame] = useState("all")
+  const dispatch = useDispatch()
   // const transactions = user.transactions
   // const balance = user.balances
   // const dates = user.transactions.map(txn => txn.created_at)
@@ -15,8 +17,12 @@ const Chart = ({user}) => {
   // getUnixTime(new Date(dates[0]))
   // fromUnixTime(1433424959)
 
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch])
+
   // const userAssets = user.balances
-  console.log("CHART ====>", user, "New ====>")
+  console.log("CHART ====>", transactions, "New ====>")
 
   // const coin = coins[cryptoId]?.name.toLowerCase()
   // const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`

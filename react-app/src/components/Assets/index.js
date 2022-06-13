@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from './Chart'
-
+import AssetsTable from './AssetsTable'
+import './Assets.css'
 
 const Assets = ({user}) => {
 
@@ -9,12 +10,10 @@ const Assets = ({user}) => {
       <div className='dashboard-sections'>
         <div className='left-section'>
           <div className='card'>
-            <h2>Portfolio Chart</h2>
             <Chart user={user} />
           </div>
           <div className='card top-margin'>
-            <h2>Your assets</h2>
-            <table>Table Data: Name, Balance, Price, Allocation</table>
+            <AssetsTable />
           </div>
           <div className='card top-margin'>
             <h2>Watchlist</h2>
