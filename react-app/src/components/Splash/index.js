@@ -63,8 +63,19 @@ const Splash = () => {
         </div>
 
 
-        <div className='splash-row muted1'>* No terms actually apply. Once you sign up, you'll have access to all the fake money you want so you can start pretend investing.
-          Just navigat to the trade page and deposit funds into your account from the Bank of Satoshi, our completely made up bank.
+        <div className='splash-row muted1'>
+          <div>* No terms actually apply. Once you sign up, you'll have access to all the fake money you want so you can start pretend investing.
+          Just navigate to the trade page and deposit funds into your account from the Bank of Satoshi, our completely made up bank with endless money supply. <br /><br />
+
+          For real crypto, please use  <span> </span>
+          <a className='link' href="https://strike.me/" target="_blank" rel="noopener noreferrer">Strike</a> for instant money transfers, buying bitcoin, or getting paid in bitcoin, all with no transaction fees,<span> </span>
+          <a className='link' href="https://www.abra.com/" target="_blank" rel="noopener noreferrer">Abra</a> for trading crypto and for earning up to 10% APY on your holdings,<span> </span>
+          and <a className='link' href="https://www.coinbase.com/" target="_blank" rel="noopener noreferrer">Coinbase</a> for beginner-friendly UI, easy onboard and limit orders on PRO. Coinbase is also the inspiration for this app. <br /><br />
+          Referral codes:<span>  </span>
+          <a className='link' href="https://invite.strike.me/QNJOES" target="_blank" rel="noopener noreferrer">Strike</a><span>  </span>
+          <a className='link' href="https://www.abra.com/ref-sticker/?deep_link_sub=RC3YPWWT9" target="_blank" rel="noopener noreferrer">Abra</a><span>  </span>
+          <a className='link' href="https://coinbase.com/join/winter_0wo?src=ios-link" target="_blank" rel="noopener noreferrer">Coinbase</a>
+          </div>
         </div>
         <div className='horizontal-line'></div>
         <div className='splash-row'>
