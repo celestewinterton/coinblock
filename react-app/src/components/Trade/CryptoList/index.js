@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios'
-import { bigNum, currency } from '../../../utils/calc';
+import { bigNum, currency, change } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
 
@@ -13,6 +13,7 @@ const CryptoList = () => {
   const [data, setData] = useState({}); // set by CoinGecko API data
   const [cryptoId, setCryptoId] = useState()
   const [resultsCount, setResultsCount] = useState(12)
+
 
   const addToWatch = async (e) => {
     e.preventDefault()
@@ -68,7 +69,7 @@ const CryptoList = () => {
   //     console.log(error)
   //   })
   // }, [url])
-
+  // console.log("HERE" ,data)
   return (
     <>
       <div className='bold1 padded'>Categories</div>
@@ -96,7 +97,7 @@ const CryptoList = () => {
               </div>
             </td>
             <td>{currency(data[crypto.symbol]?.current_price)}</td>
-            <td>{data[crypto.symbol]?.name}</td>
+            <td>{change(data[crypto.symbol]?.low_24h, data[crypto.symbol]?.current_price)}</td>
             <td>${(bigNum(data[crypto.symbol]?.market_cap))}</td>
             <td>
               {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'>

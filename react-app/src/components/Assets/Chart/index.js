@@ -10,13 +10,13 @@ const Chart = ({user}) => {
   // const transactions = user.transactions
   // const balance = user.balances
   // const dates = user.transactions.map(txn => txn.created_at)
-  // const today = new Date()
+  const today = new Date()
   // addDays(today, -30)
   // getUnixTime(new Date(dates[0]))
   // fromUnixTime(1433424959)
 
   // const userAssets = user.balances
-  // console.log("CHART ====>", userAssets, "New ====>")
+  console.log("CHART ====>", user, "New ====>")
 
   // const coin = coins[cryptoId]?.name.toLowerCase()
   // const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`

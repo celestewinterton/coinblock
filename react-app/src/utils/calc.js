@@ -21,7 +21,8 @@ export const round = (num, decimalPlaces=2) => {
 }
 
 
-
-// testing...
-// console.log(toDate(1367107200000))
-// console.log(toUnix("4/27/2013"), 1367107200)
+export const change = (past, now) => {
+  let res = round(((now - past) / past) * 100);
+  if (res > 0) return `+${res}%` // profits
+  if (res <= 0) return `${res}%` // losses
+}

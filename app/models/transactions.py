@@ -35,6 +35,7 @@ class Transaction(db.Model):
       'status': self.status,
       'user_id': self.user_id,
       # 'crypto': [coin.to_dict() for coin in self.crypto],
+      # 'crypto': Watchlist.query.get(crypto_id)
       'crypto_id': self.crypto_id,
       'created_at': self.created_at
     }
