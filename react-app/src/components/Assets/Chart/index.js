@@ -22,10 +22,10 @@ const Chart = ({user}) => {
   }, [dispatch])
 
   // const userAssets = user.balances
-  console.log("CHART ====>", transactions, "New ====>")
+  // console.log("CHART ====>", transactions, "New ====>")
 
-  // const coin = coins[cryptoId]?.name.toLowerCase()
-  // const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
+  const coin = ""
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
 
   // useEffect(() => {
   //     axios.get(url).then((response) => {

@@ -2,6 +2,7 @@ from .db import db
 from datetime import datetime
 import simplejson as json
 
+
 class Transaction(db.Model):
   __tablename__ = 'transactions'
 
