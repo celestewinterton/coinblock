@@ -14,15 +14,13 @@ const Assets = ({user, title}) => {
         <div className='left-section'>
           <div className='card'>
             {/* <Chart user={user} /> */}
-            <LineChart user={user} width={600} height={300} />
+            {/* <LineChart user={user} width={600} height={300} /> */}
           </div>
           {title === "Assets" &&
           <div className='card top-margin'>
             <AssetsTable user={user} />
           </div>}
           <div className='card top-margin'>
-            <h2>Watchlist</h2>
-            <table>Table Data: Name, Price, Change, Market cap, Watch</table>
             <Watchlist user={user} />
           </div>
         </div>
