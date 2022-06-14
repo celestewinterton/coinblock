@@ -97,7 +97,7 @@ const CryptoList = () => {
               </div>
             </td>
             <td>{currency(data[crypto.symbol]?.current_price)}</td>
-            <td>{change(data[crypto.symbol]?.low_24h, data[crypto.symbol]?.current_price)}</td>
+            <td>{change(data[crypto.symbol]?.high_24h, data[crypto.symbol]?.current_price)}</td>
             <td>${(bigNum(data[crypto.symbol]?.market_cap))}</td>
             <td>
               {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'>
