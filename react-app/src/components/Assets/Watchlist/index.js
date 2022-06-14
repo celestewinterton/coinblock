@@ -7,7 +7,6 @@ import { authenticate } from "../../../store/session"
 
 const Watchlist = () => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.session.user)
   const watchlist = useSelector(state => state.session.user.watchlist)
   const apiIds = watchlist.map(item => item.crypto.apiId)
   const [data, setData] = useState({}); // set by CoinGecko API data

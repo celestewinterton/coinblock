@@ -1,9 +1,6 @@
 from flask import Blueprint
 from ..models import Crypto
 
-from pycoingecko import CoinGeckoAPI
-cg = CoinGeckoAPI()
-
 
 crypto_routes = Blueprint('crypto', __name__)
 

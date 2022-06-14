@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { compareAsc, format, getUnixTime, fromUnixTime, addDays, getDate } from 'date-fns'
+// import { useSelector, useDispatch } from "react-redux";
+import { fromUnixTime } from 'date-fns'
 import * as d3 from 'd3';
 import axios from 'axios'
 

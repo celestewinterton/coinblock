@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from './Chart'
+// import Chart from './Chart'
 import AssetsTable from './AssetsTable'
 import Watchlist from './Watchlist'
 import './Assets.css'

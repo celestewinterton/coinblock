@@ -3,8 +3,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import simplejson as json
-from pycoingecko import CoinGeckoAPI
-cg = CoinGeckoAPI()
+
 
 join_watchlist = db.Table(
     "join_watchlist",
@@ -87,10 +86,6 @@ class Watchlist(db.Model):
     user = db.relationship("User", back_populates='watchlists')
 
     cryptoList = db.relationship("Crypto", back_populates='watchlists', secondary=join_watchlist)
-
-    # def current_price(self):
-    #     cg.get_price(ids='bitcoin', vs_currencies='usd')
-
 
     def to_dict(self):
         return {

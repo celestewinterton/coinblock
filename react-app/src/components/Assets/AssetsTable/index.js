@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { bigNum, currency, change, round } from '../../../utils/calc';
-import { authenticate } from "../../../store/session"
+import { currency, round } from '../../../utils/calc';
+// import { authenticate } from "../../../store/session"
 import { loadCrypto } from "../../../store/crypto";
 import axios from 'axios'
 

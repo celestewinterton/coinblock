@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { bigNum, currency } from '../../../utils/calc';
-import { compareAsc, format, getUnixTime, fromUnixTime, addDays } from 'date-fns'
+// import { useSelector, useDispatch } from "react-redux";
+// import { bigNum, currency } from '../../../utils/calc';
+// import { compareAsc, format, getUnixTime, fromUnixTime, addDays } from 'date-fns'
 import { getTransactions } from '../../../store/transactions'
 import * as d3 from 'd3';
 
 const Chart = ({user}) => {
-  const transactions = useSelector(state => state.transactions)
-  const [timeFrame, setTimeFrame] = useState("all")
-  const dispatch = useDispatch()
+  // const transactions = useSelector(state => state.transactions)
+  // const [timeFrame, setTimeFrame] = useState("all")
+  // const dispatch = useDispatch()
   // const transactions = user.transactions
   // const balance = user.balances
   // const dates = user.transactions.map(txn => txn.created_at)
@@ -43,7 +43,7 @@ const Chart = ({user}) => {
 
   const [data] = useState([25, 50, 10, 89, 37, 89])
   const svgRef = useRef();
-  const assetData = {name: "Portfolio", color:  '#0052FF', items: data}
+  // const assetData = {name: "Portfolio", color:  '#0052FF', items: data}
 
   useEffect(() => {
 
