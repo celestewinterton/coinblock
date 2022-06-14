@@ -37,8 +37,13 @@ const Chart = ({user}) => {
 
 
   //DUMMY DATA, need to pull in API...
+
+
+
+
   const [data] = useState([25, 50, 10, 89, 37, 89])
   const svgRef = useRef();
+  const assetData = {name: "Portfolio", color:  '#0052FF', items: data}
 
   useEffect(() => {
 

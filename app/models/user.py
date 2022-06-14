@@ -54,6 +54,15 @@ class User(db.Model, UserMixin):
                 balances['cash'] -= txn.amount
         return balances
 
+    # def ave_price(self):
+    #     modified_txns = {}
+    #     for txn in self.transactions:
+    #         return {
+    #             'date': self.created_at,
+    #             'crypto': self.api_id,
+    #         }
+
+
     def to_dict(self):
         return {
             'id': self.id,
