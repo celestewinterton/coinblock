@@ -13,7 +13,7 @@ const Assets = ({user, title}) => {
 
         <div className='left-section'>
           <div className='card'>
-            <Chart user={user} />
+            {/* <Chart user={user} /> */}
             <LineChart user={user} width={600} height={300} />
           </div>
           {title === "Assets" &&
