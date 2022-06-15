@@ -7,12 +7,14 @@ from ..forms import TransactionForm
 from flask_login import current_user
 from ..utils import form_validation_errors
 
+from sqlalchemy.sql import func
+
 transaction_routes = Blueprint('transactions', __name__)
 
 @transaction_routes.route('')
 def get_user_transactions():
   transactions = Transaction.query.all()
-
+  # portfolio = Transaction.query.with_entities(func.sum(Transaction.quantity), Transaction.crypto_id).filter_by(user_id = id).group_by(Transaction.crypto_id).all()
   # userTransactions = [txn.to_dict() for txn in transactions if txn.user_id == current_user.id]
 
   # new_dict = {'cash': []}

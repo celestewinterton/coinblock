@@ -4,13 +4,13 @@ from app.models import db, User, Crypto
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        firstName='Demo', lastName='Guest', email='demo@aa.io', password='password', cash=20000)
+        firstName='Demo', lastName='Guest', email='demo@aa.io', password='password')
     satoshi = User(
-        firstName='Satoshi', lastName='Nakamoto', email='satoshi@btc.com', password='whitepaper', cash=100000000)
+        firstName='Satoshi', lastName='Nakamoto', email='satoshi@btc.com', password='whitepaper')
     vitalik = User(
-        firstName='Vitalik', lastName='Buterin', email='vitalik@eth.com', password='whitepaper', cash=100000000)
+        firstName='Vitalik', lastName='Buterin', email='vitalik@eth.com', password='whitepaper')
     celeste = User(
-        firstName='Celeste', lastName='Winterton', email='celestewinterton@gmail.com', password='terumi', cash=20000)
+        firstName='Celeste', lastName='Winterton', email='celestewinterton@gmail.com', password='terumi')
 
     db.session.add(demo)
     db.session.add(satoshi)

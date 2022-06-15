@@ -9,14 +9,15 @@ import ChartMaker from './ChartMaker';
 
 
 const Chart = ({user}) => {
-  // const transactions = useSelector(state => state.transactions)
-  // const [timeFrame, setTimeFrame] = useState("all")
-  // const dispatch = useDispatch()
+  const testData = useSelector(state => state.transactions)
+  const dispatch = useDispatch()
   const transactions = user.transactions
   const balances = user.balances
   const coins = useSelector(state => state.crypto)
   // const user = useSelector(state => state.session.user)
   const userCoins = Object.values(coins).filter(coin => Object.keys(user?.balances)?.includes(`${coin.id}`))
+  const apiIds = userCoins.map(coin => coin.apiId)
+  const [coin, setCoin] = useState()
   // const dates = user.transactions.map(txn => txn.created_at)
   // const today = new Date()
   // addDays(today, -30)
@@ -26,16 +27,20 @@ const Chart = ({user}) => {
     const [data, setData] = useState();
     const [errors, setErrors] = useState([]);
     const [timeHorizon, setTimeHorizon] = useState(30);
-    let startDate = addDays(new Date(), -7)
     let url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=${getUnixTime(addDays(new Date(), -timeHorizon))}&to=${getUnixTime(new Date())}`
 
+    // Loop through an API call and push into an obj {btc: [{date: 2020-20-2, price: 40000}], {date: 2020-22-2, price: 49600}}
+    // also add all the dates from the index 0 crypto into a dates array
+    // create balance empty balance object
+    // loop through dates, if on date, had a transaction, incement asset or add asset
+
+    useEffect(() => {
+      dispatch(getTransactions());
+    }, [dispatch])
 
 
 
-
-
-
-
+    console.log("TESTING........", userCoins, testData, apiIds)
 
     useEffect(() => {
       let chartData = []
@@ -61,7 +66,7 @@ const Chart = ({user}) => {
       })
     }, [url])
 
-    console.log("", userCoins)
+
 
     return (
       <div className='chart-container'>

@@ -2,6 +2,7 @@ import { easyFetch } from "../utils/easyFetch"
 
 const LOAD_WATCHLIST = 'watchlist/LOAD_TRANSACTIONS'
 const ADD_TO_WATCHLIST = 'watchlist/ADD_TO_WATCHLIST'
+const EDIT_WATCHLIST = 'watchlist/EDIT_WATCHLIST'
 const REMOVE_FROM_WATCHLIST = 'watchlist/REMOVE_FROM_WATCHLIST'
 
 
@@ -13,6 +14,11 @@ const loadUserWatchlist = items => ({
 const addToUserWatchlist = item => ({
   type: ADD_TO_WATCHLIST,
   item
+})
+
+const editWatchlistName = transaction => ({
+  type: EDIT_WATCHLIST,
+  transaction
 })
 
 const removeFromUserWatchlist = itemId => ({
@@ -45,6 +51,21 @@ export const addToWatchlist = (formData) => async (dispatch) => {
   } else {
     // console.log(data)
     return data
+  }
+}
+
+export const editWatchlist = (formData) => async (dispatch) => {
+  const res = await easyFetch(`/api/watchlist`, {
+    method: 'PUT',
+    body: formData
+  })
+
+  const data = await res.json()
+
+  if (res.ok) {
+      dispatch(editWatchlistName(data))
+  } else {
+      return data
   }
 }
 
@@ -81,6 +102,9 @@ const watchlistReducer = (state = initialState, action) => {
           return newState
       case REMOVE_FROM_WATCHLIST:
           delete newState[action.itemId]
+          return newState
+      case EDIT_WATCHLIST:
+          newState[action.watchlist.id] = action.watchlist
           return newState
       default:
           return state;
