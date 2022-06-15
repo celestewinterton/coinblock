@@ -4,6 +4,7 @@ import AssetsTable from './AssetsTable'
 import Watchlist from './Watchlist'
 import './Assets.css'
 import LineChart from './Chart/LineChart';
+import Chart from './Chart';
 
 const Assets = ({user, title}) => {
 
@@ -13,8 +14,9 @@ const Assets = ({user, title}) => {
 
         <div className='left-section'>
           <div className='card'>
-            {/* <Chart user={user} /> */}
+            <Chart user={user} />
             {/* <LineChart user={user} width={600} height={300} /> */}
+
           </div>
           {title === "Assets" &&
           <div className='card top-margin'>
