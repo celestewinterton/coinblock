@@ -57,7 +57,7 @@ const TradeForm = ({showModal, setShowModal}) => {
         data = await dispatch(postTransaction(formData))
         if (!data) setErrors({})
         if (data) setErrors(data.errors)
-        console.log("MODAL????", showModal)
+        // console.log("MODAL????", showModal)
         if (data && showModal) setShowModal(true)
         if (!data && showModal) setShowModal(false)
 

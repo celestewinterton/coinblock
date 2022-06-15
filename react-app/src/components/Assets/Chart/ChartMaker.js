@@ -1,22 +1,33 @@
 import { LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import { fromUnixTime, getUnixTime, addDays, format } from 'date-fns'
+import { round, currency } from '../../../utils/calc'
 
 
 const ChartMaker = ({data}) => {
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      // console.log(payload, label, active)
+      return (
+        <div className="custom-tooltip card">
+          <p className="tooltip-value">{`${currency(round(payload[0].value))}`}</p>
+          <p className="tooltip-date">{`${format(label, 'MMM d y p')}`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <LineChart width={400} height={400} data={data}>
-      <Line type="monotone" dataKey="value" stroke="#0052FF" dot={false} />
+    <LineChart width={700} height={400} data={data} margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
+      <Line type="monotone" dataKey="value" stroke="#0052FF" dot={false} name="Value" />
       <XAxis dataKey="date" />
-      <Tooltip />
+      <Tooltip content={<CustomTooltip />} />
     </LineChart>
   );
 }
 
 export default ChartMaker;
-
-
-
 
 
 

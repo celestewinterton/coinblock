@@ -33,7 +33,7 @@ const Watchlist = () => {
       console.log(error)
     })
   }, [url])
-      console.log("WATCHLIST====>", data[apiIds[0]], cryptoId, watchlist)
+      // console.log("WATCHLIST====>", data[apiIds[0]], cryptoId, watchlist)
 
   return (
     <>

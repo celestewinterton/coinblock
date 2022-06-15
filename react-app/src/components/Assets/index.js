@@ -1,10 +1,10 @@
 import React from 'react';
-// import Chart from './Chart'
 import AssetsTable from './AssetsTable'
 import Watchlist from './Watchlist'
-import './Assets.css'
-import LineChart from './Chart/LineChart';
 import Chart from './Chart';
+// import LineChart from './Chart/LineChart';
+import './Assets.css'
+
 
 const Assets = ({user, title}) => {
 

@@ -40,7 +40,7 @@ const AssetsTable = () => {
 
 
   const totalValue = Object.keys(user.balances).reduce((sum, id) => {return sum + (user.balances[id] * (id === "cash" ? 1 : data[coins[id]?.symbol]?.current_price))}, 0)
-  console.log("=======>", userCoins, Object.values(user.balances), "SUM", totalValue)
+  // console.log("=======>", userCoins, Object.values(user.balances), "SUM", totalValue)
 
 
   return (

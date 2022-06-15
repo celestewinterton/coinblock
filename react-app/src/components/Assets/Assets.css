@@ -6,3 +6,47 @@
   font-size: .8rem;
   min-width: 26%;
 }
+
+
+
+
+
+/* Tooltip */
+
+.custom-tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip-value {
+  font-weight: 600;
+}
+
+.tooltip-date {
+  font-size: .6rem;
+}
+
+/* Chart */
+
+.chart-container {
+  width: 100%;
+}
+
+.chart-header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.time-select {
+  padding: 0px 6px;
+}
+
+.time-select-container {
+  display: flex;
+  justify-content: flex-end;
+}

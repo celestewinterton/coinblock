@@ -20,4 +20,4 @@ export const fetchAssetDetails = (symbol) => {
 }
 
 const data = fetchMarketData()
-console.log(data)
+// console.log(data)

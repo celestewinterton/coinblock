@@ -19,7 +19,7 @@ const CryptoList = () => {
     e.preventDefault()
     let data;
     // setCryptoId(e.target.id)
-    console.log("val1", e.target.id, "val2", cryptoId)
+    // console.log("val1", e.target.id, "val2", cryptoId)
     const formData = new FormData();
     formData.append('user_id', user.id);
     formData.append('crypto_id', cryptoId);

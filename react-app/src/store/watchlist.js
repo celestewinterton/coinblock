@@ -38,12 +38,12 @@ export const addToWatchlist = (formData) => async (dispatch) => {
     body: formData
   })
 
-  for (let data of formData.entries()) console.log("formData", data)
+  // for (let data of formData.entries()) console.log("formData", data)
   const data = await res.json()
   if (res.ok) {
     dispatch(addToUserWatchlist(data))
   } else {
-    console.log(data)
+    // console.log(data)
     return data
   }
 }
