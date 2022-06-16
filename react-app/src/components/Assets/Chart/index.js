@@ -13,7 +13,6 @@ const Chart = ({user}) => {
   const transactions = user.transactions
   const balances = user.balances
   const coins = useSelector(state => state.crypto)
-  // const user = useSelector(state => state.session.user)
   const userCoins = Object.values(coins).filter(coin => Object.keys(user?.balances)?.includes(`${coin.id}`))
   const apiIds = ['bitcoin']// userCoins.map(coin => coin.apiId) // Ids to loop through for fetch
   const [coin, setCoin] = useState() // Set coin for each fetch request iteration
