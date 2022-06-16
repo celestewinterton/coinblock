@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 from email.policy import default
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -53,13 +54,9 @@ class User(db.Model, UserMixin):
                 balances['cash'] -= txn.amount
         return balances
 
-    # def ave_price(self):
-    #     modified_txns = {}
-    #     for txn in self.transactions:
-    #         return {
-    #             'date': self.created_at,
-    #             'crypto': self.api_id,
-    #         }
+
+    def balances_over_time(self):
+        pass
 
 
     def to_dict(self):
@@ -72,7 +69,8 @@ class User(db.Model, UserMixin):
             'watchlist': [item.to_dict() for item in self.watchlists],
             # 'cryptoWatch': [item.cryptoList for item in self.watchlists],
             'transactions': [transaction.to_dict() for transaction in self.transactions],
-            'balances': self.balances()
+            'balances': self.balances(),
+            'balance_history': self.balances_over_time()
         }
 
 
