@@ -5,9 +5,9 @@ import { bigNum, currency, round } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
 import { loadCrypto } from "../../../store/crypto";
-import ChartMaker from '../Chart/ChartMaker';
 import { useParams } from 'react-router-dom';
 import TradeForm from '../../Trade/TradeForm';
+import Sparkline from './SingleAssetSparkline';
 
 
 const SingleAsset = () => {
@@ -72,7 +72,7 @@ const SingleAsset = () => {
             <h2 className='padded'>{currency(data?.market_data?.current_price?.usd)}</h2>
             <div className='padded'>{data?.market_data?.price_change_percentage_24h > 0 ? <div className='green'>+{round(data?.market_data?.price_change_percentage_24h)}%</div> : <div className='red'>{round(data?.market_data?.price_change_percentage_24h)}%</div>}</div>
           </div>
-          {/* <ChartMaker data={sparkline} width={400} height={300} /> */}
+          {sparkline && <Sparkline data={sparkline} />}
           <div className='bold1 padded'>Market stats</div>
 
           <div className='row'>
