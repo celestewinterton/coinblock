@@ -42,12 +42,8 @@ const LoginForm = () => {
       <div className='login-form-demo'>
         <form onSubmit={onLogin}>
           <h5>Sign in to Coinblock</h5>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
           <div className='column top-margin'>
+            <div className="form-errors">{errors.email ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.email}</p> : null}</div>
             <label htmlFor='email'>Email</label>
             <input
               name='email'
@@ -58,6 +54,7 @@ const LoginForm = () => {
             />
           </div>
           <div className='column'>
+            <div className="form-errors">{errors.password ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.password}</p> : null}</div>
             <label htmlFor='password'>Password</label>
             <input
               name='password'

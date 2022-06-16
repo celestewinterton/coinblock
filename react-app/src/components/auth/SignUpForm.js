@@ -5,10 +5,12 @@ import { signUp, login } from '../../store/session';
 import { NavLink } from 'react-router-dom';
 import svg from '../images/Signup.svg'
 import './Auth.css'
+import { combineReducers } from 'redux';
+
 
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -20,13 +22,18 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (!checked) errors.push("You must be over 18 years of age to sign up for Coinblock")
-    if (password === repeatPassword && checked) {
+    setErrors({})
+    // if (!checked) errors.push("You must be over 18 years of age to sign up for Coinblock")
+    if (password != repeatPassword) setErrors({password: "Please make sure password and confirmed password match"})
+    if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
+      console.log(data)
       if (data) {
         setErrors(data)
+        console.log(data)
       }
     }
+
   };
 
   const demoLogin = async (e) => {
@@ -37,7 +44,7 @@ const SignUpForm = () => {
   if (user) {
     return <Redirect to='/home' />;
   }
-
+  console.log("ERRORS  ====> ", errors)
   return (
     <div className='signup-page-container'>
       <div className='row'>
@@ -46,13 +53,11 @@ const SignUpForm = () => {
             <form onSubmit={onSignUp}>
               <h5>Create an account</h5>
               <div className='top-margin'>
-                {errors.map((error, ind) => (
-                  <div key={ind}>{error}</div>
-                ))}
               </div>
               <div className='label'>Required fields have an asterisk: *</div>
               <div className='row top-margin'>
                 <div className='column'>
+                  <div className="form-errors top-margin">{errors.firstName ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.firstName}</p> : <p className='top-margin'></p>}</div>
                   <label>First name*</label>
                   <input
                     className='firstName-input'
@@ -64,6 +69,7 @@ const SignUpForm = () => {
                   ></input>
                 </div>
                 <div className='column'>
+                  <div className="form-errors top-margin">{errors.lastName ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.lastName}</p> : <p className='top-margin'></p>}</div>
                   <label>Last name*</label>
                   <input
                     type='text'
@@ -75,6 +81,7 @@ const SignUpForm = () => {
                 </div>
               </div>
               <div className='column'>
+                <div className="form-errors top-margin">{errors.email ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.email}</p> : null}</div>
                 <label>Email*</label>
                 <input
                   type='text'
@@ -85,6 +92,7 @@ const SignUpForm = () => {
                 ></input>
               </div>
               <div className='column'>
+                <div className="form-errors top-margin">{errors.password ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.password}</p> : null}</div>
                 <label>Password*</label>
                 <input
                   type='password'

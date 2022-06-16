@@ -5,6 +5,7 @@ import axios from 'axios'
 import { getTransactions } from '../../../store/transactions'
 import { loadCrypto } from "../../../store/crypto";
 import ChartMaker from './ChartMaker';
+import { bigNum } from '../../../utils/calc';
 
 
 const Chart = ({user}) => {
@@ -90,8 +91,8 @@ const Chart = ({user}) => {
         <div className='chart-header-container row'>
           <div className='column'>
             <div className='muted2'>Your Balance</div>
-            <div>$ (add balance)</div>
-            <div>+$ (money All time)</div>
+            {/* <div>${bigNum()}</div> */}
+            <div>+(money All time)</div>
           </div>
           <div className='time-select-container row muted2'>
             <div className='time-select' onClick={() => setTimeHorizon(7)}>1W</div>
