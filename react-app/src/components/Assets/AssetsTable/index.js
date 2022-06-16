@@ -4,6 +4,7 @@ import { currency, round } from '../../../utils/calc';
 // import { authenticate } from "../../../store/session"
 import { loadCrypto } from "../../../store/crypto";
 import axios from 'axios'
+import { NavLink } from 'react-router-dom';
 
 
 const AssetsTable = () => {
@@ -57,26 +58,28 @@ const AssetsTable = () => {
         </thead>
         <tbody>
           {userCoins?.map((crypto, idx) =>
-          <tr>
-            <td>
-              <div className='row'>
-                <img height="32px" src={data[crypto.symbol]?.image} alt=""></img>
-                <div className='column table-coin-name-cell'>
-                  <div className='bold2'>{crypto?.name}</div>
-                  <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
+          <NavLink to={`/${crypto?.apiId}`}>
+            <tr>
+              <td>
+                <div className='row'>
+                  <img height="32px" src={data[crypto.symbol]?.image} alt=""></img>
+                  <div className='column table-coin-name-cell'>
+                    <div className='bold2'>{crypto?.name}</div>
+                    <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td>
-              <div>{currency(user.balances[crypto.id] * data[crypto.symbol]?.current_price)}</div>
-              <div className='muted1'>{round(user.balances[crypto.id])} {crypto?.symbol.toUpperCase()}</div>
-            </td>
-            <td>
-              <div>{currency(data[crypto.symbol]?.current_price)}</div>
-              {/* <div className='muted1'>{round(user.balances[crypto.id])} {crypto?.symbol.toUpperCase()}</div> */}
-            </td>
-            <td>{round((user.balances[crypto.id] * data[crypto.symbol]?.current_price)/totalValue * 100)}%</td>
-          </tr>)}
+              </td>
+              <td>
+                <div>{currency(user.balances[crypto.id] * data[crypto.symbol]?.current_price)}</div>
+                <div className='muted1'>{round(user.balances[crypto.id])} {crypto?.symbol.toUpperCase()}</div>
+              </td>
+              <td>
+                <div>{currency(data[crypto.symbol]?.current_price)}</div>
+                {/* <div className='muted1'>{round(user.balances[crypto.id])} {crypto?.symbol.toUpperCase()}</div> */}
+              </td>
+              <td>{round((user.balances[crypto.id] * data[crypto.symbol]?.current_price)/totalValue * 100)}%</td>
+            </tr>
+          </NavLink>)}
 
           <tr>
             <td>

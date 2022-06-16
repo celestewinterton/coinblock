@@ -4,6 +4,7 @@ import axios from 'axios'
 import { bigNum, currency, change } from '../../../utils/calc';
 import { deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
+import { NavLink } from 'react-router-dom';
 
 const Watchlist = () => {
   const dispatch = useDispatch();
@@ -49,25 +50,27 @@ const Watchlist = () => {
           </tr>
         </thead>
         <tbody>{apiIds.map((apiId, idx) =>
-          <tr>
-            <td>
-              <div className='row'>
-                <img height="36px" src={data[apiId]?.image} alt=""></img>
-                <div className='column table-coin-name-cell'>
-                  <div className='bold2'>{data[apiId]?.name}</div>
-                  <div className='muted1'>{data[apiId]?.symbol.toUpperCase()}</div>
+          <NavLink to={`/${apiId}`}>
+            <tr>
+              <td>
+                <div className='row'>
+                  <img height="36px" src={data[apiId]?.image} alt=""></img>
+                  <div className='column table-coin-name-cell'>
+                    <div className='bold2'>{data[apiId]?.name}</div>
+                    <div className='muted1'>{data[apiId]?.symbol.toUpperCase()}</div>
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td>{currency(data[apiId]?.current_price)}</td>
-            <td>{change(data[apiId]?.high_24h, data[apiId]?.current_price)}</td>
-            <td>${(bigNum(data[apiId]?.market_cap))}</td>
-            <td>
-              <button id={watchlist.find(record => record.crypto.apiId === apiId).id} onClick={removeFromWatch} className='unset'>
-                <i className="fa-solid fa-star" id={watchlist.find(record => record.crypto.apiId === apiId).id} onMouseDown={e => setCryptoId(e.target.id)}></i>
-              </button>
-            </td>
-          </tr>)}
+              </td>
+              <td>{currency(data[apiId]?.current_price)}</td>
+              <td>{change(data[apiId]?.high_24h, data[apiId]?.current_price)}</td>
+              <td>${(bigNum(data[apiId]?.market_cap))}</td>
+              <td>
+                <button id={watchlist.find(record => record.crypto.apiId === apiId).id} onClick={removeFromWatch} className='unset'>
+                  <i className="fa-solid fa-star" id={watchlist.find(record => record.crypto.apiId === apiId).id} onMouseDown={e => setCryptoId(e.target.id)}></i>
+                </button>
+              </td>
+            </tr>
+          </NavLink>)}
         </tbody>
       </table>
     </>

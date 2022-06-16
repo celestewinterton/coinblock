@@ -40,34 +40,61 @@ const SingleAsset = () => {
 
   const url = `https://api.coingecko.com/api/v3/coins/${apiId}?localization=false&market_data=true&community_data=true&developer_data=false&sparkline=true`
 
-  // Market Data - Normalized version
   useEffect(() => {
     axios.get(url).then((response) => {
-      const newData = {}
-      for (let coin of response.data) {
-        newData[coin.symbol] = coin
-      }
-      setData(newData)
+      setData(response.data)
     }).catch((error) => {
       console.log(error)
     })
   }, [url])
 
-  console.log("CHECKING ===>", user, cryptoId, apiId, data)
+  const sparkline = data.market_data.sparkline_7d
+
+  console.log("CHECKING ===>", data)
 
   return (
     <>
       <div className='left-section'>
-        <h2 className='padded'>Bitcoin</h2>
+        <div className='single-asset-header'>
+          <img src={data?.image?.small} alt="" height="40px" width="40px"></img>
+          <h2 className='padded'>{data.name}</h2>
+          <h2 className='gray'>{data?.symbol?.toUpperCase()}</h2>
+        </div>
         <div className='card top-margin'>
-          <div className='bold1 padded'>Categories</div>
           {/* <ChartMaker data={data} width={400} height={300} /> */}
+          <div className='bold1 padded'>Market stats</div>
+
+          <div className='row'>
+            <div className='padded column'>
+              <div className='muted2'>MARKET CAP</div>
+              <div className='muted1'>{data?.market_data.market_cap.usd}</div>
+            </div>
+
+            <div className='padded column'>
+              <div className='muted2'>VOLUME (24H)</div>
+              <div className='muted1'>{data?.market_data.total_volume.usd}</div>
+            </div>
+
+            <div className='padded column'>
+              <div className='muted2'>CIRCULATING SUPPLY</div>
+              <div className='muted1'>{data?.market_data.circulating_supply}</div>
+            </div>
+
+            <div className='padded column'>
+              <div className='muted2'>CIRCULATING SUPPLY</div>
+              <div className='muted1'>{data?.market_data.circulating_supply}</div>
+            </div>
+          </div>
+        </div>
 
 
+        <div className='card top-margin'>
+          <div className='bold1 padded'>Overview</div>
+          <div className='padded column'>
+            <div className='muted1'>{data?.description.en}</div>
+          </div>
         </div>
       </div>
-
-
 
       <div className='right-section'>
         <div className='single-asset-watchlist-star'>

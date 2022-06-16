@@ -5,6 +5,7 @@ import { bigNum, currency, change } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
 import Search from '../../Assets/Search';
+import { NavLink } from 'react-router-dom';
 
 const CryptoList = () => {
   const dispatch = useDispatch();
@@ -86,27 +87,29 @@ const CryptoList = () => {
           </tr>
         </thead>
         <tbody>{Object.values(coins)?.slice(0, resultsCount).map((crypto, idx) =>
-          <tr>
-            <td>
-              <div className='row'>
-                <img height="36px" src={data[crypto.symbol]?.image} alt=""></img>
-                <div className='column table-coin-name-cell'>
-                  <div className='bold2'>{crypto?.name}</div>
-                  <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
-                  {/* <div className='muted1'>{data[crypto.symbol]?.id}</div> */}
+          <NavLink to={`/${crypto?.apiId}`}>
+            <tr>
+              <td>
+                <div className='row'>
+                  <img height="36px" src={data[crypto.symbol]?.image} alt=""></img>
+                  <div className='column table-coin-name-cell'>
+                    <div className='bold2'>{crypto?.name}</div>
+                    <div className='muted1'>{crypto?.symbol.toUpperCase()}</div>
+                    {/* <div className='muted1'>{data[crypto.symbol]?.id}</div> */}
+                  </div>
                 </div>
-              </div>
-            </td>
-            <td>{currency(data[crypto.symbol]?.current_price)}</td>
-            <td>{change(data[crypto.symbol]?.high_24h, data[crypto.symbol]?.current_price)}</td>
-            <td>${(bigNum(data[crypto.symbol]?.market_cap))}</td>
-            <td>
-              {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'>
-                <i className="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
-              {watching.includes(crypto.id) && <button id={crypto.id} onClick={removeFromWatch} className='unset'>
-                <i className="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
-            </td>
-          </tr>)}
+              </td>
+              <td>{currency(data[crypto.symbol]?.current_price)}</td>
+              <td>{change(data[crypto.symbol]?.high_24h, data[crypto.symbol]?.current_price)}</td>
+              <td>${(bigNum(data[crypto.symbol]?.market_cap))}</td>
+              <td>
+                {!watching.includes(crypto.id) && <button id={crypto.id} onClick={addToWatch} className='unset'>
+                  <i className="fa-regular fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+                {watching.includes(crypto.id) && <button id={crypto.id} onClick={removeFromWatch} className='unset'>
+                  <i className="fa-solid fa-star" id={crypto.id} onMouseDown={e => setCryptoId(e.target.id)}></i></button>}
+              </td>
+            </tr>
+          </NavLink>)}
         </tbody>
         <div className='row'>
           {resultsCount < 192 && <button onClick={e => setResultsCount(resultsCount+12)} className="muted-button wide">View more</button>}
