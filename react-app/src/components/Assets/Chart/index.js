@@ -27,7 +27,7 @@ const Chart = ({user}) => {
       dispatch(loadCrypto());
     }, [dispatch])
 
-    let url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=usd&from=${getUnixTime(new Date('2021-01-01'))}&to=${getUnixTime(new Date())}`
+    let url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=30&interval=daily`
 
     useEffect(() => {
       let chartData = []
@@ -38,7 +38,9 @@ const Chart = ({user}) => {
         setCoin(apiId)
 
         // console.log("URL =======>", url, apiIds)
-        axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=usd&from=${getUnixTime(new Date('2021-01-01'))}&to=${getUnixTime(new Date())}`).then((response) => {
+        axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=30&interval=daily`, {
+          mode : 'no-cors',
+        }).then((response) => {
 
           response.data.prices.forEach(data => {
             let obj = {}
@@ -49,8 +51,9 @@ const Chart = ({user}) => {
 
           let txnIds = []
           priceHistory.forEach(record => {
-            Object.values(transactions).filter(txn => !txnIds.includes(txn.id) && txn.crypto && txn.crypto.apiId === coin && format(new Date(record.date), "MMM d y") == format(new Date(txn.created_at), "MMM d y")).forEach(txn => {
-              // console.log("TRANSACTION ===>", txn)
+            Object.values(transactions).filter(txn => txn.type === "buy" && !txnIds.includes(txn.id) && txn.crypto && txn.crypto.apiId === coin && format(new Date(record.date), "MMM d y") == format(new Date(txn.created_at), "MMM d y")).forEach(txn => {
+              console.log("TRANSACTION ===>", record)
+
 
               if (Object.keys(balances).includes(coin) && txn.type === "buy") {
                 balances[coin] += parseFloat(txn.quantity)
@@ -91,7 +94,6 @@ const Chart = ({user}) => {
             <div>+$ (money All time)</div>
           </div>
           <div className='time-select-container row muted2'>
-            <div className='time-select' onClick={() => setTimeHorizon(2)}>1D</div>
             <div className='time-select' onClick={() => setTimeHorizon(7)}>1W</div>
             <div className='time-select' onClick={() => setTimeHorizon(30)}>1M</div>
             <div className='time-select' onClick={() => setTimeHorizon(365)}>1Y</div>

@@ -240,6 +240,7 @@ input {
   margin: .2rem .5rem;
   width: 70%;
   max-width: 800px;
+  min-width: 700px;
 }
 
 .right-section {
