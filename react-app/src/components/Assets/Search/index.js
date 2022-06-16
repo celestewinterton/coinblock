@@ -1,44 +1,49 @@
 import React from "react";
-import { useSelector } from 'react-redux';
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import {useHistory} from "react-router-dom"
 
 
-function Search({ members, setMembers }) {
-    const users = useSelector(state => state.users)
-    const usersArr = Object.values(users)
-
+function Search({coins}) {
+    const history = useHistory()
 
     const formatResult = (item) => {
         return (
-            <div className="search-results-container">
-                <img src="" alt=""></img>
-                <div>Search Results</div>
+            <div className="search-results-container row">
+                <div>{item.name}</div>
+                <div>{item.symbol.toUpperCase()}</div>
             </div>
         );
     };
 
+    const handleOnSelect = (item) => {
+        history.push(`/${item.apiId}`)
+    };
+
+
     return (
-        <div>Search Bar
-            {/* <ReactSearchAutocomplete
-                items={usersArr}
-                fuseOptions={{ keys: ["username"] }} // Search on both fields
-                resultStringKeyName="username" // String to display in the results
-                showIcon={false}
-                placeholder={'Find members'}
+        <div className="padded">
+            <ReactSearchAutocomplete
+                items={coins}
+                fuseOptions={{ keys: ["name", "symbol"] }} // Search on both fields
+                resultStringKeyName="name" // String to display in the results
+                placeholder={'Search all assets'}
+                formatResult={formatResult}
                 onSelect={handleOnSelect}
                 styling={{
                     borderRadius: "5px",
-                    backgroundColor: "#1a1d21",
-                    border: "2px solid #d1d2d3",
+                    backgroundColor: "#fff",
+                    border: ".8px solid rgba(91, 97, 110, 0.2)",
                     color: "#d1d2d3",
                     boxShadow: "none",
-                    hoverBackgroundColor: "steelblue",
+                    hoverBackgroundColor: "transparent",
                     clearIconMargin: "3px 8px 0 0",
-                    zIndex: 5000,
                     height: "38px",
-
+                    maxWidth: "300px",
+                    margin: "20px",
+                    iconColor: "rgba(91, 97, 110, 0.2)",
+                    fontSize: ".8rem",
                 }}
-            /> */}
+            />
         </div>
     );
 }

@@ -4,6 +4,7 @@ import Watchlist from './Watchlist'
 import Chart from './Chart';
 // import LineChart from './Chart/LineChart';
 import './Assets.css'
+import SingleAsset from './SingleAsset/SingleAsset';
 
 
 const Assets = ({user, title}) => {
@@ -11,7 +12,9 @@ const Assets = ({user, title}) => {
   return (
     <>
       <div className='dashboard-sections'>
+        {!title && <SingleAsset user={user} />}
 
+        {title &&
         <div className='left-section'>
           {title === "Assets" &&
           <div className='card'>
@@ -23,13 +26,15 @@ const Assets = ({user, title}) => {
           <div className='card top-margin'>
             <AssetsTable user={user} />
           </div>}
-          {title === "Watchlist" &&
+          {title === "Home" &&
           <div className='card top-margin'>
             <Watchlist user={user} />
           </div>}
-        </div>
+        </div>}
 
-        <div className='right-section'>
+
+        {title &&
+          <div className='right-section'>
           <div className='card'>
             <h6>Example Card: Get $50 to earn on ETH</h6>
           </div>
@@ -39,7 +44,7 @@ const Assets = ({user, title}) => {
           <div className='card top-margin'>
             <h6>Example Card: Learn and earn</h6>
           </div>
-        </div>
+        </div>}
       </div>
     </>
   );

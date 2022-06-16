@@ -8,14 +8,14 @@ import { currency, round } from "../../../utils/calc";
 import { authenticate } from "../../../store/session"
 
 
-const TradeForm = ({showModal, setShowModal}) => {
+const TradeForm = ({showModal, setShowModal, preSetId}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const coins = useSelector(state => state.crypto)
     const ownedCoins = Object.values(coins).filter(coin => Object.keys(user.balances).includes(`${coin.id}`))
     const [errors, setErrors] = useState({});
     const [amount, setAmount] = useState('')
-    const [cryptoId, setCryptoId] = useState(1)
+    const [cryptoId, setCryptoId] = useState(preSetId ? preSetId : 1)
     const [bank, setBank] = useState("Cash (USD)")
     const [type, setType] = useState("buy")
     const [price, setPrice] = useState(10);

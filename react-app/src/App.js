@@ -71,9 +71,13 @@ function App() {
                 <NavBar title={"Trade"} />
                 <Trade />
               </ProtectedRoute>
-              <ProtectedRoute path='/watchlist' exact={true} >
-                <NavBar title={"Watchlist"} />
-                <Assets user={user} title={"Watchlist"} />
+              <ProtectedRoute path='/home' exact={true} >
+                <NavBar title={"Home"} />
+                <Assets user={user} title={"Home"} />
+              </ProtectedRoute>
+              <ProtectedRoute path='/:id' exact={true} >
+                <NavBar />
+                <Assets user={user} />
               </ProtectedRoute>
             </Switch>
           </div>

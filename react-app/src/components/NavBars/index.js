@@ -11,7 +11,7 @@ const NavBar = ({title}) => {
   return (
     <>
       <nav className='navbar-container'>
-        <h6>{title}</h6>
+        <h6>{title ? title : null}</h6>
         <div className='navbar-right-buttons'>
           <><TradeFormModal /></>
           <><ProfileButton user={user} /></>

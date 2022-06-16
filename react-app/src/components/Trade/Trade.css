@@ -25,6 +25,11 @@ tr {
   border-top: .8px solid var(--line);
   display: flex;
   align-items: center;
+  transition: background-color .25s, color .25s;
+}
+
+tr:hover {
+  background-color: rgba(250, 250, 250, .98);
 }
 
 .table-coin-name-cell {
@@ -75,6 +80,7 @@ tr {
   position: absolute;
   right: 8;
   margin-right: 56px;
+  height: 38px;
 }
 
 

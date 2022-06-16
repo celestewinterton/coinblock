@@ -4,6 +4,7 @@ import axios from 'axios'
 import { bigNum, currency, change } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
+import Search from '../../Assets/Search';
 
 const CryptoList = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ const CryptoList = () => {
   return (
     <>
       <div className='bold1 padded'>Categories</div>
-      <div className='padded'>Search bar ??? w/ select option for "All assets" or "Watchlist"</div>
+      <Search coins={Object.values(coins)} />
       <table className='crypto-table'>
         <thead>
           <tr className='table-headers'>

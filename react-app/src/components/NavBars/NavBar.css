@@ -52,6 +52,7 @@
 
 .logout-button {
   padding: 10px 60px;
+  border-radius: 0px;
   border: none;
   margin-top: 18px;
   border-top: .8px solid var(--line);

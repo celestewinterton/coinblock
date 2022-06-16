@@ -50,3 +50,45 @@
   display: flex;
   justify-content: flex-end;
 }
+
+
+
+
+/* Search */
+
+.search-results-container {
+  background-color: var(--elements);
+  color: var(--black);
+  font-weight: 600;
+  z-index: 1;
+}
+
+.search-results-container > div {
+  padding: 2px 8px;
+}
+
+
+
+
+
+
+
+
+/* Misc */
+
+.single-asset-watchlist-star {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  margin: 21px 0px;
+  background-color: var(--elements);
+  border-radius: 4px;
+  border: .8px solid var(--line);
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.single-asset-watchlist-star > button > i {
+  padding-left: 10px;
+}
