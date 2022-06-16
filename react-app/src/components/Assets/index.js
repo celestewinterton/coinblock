@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AssetsTable from './AssetsTable'
 import Watchlist from './Watchlist'
 import Chart from './Chart';
 // import LineChart from './Chart/LineChart';
 import './Assets.css'
 import SingleAsset from './SingleAsset/SingleAsset';
+import News from './News';
 
 
 const Assets = ({user, title}) => {
@@ -27,21 +28,13 @@ const Assets = ({user, title}) => {
             <AssetsTable user={user} />
           </div>}
           {title === "Home" &&
-          <div className='card top-margin'>
+          <div className='card'>
             <Watchlist user={user} />
           </div>}
         </div>}
 
 
-        {title &&
-          <div className='right-section'>
-          <div className='card'>
-            <h6>Example Card: Get $50 to earn on ETH</h6>
-          </div>
-          <div className='card top-margin'>
-            <h6>Example Card: Interest earned</h6>
-          </div>
-        </div>}
+        {title && <News />}
       </div>
     </>
   );

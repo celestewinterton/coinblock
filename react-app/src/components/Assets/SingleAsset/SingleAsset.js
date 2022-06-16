@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios'
-import { bigNum, currency, change, round } from '../../../utils/calc';
+import { bigNum, currency, round } from '../../../utils/calc';
 import { addToWatchlist, deleteFromWatchlist } from "../../../store/watchlist";
 import { authenticate } from "../../../store/session"
 import { loadCrypto } from "../../../store/crypto";
-import Search from '../../Assets/Search';
 import ChartMaker from '../Chart/ChartMaker';
 import { useParams } from 'react-router-dom';
 import TradeForm from '../../Trade/TradeForm';
@@ -26,12 +25,11 @@ const SingleAsset = () => {
 
   const addToWatch = async (e) => {
     e.preventDefault()
-    let data;
     const formData = new FormData();
     formData.append('user_id', user.id);
     formData.append('crypto_id', cryptoId);
 
-    data = await dispatch(addToWatchlist(formData))
+    await dispatch(addToWatchlist(formData))
     await dispatch(authenticate());
   }
 
@@ -54,7 +52,7 @@ const SingleAsset = () => {
 
   const sparkline = data?.market_data?.sparkline_7d?.price
 
-  console.log("CHECKING ===>", data, data?.market_data?.current_price?.usd)
+  // console.log("CHECKING ===>", data, data?.market_data?.current_price?.usd)
 
   function createMarkup() {
     return {__html: `${data?.description?.en}`};

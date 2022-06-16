@@ -19,20 +19,19 @@ const CryptoList = () => {
 
   const addToWatch = async (e) => {
     e.preventDefault()
-    let data;
     // setCryptoId(e.target.id)
     // console.log("val1", e.target.id, "val2", cryptoId)
     const formData = new FormData();
     formData.append('user_id', user.id);
     formData.append('crypto_id', cryptoId);
 
-    data = await dispatch(addToWatchlist(formData))
+    await dispatch(addToWatchlist(formData))
     await dispatch(authenticate());
   }
 
   const removeFromWatch = async (e) => {
     e.preventDefault()
-    let id = user.watchlist.find(record => record.crypto[0].id === parseInt(cryptoId)).id
+    let id = user.watchlist.find(record => record.crypto.id === parseInt(cryptoId))?.id
     await dispatch(deleteFromWatchlist(id))
     await dispatch(authenticate());
   }

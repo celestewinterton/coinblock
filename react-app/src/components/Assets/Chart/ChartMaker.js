@@ -1,4 +1,4 @@
-import { LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, Tooltip, XAxis, ResponsiveContainer } from 'recharts';
 import { format } from 'date-fns'
 import { round, currency } from '../../../utils/calc'
 
@@ -19,11 +19,13 @@ const ChartMaker = ({data}) => {
   };
 
   return (
-    <LineChart width={500} height={400} data={data} margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
-      <Line type="monotone" dataKey="value" stroke="#0052FF" dot={false} name="Value" />
-      <XAxis dataKey="date" />
-      <Tooltip content={<CustomTooltip />} />
-    </LineChart>
+    <ResponsiveContainer height={400} width="100%">
+      <LineChart width={500} height={400} data={data} margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
+        <Line type="monotone" dataKey="value" stroke="#0052FF" dot={false} name="Value" />
+        <XAxis dataKey="date" />
+        <Tooltip content={<CustomTooltip />} />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }
 

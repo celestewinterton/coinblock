@@ -116,7 +116,7 @@ const TradeForm = ({showModal, setShowModal, preSetId}) => {
                         <label className="muted1">From</label>
                         <select
                             type='text'
-                            value={cryptoId}
+                            value={bank}
                             required
                             onChange={(e) => setBank(e.target.value)}>
                                 <option key="bank1" value="Bank of Satoshi">Bank of Satoshi</option>

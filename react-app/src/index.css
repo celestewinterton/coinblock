@@ -188,6 +188,11 @@ input {
   font-weight: 500;
 }
 
+.muted3 {
+  color: var(--gray);
+  font-size: .6rem;
+}
+
 .small-text {
   font-size: .9rem;
   padding-top: 30px;

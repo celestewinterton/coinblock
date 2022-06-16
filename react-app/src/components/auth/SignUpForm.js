@@ -5,7 +5,6 @@ import { signUp, login } from '../../store/session';
 import { NavLink } from 'react-router-dom';
 import svg from '../images/Signup.svg'
 import './Auth.css'
-import { combineReducers } from 'redux';
 
 
 
@@ -24,13 +23,12 @@ const SignUpForm = () => {
     e.preventDefault();
     setErrors({})
     // if (!checked) errors.push("You must be over 18 years of age to sign up for Coinblock")
-    if (password != repeatPassword) setErrors({password: "Please make sure password and confirmed password match"})
+    if (password !== repeatPassword) setErrors({password: "Please make sure password and confirmed password match"})
     if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
       console.log(data)
       if (data) {
         setErrors(data)
-        console.log(data)
       }
     }
 
@@ -44,7 +42,7 @@ const SignUpForm = () => {
   if (user) {
     return <Redirect to='/home' />;
   }
-  console.log("ERRORS  ====> ", errors)
+
   return (
     <div className='signup-page-container'>
       <div className='row'>
