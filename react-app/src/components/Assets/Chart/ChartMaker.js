@@ -1,5 +1,5 @@
 import { LineChart, Line, Tooltip, XAxis, YAxis } from 'recharts';
-import { fromUnixTime, getUnixTime, addDays, format } from 'date-fns'
+import { format } from 'date-fns'
 import { round, currency } from '../../../utils/calc'
 
 
@@ -19,7 +19,7 @@ const ChartMaker = ({data}) => {
   };
 
   return (
-    <LineChart width={700} height={400} data={data} margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
+    <LineChart width={500} height={400} data={data} margin={{ top: 30, right: 0, left: 0, bottom: 5 }}>
       <Line type="monotone" dataKey="value" stroke="#0052FF" dot={false} name="Value" />
       <XAxis dataKey="date" />
       <Tooltip content={<CustomTooltip />} />

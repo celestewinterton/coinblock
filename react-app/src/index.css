@@ -218,6 +218,17 @@ input {
   white-space: nowrap;
 }
 
+.green {
+  color: var(--green);
+  font-size: .8rem;
+}
+
+.red {
+  color: var(--red);
+  font-size: .8rem;
+}
+
+
 
 
 

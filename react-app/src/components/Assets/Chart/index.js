@@ -14,7 +14,7 @@ const Chart = ({user}) => {
   const balances = user.balances
   const coins = useSelector(state => state.crypto)
   const userCoins = Object.values(coins).filter(coin => Object.keys(user?.balances)?.includes(`${coin.id}`))
-  const apiIds = ['bitcoin']// userCoins.map(coin => coin.apiId) // Ids to loop through for fetch
+  const apiIds = userCoins.map(coin => coin.apiId) // Ids to loop through for fetch, set to this for testing => ['bitcoin']
   const [coin, setCoin] = useState() // Set coin for each fetch request iteration
 
 
@@ -103,7 +103,7 @@ const Chart = ({user}) => {
 
         <div className='For styles later...'>
           {/* <div>{errors ? <div>{errors}</div> : null}</div> */}
-          <ChartMaker data={data} width={400} height={300} />
+          <ChartMaker data={data} />
         </div>
       </div>
     );

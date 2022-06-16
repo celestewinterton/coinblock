@@ -41,9 +41,6 @@ const Assets = ({user, title}) => {
           <div className='card top-margin'>
             <h6>Example Card: Interest earned</h6>
           </div>
-          <div className='card top-margin'>
-            <h6>Example Card: Learn and earn</h6>
-          </div>
         </div>}
       </div>
     </>
