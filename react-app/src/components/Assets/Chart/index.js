@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fromUnixTime, getUnixTime, addDays, differenceInDays, isSameDay, parseISO, format } from 'date-fns'
+import { fromUnixTime, getUnixTime, addDays, differenceInDays, isSameDay, parseISO, format, isBefore } from 'date-fns'
 import axios from 'axios'
 import { getTransactions } from '../../../store/transactions'
 import { loadCrypto } from "../../../store/crypto";
@@ -22,6 +22,7 @@ const Chart = ({user}) => {
     const [data, setData] = useState();
     const [errors, setErrors] = useState();
     const [timeHorizon, setTimeHorizon] = useState(30);
+
 
     useEffect(() => {
       dispatch(getTransactions());
@@ -55,7 +56,6 @@ const Chart = ({user}) => {
             Object.values(transactions).filter(txn => txn.type === "buy" && !txnIds.includes(txn.id) && txn.crypto && txn.crypto.apiId === coin && format(new Date(record.date), "MMM d y") == format(new Date(txn.created_at), "MMM d y")).forEach(txn => {
               console.log("TRANSACTION ===>", record)
 
-
               if (Object.keys(balances).includes(coin) && txn.type === "buy") {
                 balances[coin] += parseFloat(txn.quantity)
               } else if (Object.keys(balances).includes(coin) && txn.type === "sell") {
@@ -73,7 +73,7 @@ const Chart = ({user}) => {
             setData(chartData)
           })
 
-          // console.log("Balances ===>", balances, chartData, priceHistory)
+          console.log("Balances ===>", balances, chartData, priceHistory)
           priceHistory = []
         }).catch((error) => {
           console.log("Getting API data", error)

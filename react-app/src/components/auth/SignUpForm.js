@@ -82,7 +82,7 @@ const SignUpForm = () => {
                 <div className="form-errors top-margin">{errors.email ? <p><i class="fa-solid fa-triangle-exclamation"></i>{errors.email}</p> : null}</div>
                 <label>Email*</label>
                 <input
-                  type='text'
+                  type='email'
                   name='email'
                   placeholder='Email'
                   onChange={e => setEmail(e.target.value)}

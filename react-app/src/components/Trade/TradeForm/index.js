@@ -86,7 +86,7 @@ const TradeForm = ({showModal, setShowModal, preSetId}) => {
                     <input
                         className="amount-input"
                         // width={`${2 * 10}px`}
-                        type='text'
+                        type='number'
                         value={amount}
                         style={amount.length ? {width: `${26 * amount.length}px`, maxWidth: "182px"} : {width: "24px"}}
                         required

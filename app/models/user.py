@@ -5,6 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import simplejson as json
 
+from pycoingecko import CoinGeckoAPI
+cg = CoinGeckoAPI()
+
 
 join_watchlist = db.Table(
     "join_watchlist",
@@ -54,10 +57,11 @@ class User(db.Model, UserMixin):
                 balances['cash'] -= txn.amount
         return balances
 
-
     def balances_over_time(self):
         pass
 
+    def balace_thirty_days_ago(self):
+        pass
 
     def to_dict(self):
         return {
@@ -70,9 +74,9 @@ class User(db.Model, UserMixin):
             # 'cryptoWatch': [item.cryptoList for item in self.watchlists],
             'transactions': [transaction.to_dict() for transaction in self.transactions],
             'balances': self.balances(),
-            'balance_history': self.balances_over_time()
+            'balance_history': self.balances_over_time(),
+            'past_balance': self.balace_thirty_days_ago()
         }
-
 
 class Watchlist(db.Model):
     __tablename__ = "watchlists"

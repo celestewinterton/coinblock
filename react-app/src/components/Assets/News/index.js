@@ -16,8 +16,6 @@ const News = () => {
     })
   }, [url])
 
-  console.log(data)
-
   return (
     <>
         {data.length &&
