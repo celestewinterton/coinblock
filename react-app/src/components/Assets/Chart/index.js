@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { fromUnixTime, getUnixTime, addDays, differenceInDays } from 'date-fns'
+import { fromUnixTime, getUnixTime, addDays, differenceInDays, isSameDay, parseISO, format } from 'date-fns'
 import axios from 'axios'
 import { getTransactions } from '../../../store/transactions'
-import * as d3 from 'd3';
-import LineChart from './LineChart';
+import { loadCrypto } from "../../../store/crypto";
 import ChartMaker from './ChartMaker';
 
 
@@ -16,56 +15,72 @@ const Chart = ({user}) => {
   const coins = useSelector(state => state.crypto)
   // const user = useSelector(state => state.session.user)
   const userCoins = Object.values(coins).filter(coin => Object.keys(user?.balances)?.includes(`${coin.id}`))
-  const apiIds = userCoins.map(coin => coin.apiId)
-  const [coin, setCoin] = useState()
-  // const dates = user.transactions.map(txn => txn.created_at)
-  // const today = new Date()
-  // addDays(today, -30)
-  // getUnixTime(new Date(dates[0]))
-  // fromUnixTime(1433424959)
+  const apiIds = ['bitcoin']// userCoins.map(coin => coin.apiId) // Ids to loop through for fetch
+  const [coin, setCoin] = useState() // Set coin for each fetch request iteration
+
 
     const [data, setData] = useState();
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState();
     const [timeHorizon, setTimeHorizon] = useState(30);
-    let url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=usd&from=${getUnixTime(addDays(new Date(), -timeHorizon))}&to=${getUnixTime(new Date())}`
-
-    // Loop through an API call and push into an obj {btc: [{date: 2020-20-2, price: 40000}], {date: 2020-22-2, price: 49600}}
-    // also add all the dates from the index 0 crypto into a dates array
-    // create balance empty balance object
-    // loop through dates, if on date, had a transaction, incement asset or add asset
 
     useEffect(() => {
       dispatch(getTransactions());
+      dispatch(loadCrypto());
     }, [dispatch])
 
-
-
-    console.log("TESTING........", userCoins, testData, apiIds)
+    let url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=usd&from=${getUnixTime(new Date('2021-01-01'))}&to=${getUnixTime(new Date())}`
 
     useEffect(() => {
       let chartData = []
-      axios.get(url).then((response) => {
-        // console.log("Is this working???", response.data.prices[0])
-        response.data.prices.forEach(data => {
-          let balances = {}
+      let balances = {}
+      let priceHistory = []
 
-          // loop through txns to update balances, what I add to chart data will be each of the balances * price
+      apiIds.forEach(apiId => {
+        setCoin(apiId)
 
-          let obj = {}
-          obj["date"] = fromUnixTime(data[0].toString().substring(0, 10))
-          obj["value"] = parseFloat(data[1])
-          chartData.push(obj)
-          // console.log("Is this working???", obj, fromUnixTime(data[0].toString().substring(0, 10)))
-        });
+        // console.log("URL =======>", url, apiIds)
+        axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=usd&from=${getUnixTime(new Date('2021-01-01'))}&to=${getUnixTime(new Date())}`).then((response) => {
 
-        setData(chartData)
-      }).catch((error) => {
-        console.log("Getting API data error", error)
-        setErrors(error.error)
-        // 429 = too many requests
+          response.data.prices.forEach(data => {
+            let obj = {}
+            obj["date"] = fromUnixTime(data[0].toString().substring(0, 10))
+            obj["value"] = parseFloat(data[1])
+            priceHistory.push(obj)
+          })
+
+          let txnIds = []
+          priceHistory.forEach(record => {
+            Object.values(transactions).filter(txn => !txnIds.includes(txn.id) && txn.crypto && txn.crypto.apiId === coin && format(new Date(record.date), "MMM d y") == format(new Date(txn.created_at), "MMM d y")).forEach(txn => {
+              // console.log("TRANSACTION ===>", txn)
+
+              if (Object.keys(balances).includes(coin) && txn.type === "buy") {
+                balances[coin] += parseFloat(txn.quantity)
+              } else if (Object.keys(balances).includes(coin) && txn.type === "sell") {
+                balances[coin] -= parseFloat(txn.quantity)
+              } else {
+                balances[coin] = parseFloat(txn.quantity)
+              }
+              txnIds.push(txn.id)
+
+            })
+            let chartItem = {}
+            chartItem["date"] = record.date // date for chart
+            chartItem["value"] = parseFloat(record.value) * parseFloat(balances[coin]) // price * qty = value for chart
+            chartData = [...chartData, chartItem]
+            setData(chartData)
+          })
+
+          // console.log("Balances ===>", balances, chartData, priceHistory)
+          priceHistory = []
+        }).catch((error) => {
+          console.log("Getting API data", error)
+          setErrors(error.error)
+        })
       })
+
     }, [url])
 
+    // console.log("TESTING........", data) // do not comment in - will really slow things down...
 
 
     return (
@@ -86,8 +101,7 @@ const Chart = ({user}) => {
         </div>
 
         <div className='For styles later...'>
-          <div>{errors ? errors : null}</div>
-          {/* <LineChart data={data} width={400} height={300} /> */}
+          {/* <div>{errors ? <div>{errors}</div> : null}</div> */}
           <ChartMaker data={data} width={400} height={300} />
         </div>
       </div>
