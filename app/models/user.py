@@ -5,8 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import simplejson as json
 
-from pycoingecko import CoinGeckoAPI
-cg = CoinGeckoAPI()
+# from pycoingecko import CoinGeckoAPI
+# cg = CoinGeckoAPI()
 
 
 join_watchlist = db.Table(
