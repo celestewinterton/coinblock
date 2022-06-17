@@ -1,6 +1,6 @@
 from copyreg import remove_extension
 from flask import Blueprint, jsonify, render_template, request
-from datetime import datetime
+from datetime import datetime, date
 from ..models import User, Transaction, Crypto
 from ..models.db import db
 from ..forms import TransactionForm
@@ -8,12 +8,21 @@ from flask_login import current_user
 from ..utils import form_validation_errors
 
 from sqlalchemy.sql import func
+from pycoingecko import CoinGeckoAPI
+cg = CoinGeckoAPI()
 
 transaction_routes = Blueprint('transactions', __name__)
 
 @transaction_routes.route('')
 def get_user_transactions():
-  transactions = Transaction.query.all()
+  # transactions = Transaction.query.all()
+  # return {'transactions': [txn.to_dict() for txn in transactions if txn.user_id == current_user.id]}
+
+  transactions = Transaction.query.with_entities(func.sum(Transaction.quantity), Transaction.crypto_id).filter(user_id = current_user.id).group_by(Transaction.crypto_id).all()
+  print("===================>",transactions[0])
+
+  # print("===================>",transactions, start_date, datetime.date(start_date), datetime.datetime(start_date))
+  # for day in transactions[len(transactions)-1]
   # portfolio = Transaction.query.with_entities(func.sum(Transaction.quantity), Transaction.crypto_id).filter_by(user_id = id).group_by(Transaction.crypto_id).all()
   # userTransactions = [txn.to_dict() for txn in transactions if txn.user_id == current_user.id]
 
@@ -28,7 +37,6 @@ def get_user_transactions():
 
   # return { 'transactions': new_dict }
 
-  return {'transactions': [txn.to_dict() for txn in transactions if txn.user_id == current_user.id]}
 
 
 

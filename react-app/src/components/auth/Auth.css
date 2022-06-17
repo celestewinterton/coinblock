@@ -1,10 +1,14 @@
 /* Login route */
 
 .login-page-container {
-  padding-top: 100px;
+  padding-top: 70px;
   display: flex;
   justify-content: center;
   width: 100%;
+  padding-bottom: 100px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .login-form-demo {
@@ -25,7 +29,11 @@
 /* Sign up route */
 
 .signup-page-container {
-  padding-top: 100px;
+  padding-top: 70px;
+  padding-bottom: 80px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .signup-page-container > .row {

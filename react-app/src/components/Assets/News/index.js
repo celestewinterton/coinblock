@@ -22,7 +22,7 @@ const News = () => {
           <div className='right-section'>
           <div className='card padded'>
             <h6>Latest News</h6>
-            <div>{data.map(article => <div className="top-margin row">
+            <div>{data.map(article => <div key={article.id} className="top-margin row">
               <img src={article?.imageurl} alt="" width="30%" className='cover'></img>
               {/* <div className='muted1'>{fromUnixTime(article?.published_on)}</div> */}
               <div className='news-title-link'>

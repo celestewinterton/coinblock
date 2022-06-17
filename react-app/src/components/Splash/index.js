@@ -73,7 +73,7 @@ const Splash = () => {
           and <a className='link' href="https://www.coinbase.com/" target="_blank" rel="noopener noreferrer">Coinbase</a> for beginner-friendly UI, easy onboard and limit orders on PRO. Coinbase is also the inspiration for this app. <br /><br />
           Referral codes:<span>  </span>
           <a className='link' href="https://invite.strike.me/QNJOES" target="_blank" rel="noopener noreferrer">Strike</a><span>  </span>
-          <a className='link' href="https://www.abra.com/ref-sticker/?deep_link_sub=RC3YPWWT9" target="_blank" rel="noopener noreferrer">Abra</a><span>  </span>
+          <a className='link' href="https://www.abra.com/ref?r=CELEST11" target="_blank" rel="noopener noreferrer">Abra</a><span>  </span>
           <a className='link' href="https://coinbase.com/join/winter_0wo?src=ios-link" target="_blank" rel="noopener noreferrer">Coinbase</a>
           </div>
         </div>
@@ -93,7 +93,7 @@ const Splash = () => {
               <a className="muted1" href="mailto:celestewinterton@gmail.com" target="_blank" rel="noopener noreferrer">Gmail</a>
             </div>
             <div className='column footer-list'>
-              <div className='mini-header'>Resources used</div>
+              <div className='mini-header'>Technologies</div>
               <div className='muted1'>Javascript</div>
               <div className='muted1'>React</div>
               <div className='muted1'>Redux</div>
@@ -103,9 +103,16 @@ const Splash = () => {
               <div className='muted1'>SQL Alchemy</div>
               <div className='muted1'>PostgreSQL</div>
             </div>
+            <div className='column footer-list'>
+              <div className='mini-header'>Other Resources</div>
+              <div className='muted1'>CoinGecko</div>
+              <div className='muted1'>CyptoCompare</div>
+              <div className='muted1'>Recharts</div>
+              <div className='muted1'>Date-fns</div>
+            </div>
           </div>
         </div>
-        <div className='splash-row muted1'>copyright © 2022 Coinblock by Celeste Winterton</div>
+        <div className='splash-row muted1'>Copyright © 2022 Coinblock by Celeste Winterton</div>
       </div>
     </div>
   );
