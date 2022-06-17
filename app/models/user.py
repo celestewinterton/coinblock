@@ -60,6 +60,7 @@ class User(db.Model, UserMixin):
     # base = datetime.datetime.today()
     # date_list = [base - datetime.timedelta(days=x) for x in range(numdays)]
 
+
     def balances_over_time(self):
         pass
 
