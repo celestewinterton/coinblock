@@ -63,6 +63,7 @@ const SignUpForm = () => {
                     name='firstName'
                     placeholder='First name'
                     onChange={e => setFirstName(e.target.value)}
+                    required={true}
                     value={firstName}
                   ></input>
                 </div>
@@ -73,6 +74,7 @@ const SignUpForm = () => {
                     type='text'
                     name='lastName'
                     placeholder='Last name'
+                    required={true}
                     onChange={e => setLastName(e.target.value)}
                     value={lastName}
                   ></input>
@@ -86,6 +88,7 @@ const SignUpForm = () => {
                   name='email'
                   placeholder='Email'
                   onChange={e => setEmail(e.target.value)}
+                  required={true}
                   value={email}
                 ></input>
               </div>

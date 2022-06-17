@@ -233,6 +233,11 @@ input {
   font-size: .8rem;
 }
 
+.blue {
+  color: var(--primary);
+  font-size: .8rem;
+}
+
 
 
 

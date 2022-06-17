@@ -27,7 +27,7 @@ const News = () => {
               {/* <div className='muted1'>{fromUnixTime(article?.published_on)}</div> */}
               <div className='news-title-link'>
                 <div>{article?.title}</div>
-                <a href={article?.url} className='muted1'  target="_blank" rel="noopener noreferrer">See the full article</a>
+                <a href={article?.url} className='muted1' target="_blank" rel="noopener noreferrer">See the full article</a>
               </div>
             </div>)}</div>
           </div>

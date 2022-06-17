@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from email.policy import default
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -56,6 +56,9 @@ class User(db.Model, UserMixin):
                 balances.update({str(txn.crypto_id): txn.quantity})
                 balances['cash'] -= txn.amount
         return balances
+
+    # base = datetime.datetime.today()
+    # date_list = [base - datetime.timedelta(days=x) for x in range(numdays)]
 
     def balances_over_time(self):
         pass

@@ -93,7 +93,7 @@ const AssetsTable = () => {
             </td>
             <td><div>{currency(user.balances.cash)}</div></td>
             <td><div>{currency(1)}</div></td>
-            <td>{round((user.balances.cash)/totalValue * 100)}%</td>
+            <td>{isNaN((user.balances.cash)/totalValue) ? 0 : round((user.balances.cash)/totalValue * 100)}%</td>
           </tr>
         </tbody>
       </table>

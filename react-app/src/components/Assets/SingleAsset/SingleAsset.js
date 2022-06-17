@@ -50,10 +50,10 @@ const SingleAsset = () => {
     })
   }, [url])
 
+
+  // console.log("CHECKING ===>", data?.links, data?.market_data?.current_price?.usd)
+  // DO NOT DELETE --- needed for rendering subcomponents and dangerous innerHTML
   const sparkline = data?.market_data?.sparkline_7d?.price
-
-  // console.log("CHECKING ===>", data, data?.market_data?.current_price?.usd)
-
   function createMarkup() {
     return {__html: `${data?.description?.en}`};
   }
@@ -83,7 +83,7 @@ const SingleAsset = () => {
 
             <div className='padded column'>
               <div className='muted2'>VOLUME (24H)</div>
-              <div className='muted1'>{currency(data?.market_data?.total_volume.usd)}</div>
+              <div className='muted1'>${bigNum(data?.market_data?.total_volume.usd)}</div>
             </div>
 
             <div className='padded column'>
@@ -98,7 +98,7 @@ const SingleAsset = () => {
           <div className='bold1 padded'>Overview</div>
           <div className='padded column'>
             <div className='muted1' dangerouslySetInnerHTML={createMarkup()} />
-            <a className='small-text link padded' href={data?.links?.homepage}>Official website</a>
+            <a className='small-text link padded' href={data?.links?.homepage[0]}  target="_blank" rel="noopener noreferrer">Official website</a>
           </div>
         </div>
       </div>

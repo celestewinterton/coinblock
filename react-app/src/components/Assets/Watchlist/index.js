@@ -38,7 +38,11 @@ const Watchlist = () => {
 
   return (
     <>
-      <div className='bold1 padded'>Watchlist</div>
+      <div className='row space-between'>
+        <div className='bold1 padded'>Watchlist</div>
+        {apiIds.length > 0 && <button className='muted-button top-margin'>See all assets <i class="fa-solid fa-arrow-right"></i></button>}
+      </div>
+      {!apiIds.length && <div className='padded'><div className='bold2'>Looks like you don't have anything on your watchlist.</div><div className='padded'><NavLink to={`/trade`} className='button top-margin'>View all assets <i class="fa-solid fa-arrow-right"></i></NavLink></div></div>}
       <table className='crypto-table'>
         <thead>
           <tr className='table-headers'>

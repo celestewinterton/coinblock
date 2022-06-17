@@ -92,14 +92,14 @@ const Chart = ({user}) => {
           <div className='column'>
             <div className='muted2'>Your Balance</div>
             {/* <div>${bigNum()}</div> */}
-            <div>+(money All time)</div>
+            {/* <div>+(money All time)</div> */}
           </div>
-          <div className='time-select-container row muted2'>
+          {/* <div className='time-select-container row muted2'>
             <div className='time-select' onClick={() => setTimeHorizon(7)}>1W</div>
             <div className='time-select' onClick={() => setTimeHorizon(30)}>1M</div>
             <div className='time-select' onClick={() => setTimeHorizon(365)}>1Y</div>
             <div className='time-select' onClick={() => setTimeHorizon(differenceInDays(new Date(), data[0].date))}>ALL</div>
-          </div>
+          </div> */}
         </div>
 
         <div className='For styles later...'>

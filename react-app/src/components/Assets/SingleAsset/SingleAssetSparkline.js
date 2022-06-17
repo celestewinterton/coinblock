@@ -19,18 +19,9 @@ const Sparkline = ({data}) => {
     return null;
   };
 
-  const CustomLabel = () => {
-    return (
-      <>{format(new Date(), 'MMM d y')}</>
-    )
-  }
-
   let newData = data.map((data, i) => {
     return {i: i, value: data}
   })
-
-  // const formatXAxis = (axis) => {format(axis, 'MMM d y')}
-  console.log("Sparkline data", newData)
 
   return (
     <ResponsiveContainer height={300} width="100%">
