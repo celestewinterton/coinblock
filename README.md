@@ -1,9 +1,8 @@
 <h1 align="center"><img height="24px" width="24px" src="./react-app/public/favicon.ico" alt=""><img> Coinblock</h1>
 
-Coinblock is a full-stack clone of the popular crypto trading application, <a href="https://www.coinbase.com/">Coinbase</a>. Coinblock allows users to view a portfolio, make transactions, and maintain a watchlist. Transactions on Coinblock are simulated and no actual money will be changing hands. 
+Coinblock is a full-stack clone of the popular crypto trading application, <a href="https://www.coinbase.com/">Coinbase</a>. Coinblock allows users to view a portfolio, make transactions, and maintain a watchlist. Transactions on Coinblock are simulated and no actual money will be changing hands.
 
 <h4 align="center"><a href="https://coinblock-trading.herokuapp.com/" target="_blank">Explore the website »</a></h4>
-
 
 <details open="open">
   <summary id="table-of-contents">Table of Contents</summary>
@@ -26,17 +25,18 @@ Coinblock is a full-stack clone of the popular crypto trading application, <a hr
 ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
 ## Getting started
+
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone git@github.com:celestewinterton/coinblock.git
    ```
 
 2. Install dependencies
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+   ```bash
+   pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+   ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
@@ -63,30 +63,41 @@ Coinblock is a full-stack clone of the popular crypto trading application, <a hr
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 ## Features
+
 [Back to top](#table-of-contents)
 
 <a href="https://github.com/celestewinterton/coinblock/wiki">See wiki page for feature list</a>
 
 ### Splash Page
+
 Description...TBD
+
 <!-- ![Splash Page](ScreenshotURL) -->
 
 ### Portfolio Dashboard
+
 Description...TBD
+
 <!-- ![Portfolio Dashboard](ScreenshotURL) -->
 
 ### Watchlist
+
 Description...TBD
+
 <!-- ![Watchlist](ScreenshotURL) -->
 
 ### Making a Trade
+
 Description...TBD
+
 <!-- ![Making a Trade](ScreenshotURL) -->
 
 ## Database Schema
+
 [Back to top](#table-of-contents)
 
 <!-- ![Database Schema](ScreenshotURL) -->
 
 ## Future Features
+
 [Back to top](#table-of-contents)
