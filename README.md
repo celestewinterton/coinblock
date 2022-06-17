@@ -72,7 +72,7 @@ Coinblock is a full-stack clone of the popular crypto trading application, <a hr
 
 Description...TBD
 
-<!-- ![Splash Page](ScreenshotURL) -->
+![Splash Page](https://user-images.githubusercontent.com/96894806/174201795-edda0667-c719-433b-8942-1a1ddaf33b4f.png)
 
 ### Portfolio Dashboard
 
