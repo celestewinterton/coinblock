@@ -18,8 +18,18 @@ const Chart = ({user}) => {
   const [data, setData] = useState();
   const [errors, setErrors] = useState();
   const [timeHorizon, setTimeHorizon] = useState(30);
-  const currentBalance = null //data ? data[data.length - 1].value : null
+  const currentBalance = data ? data[data.length - 1].value : null
   // console.log("ARE WE GETTING THIS?", data, currentBalance, balanceHistory)
+
+  // useEffect(() => {
+  //   dispatch(authenticate());
+  //   dispatch(loadCrypto());
+  //   dispatch(getTransactions());
+  // }, [dispatch])
+
+
+  // let url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart/range?vs_currency=usd&from=${getUnixTime(addDays(new Date(), -7))}&to=${getUnixTime(new Date())}`
+  let url = `https://api.coingecko.com/api/v3/coins/${apiIds[0]}/market_chart?vs_currency=usd&days=${parseInt(timeHorizon)}&interval=daily`
 
   useEffect(() => {
     (async() => {
@@ -27,12 +37,7 @@ const Chart = ({user}) => {
       await dispatch(getTransactions());
       await dispatch(loadCrypto());
     })();
-  }, [dispatch]);
 
-  // let url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart/range?vs_currency=usd&from=${getUnixTime(addDays(new Date(), -7))}&to=${getUnixTime(new Date())}`
-  let url = `https://api.coingecko.com/api/v3/coins/${apiIds[0]}/market_chart?vs_currency=usd&days=${parseInt(timeHorizon)}&interval=daily`
-
-  useEffect(() => {
     let chartData = {}
 
     apiIds.forEach(apiId => {
@@ -71,7 +76,7 @@ const Chart = ({user}) => {
       })
     })
 
-    dispatch(authenticate());
+    // dispatch(authenticate());
   }, [dispatch, url])
 
 
