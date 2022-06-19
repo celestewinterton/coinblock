@@ -78,25 +78,31 @@ Description...TBD
 
 Description...TBD
 
-<!-- ![Portfolio Dashboard](ScreenshotURL) -->
+![Portfolio Dashboard](https://user-images.githubusercontent.com/96894806/174503692-0c58f85a-0037-48b7-bb93-a36eae34c867.png)
 
 ### Watchlist
 
 Description...TBD
 
-<!-- ![Watchlist](ScreenshotURL) -->
+![Watchlist](https://user-images.githubusercontent.com/96894806/174503753-2087ac1c-abb0-4d4b-ab5c-5c80e9dc00fd.png)
 
 ### Making a Trade
 
 Description...TBD
 
-<!-- ![Making a Trade](ScreenshotURL) -->
+![Making a Trade](https://user-images.githubusercontent.com/96894806/174503728-a6609ada-20a2-48e4-87cd-4d7b4334113d.png)
+
+### View Single Asset
+
+Description...TBD
+
+![View Single Asset](https://user-images.githubusercontent.com/96894806/174503763-1002c4e0-8360-4a09-ae62-0eb9acc00b24.png)
 
 ## Database Schema
 
 [Back to top](#table-of-contents)
 
-<!-- ![Database Schema](ScreenshotURL) -->
+![Database Schema](https://user-images.githubusercontent.com/96894806/174503929-ded69bef-cf60-4e2d-9664-afab5efdfda7.png)
 
 ## Future Features
 

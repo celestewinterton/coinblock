@@ -72,7 +72,7 @@ const Chart = ({user}) => {
           <div className='chart-header-container row'>
             <div className='column'>
               <div className='muted2'>Your Balance</div>
-              {currentBalance && <h2>${bigNum(currentBalance)}</h2>}
+              {currentBalance && <h2 className='top-margin'>${bigNum(currentBalance)}</h2>}
               {/* <div>+(money All time)</div> */}
             </div>
             <div className='time-select-container row muted2'>
@@ -85,7 +85,7 @@ const Chart = ({user}) => {
 
           <div className='For styles later...'>
             {/* <div>{errors ? <div>{errors}</div> : null}</div> */}
-            {errors && <div>Looks like there was an error fetching price data from the API</div>}
+            {/* {errors && <div>Looks like there was an error fetching price data from the API</div>} */}
             <ChartMaker data={data} />
           </div>
         </div>
