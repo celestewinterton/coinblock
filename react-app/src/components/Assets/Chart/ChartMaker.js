@@ -11,7 +11,7 @@ const ChartMaker = ({data}) => {
       return (
         <div className="custom-tooltip card">
           <p className="tooltip-value">{`${isNaN(payload[0].value) ? 0 : currency(round(payload[0].value))}`}</p>
-          <p className="tooltip-date">{`${format(label, 'MMM d y p')}`}</p>
+          <p className="tooltip-date">{`${label}`}</p>
         </div>
       );
     }

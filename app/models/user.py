@@ -57,15 +57,38 @@ class User(db.Model, UserMixin):
                 balances['cash'] -= txn.amount
         return balances
 
-    # base = datetime.datetime.today()
-    # date_list = [base - datetime.timedelta(days=x) for x in range(numdays)]
+
 
 
     def balances_over_time(self):
         pass
+        # def daterange(start_date, end_date):
+        #     for n in range(int((end_date - start_date).days)):
+        #         yield start_date + timedelta(n)
 
-    def balace_thirty_days_ago(self):
-        pass
+        # balance_hist = []
+        # start_date = self.transactions[0].to_dict()["created_at"].date()
+        # end_date = date.today()
+        # for day in daterange(start_date, end_date):
+        #     txns = [txn for txn in self.transactions if txn.to_dict()["created_at"].date() == day]
+        #     balances = {'cash': 0}
+
+        #     for txn in txns:
+        #         if str(txn.crypto_id) == 'None':
+        #             balances['cash'] += txn.amount
+        #         elif str(txn.crypto_id) in balances:
+        #             balances[str(txn.crypto_id)] += txn.quantity
+        #             balances['cash'] -= txn.amount
+        #         else:
+        #             balances.update({str(txn.crypto_id): txn.quantity})
+        #             balances['cash'] -= txn.amount
+
+        #     balance_hist.append({str(day): balances})
+
+        # return balance_hist
+
+
+
 
     def to_dict(self):
         return {
@@ -79,7 +102,6 @@ class User(db.Model, UserMixin):
             'transactions': [transaction.to_dict() for transaction in self.transactions],
             'balances': self.balances(),
             'balance_history': self.balances_over_time(),
-            'past_balance': self.balace_thirty_days_ago()
         }
 
 class Watchlist(db.Model):

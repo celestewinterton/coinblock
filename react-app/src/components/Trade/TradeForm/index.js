@@ -108,7 +108,7 @@ const TradeForm = ({showModal, setShowModal, preSetId}) => {
                             onChange={(e) => setCryptoId(e.target.value)}
                             placeholder='$0'>
                                 {type === "buy" ? Object.values(coins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))
-                                : Object.values(ownedCoins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>))}
+                                : (ownedCoins.length ? Object.values(ownedCoins).map(coin => (<option key={coin.id} value={coin.id}>{coin.name}</option>)) : <option>Nothing to sell</option>)}
                         </select>
                         </div>}
                     {type === "transfer" &&

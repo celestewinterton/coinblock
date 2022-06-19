@@ -18,15 +18,12 @@ const Assets = ({user, title}) => {
         {title &&
         <div className='left-section'>
           {title === "Assets" &&
-          <div className='card'>
+          <>
             <Chart user={user} />
-            {/* <LineChart user={user} width={600} height={300} /> */}
-
-          </div>}
-          {title === "Assets" &&
-          <div className='card top-margin'>
-            <AssetsTable user={user} />
-          </div>}
+            <div className='card top-margin'>
+              <AssetsTable user={user} />
+            </div>
+          </>}
           {title === "Home" &&
           <div className='card'>
             <Watchlist user={user} />

@@ -1,4 +1,6 @@
 import { easyFetch } from "../utils/easyFetch"
+import { format } from 'date-fns'
+
 
 const LOAD_TRANSACTIONS = 'transactions/LOAD_TRANSACTIONS'
 const POST_TRANSACTION = 'transactions/POST_TRANSACTION'
@@ -19,9 +21,9 @@ export const getTransactions = () => async (dispatch) => {
   const data = await res.json()
 
   if (res.ok) {
-      dispatch(loadTransactions(data.transactions))
+    dispatch(loadTransactions(data.transactions))
   } else {
-      return data
+    return data
   }
 }
 
@@ -47,18 +49,20 @@ const initialState = {};
 const transactionsReducer = (state = initialState, action) => {
   const newState = { ...state }
   switch (action.type) {
-      case LOAD_TRANSACTIONS:
-        if (action.transactions.length) {
-          action.transactions.forEach(transaction => {
-            newState[transaction.id] = transaction;
-          });
-        }
-        return newState;
-      case POST_TRANSACTION:
-        newState[action.transaction.id] = action.transaction
-        return newState
-      default:
-        return state;
+    case LOAD_TRANSACTIONS:
+      if (action.transactions.length) {
+        // newState['transactions'] = action.transactions
+        action.transactions.forEach(transaction => {
+          const dateFormatted = format(new Date(transaction.date), 'MMM d y')
+          newState[dateFormatted] = transaction;
+        });
+      }
+      return newState;
+    case POST_TRANSACTION:
+      newState[action.transaction.id] = action.transaction
+      return newState
+    default:
+      return state;
   };
 };
 
