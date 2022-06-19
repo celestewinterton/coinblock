@@ -19,64 +19,48 @@ const Chart = ({user}) => {
   const [errors, setErrors] = useState();
   const [timeHorizon, setTimeHorizon] = useState(30);
   const currentBalance = data ? data[data.length - 1].value : null
-  // console.log("ARE WE GETTING THIS?", data, currentBalance, balanceHistory)
 
-  // useEffect(() => {
-  //   dispatch(authenticate());
-  //   dispatch(loadCrypto());
-  //   dispatch(getTransactions());
-  // }, [dispatch])
-
+  useEffect(async () => {
+    await dispatch(authenticate());
+    await dispatch(loadCrypto());
+    await dispatch(getTransactions());
+  }, [dispatch])
 
   // let url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart/range?vs_currency=usd&from=${getUnixTime(addDays(new Date(), -7))}&to=${getUnixTime(new Date())}`
   let url = `https://api.coingecko.com/api/v3/coins/${apiIds[0]}/market_chart?vs_currency=usd&days=${parseInt(timeHorizon)}&interval=daily`
 
   useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      await dispatch(getTransactions());
-      await dispatch(loadCrypto());
-    })();
-
     let chartData = {}
 
     apiIds.forEach(apiId => {
       url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart?vs_currency=usd&days=${timeHorizon}&interval=daily`
 
-      // console.log("URL =======>", url, apiIds)
       axios.get(url, {
         mode : 'no-cors',
       }).then((response) => {
-        // console.log("Response", response.data.prices)
         response.data.prices.forEach(data => {
-          // console.log("Dates", fromUnixTime(data[0].toString().substring(0, 10)), data[0], data[1])
           const toReadableDate = fromUnixTime(data[0].toString().substring(0, 10))
           const day = format(toReadableDate, 'MMM d y')
-
 
           if (day in chartData) {
             const addToDate = (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)) + balanceHistory[day]['cash']/apiIds.length
             chartData[day].value += addToDate
-            console.log("Already in ================>", chartData[day], (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)),  (balanceHistory[day]['cash']/apiIds.length))
           }
           else {
             const obj = {}
             obj['date'] = day
             obj['value'] = (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)) + (balanceHistory[day]['cash']/apiIds.length)
             chartData[day] = obj
-            console.log("Adding to chartData =======>", chartData[day], (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)),  (balanceHistory[day]['cash']/apiIds.length))
           }
-          console.log("CHARTDATA =======>", chartData, chartData[day], chartData[day].value, day)
           setData(Object.values(chartData))
         })
-
       }).catch((error) => {
         console.log("Getting API data", error)
         setErrors(error.error)
       })
     })
 
-    // dispatch(authenticate());
+    dispatch(authenticate());
   }, [dispatch, url])
 
 
