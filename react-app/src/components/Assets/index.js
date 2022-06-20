@@ -33,7 +33,6 @@ const Assets = ({user, title}) => {
           </div>}
         </div>}
 
-
         {title && <News />}
       </div>
     </>
