@@ -29,39 +29,39 @@ const Chart = ({user}) => {
   // let url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart/range?vs_currency=usd&from=${getUnixTime(addDays(new Date(), -7))}&to=${getUnixTime(new Date())}`
   let url = `https://api.coingecko.com/api/v3/coins/${apiIds[0]}/market_chart?vs_currency=usd&days=${parseInt(timeHorizon)}&interval=daily`
 
-  useEffect(() => {
-    let chartData = {}
+  // useEffect(() => {
+  //   let chartData = {}
 
-    apiIds.forEach(apiId => {
-      url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart?vs_currency=usd&days=${timeHorizon}&interval=daily`
+  //   apiIds.forEach(apiId => {
+  //     url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart?vs_currency=usd&days=${timeHorizon}&interval=daily`
 
-      axios.get(url, {
-        mode : 'no-cors',
-      }).then((response) => {
-        response.data.prices.forEach(data => {
-          const toReadableDate = fromUnixTime(data[0].toString().substring(0, 10))
-          const day = format(toReadableDate, 'MMM d y')
+  //     axios.get(url, {
+  //       mode : 'no-cors',
+  //     }).then((response) => {
+  //       response.data.prices.forEach(data => {
+  //         const toReadableDate = fromUnixTime(data[0].toString().substring(0, 10))
+  //         const day = format(toReadableDate, 'MMM d y')
 
-          if (day in chartData) {
-            const addToDate = (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)) + balanceHistory[day]['cash']/apiIds.length
-            chartData[day].value += addToDate
-          }
-          else {
-            const obj = {}
-            obj['date'] = day
-            obj['value'] = (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)) + (balanceHistory[day]['cash']/apiIds.length)
-            chartData[day] = obj
-          }
-          setData(Object.values(chartData))
-        })
-      }).catch((error) => {
-        console.log("Getting API data", error)
-        setErrors(error.error)
-      })
-    })
+  //         if (day in chartData) {
+  //           const addToDate = (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)) + balanceHistory[day]['cash']/apiIds.length
+  //           chartData[day].value += addToDate
+  //         }
+  //         else {
+  //           const obj = {}
+  //           obj['date'] = day
+  //           obj['value'] = (parseFloat(data[1]) * (apiId in balanceHistory[day] ? balanceHistory[day][apiId] : 0)) + (balanceHistory[day]['cash']/apiIds.length)
+  //           chartData[day] = obj
+  //         }
+  //         setData(Object.values(chartData))
+  //       })
+  //     }).catch((error) => {
+  //       console.log("Getting API data", error)
+  //       setErrors(error.error)
+  //     })
+  //   })
 
-    dispatch(authenticate());
-  }, [dispatch, url])
+  //   dispatch(authenticate());
+  // }, [dispatch, url])
 
 
   return (
