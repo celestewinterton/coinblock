@@ -19,10 +19,7 @@ const Assets = ({user, title}) => {
         <div className='left-section'>
           {title === "Assets" &&
           <>
-            {/* <Chart user={user} /> */}
-            {/* <div className='card top-margin'>
-              <AssetsTable user={user} />
-            </div> */}
+            <Chart user={user} />
             <div className='card'>
               <AssetsTable user={user} />
             </div>
