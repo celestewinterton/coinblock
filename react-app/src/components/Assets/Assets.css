@@ -44,6 +44,12 @@
 
 .time-select {
   padding: 0px 6px;
+  transition: font-weight .55s, color .55s;
+}
+
+.time-select:hover {
+  font-weight: 800;
+  color: var(--primary);
 }
 
 .time-select-container {

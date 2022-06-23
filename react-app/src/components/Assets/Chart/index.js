@@ -5,7 +5,7 @@ import axios from 'axios'
 import { getTransactions } from '../../../store/transactions'
 import { loadCrypto } from "../../../store/crypto";
 import ChartMaker from './ChartMaker';
-import { bigNum } from '../../../utils/calc';
+import { bigNum, change } from '../../../utils/calc';
 
 
 const Chart = () => {
@@ -19,6 +19,7 @@ const Chart = () => {
   const [errors, setErrors] = useState();
   const [timeHorizon, setTimeHorizon] = useState(14);
   const currentBalance = data ? data[data.length - 1].value : null
+  const beginningBalance = data ? data[0].value : null
 
   useEffect(() => {
     dispatch(loadCrypto());
@@ -71,7 +72,13 @@ const Chart = () => {
           <div className='chart-header-container row'>
             <div className='column'>
               <div className='muted2'>Your Balance</div>
-              {currentBalance ? <h2 className='top-margin'>${bigNum(currentBalance)}</h2> : <h2 className='red'>Please select a time horizon</h2>}
+              {currentBalance
+              ? <><h2 className='top-margin'>${bigNum(currentBalance)}</h2>
+              <div className='row'>
+              <div className='bold2 top-margin' style={change(beginningBalance, currentBalance)[0] == "+" ? {color: "#098551"} : {color: "#CF202F"}}>{change(beginningBalance, currentBalance)}</div>
+              <div className='bold2 time-select top-margin'>over the last {timeHorizon} days</div>
+              </div></>
+              : <h2 className='red'>Please select a time horizon <i class="fa-solid fa-arrow-right"></i></h2>}
               {/* <div>+(money All time)</div> */}
               {/* {data && <h4 className='red bold2'>Please select a time horizon</h4>} */}
             </div>
