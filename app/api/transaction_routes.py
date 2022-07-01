@@ -64,7 +64,6 @@ def get_user_transactions():
   # price_history = cg.get_coin_market_chart_by_id(id='bitcoin', vs_currency='usd', days=5)
   # print("============>", price_history)
 
-
   return {'transactions': [day for day in history]}
     # print("DATE", day, userTransactions[day].to_dict(), date.today(), date(created))
   # transactions = Transaction.query.with_entities(func.sum(Transaction.quantity), Transaction.crypto_id).filter(user_id = current_user.id).group_by(Transaction.crypto_id).all()
