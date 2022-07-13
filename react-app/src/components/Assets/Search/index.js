@@ -33,7 +33,7 @@ function Search({coins}) {
                     borderRadius: "5px",
                     backgroundColor: "#fff",
                     border: ".8px solid rgba(91, 97, 110, 0.2)",
-                    color: "#d1d2d3",
+                    color: "black",
                     boxShadow: "none",
                     hoverBackgroundColor: "transparent",
                     clearIconMargin: "3px 8px 0 0",
