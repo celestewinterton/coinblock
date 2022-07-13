@@ -57,37 +57,16 @@ class User(db.Model, UserMixin):
                 balances['cash'] -= txn.amount
         return balances
 
-
-
-
-    def balances_over_time(self):
-        pass
-        # def daterange(start_date, end_date):
-        #     for n in range(int((end_date - start_date).days)):
-        #         yield start_date + timedelta(n)
-
-        # balance_hist = []
-        # start_date = self.transactions[0].to_dict()["created_at"].date()
-        # end_date = date.today()
-        # for day in daterange(start_date, end_date):
-        #     txns = [txn for txn in self.transactions if txn.to_dict()["created_at"].date() == day]
-        #     balances = {'cash': 0}
-
-        #     for txn in txns:
-        #         if str(txn.crypto_id) == 'None':
-        #             balances['cash'] += txn.amount
-        #         elif str(txn.crypto_id) in balances:
-        #             balances[str(txn.crypto_id)] += txn.quantity
-        #             balances['cash'] -= txn.amount
-        #         else:
-        #             balances.update({str(txn.crypto_id): txn.quantity})
-        #             balances['cash'] -= txn.amount
-
-        #     balance_hist.append({str(day): balances})
-
-        # return balance_hist
-
-
+    def crypto(self):
+        list = []
+        for key, value in self.balances().items():
+            if value > .0001:
+                if not key.isdigit():
+                    list.append(key)
+                else:
+                    apiId = Crypto.query.get(key).to_dict()['apiId']
+                    list.append(apiId)
+        return list
 
 
     def to_dict(self):
@@ -96,12 +75,10 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            # 'cash': self.cash,
             'watchlist': [item.to_dict() for item in self.watchlists],
-            # 'cryptoWatch': [item.cryptoList for item in self.watchlists],
+            'crypto': self.crypto(),
             'transactions': [transaction.to_dict() for transaction in self.transactions],
             'balances': self.balances(),
-            'balance_history': self.balances_over_time(),
         }
 
 class Watchlist(db.Model):

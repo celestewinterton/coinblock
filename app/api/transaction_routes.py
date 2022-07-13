@@ -52,17 +52,68 @@ def get_user_transactions():
     history.append(new_dict.copy()) # move out of txn loop after
     old_dict = new_dict
 
-  # TO DO: get by day price history for coins in new_dict, multiply by qty in history
+  print("###########################################################")
+  # # from datetime => timestamp
+  # print(datetime.now().timestamp())
 
-  # cg.get_coin_market_chart_by_id()
-  # cg.get_coin_history_by_id()
-  # cg.get_coin_market_chart_range_by_id(id='bitcoin',vs_currency='usd',from_timestamp='1605096000',to_timestamp='1605099600')
+  # # from date => datetime
+  # print(datetime.fromisoformat(str(start_date)), datetime.fromisoformat(str(end_date)))
 
-  # coinList = history[len(history)-1].keys()
-  # price_history = [cg.get_coin_market_chart_by_id(id=coin, vs_currency='usd', days='') for coin in coinList if coin is not 'cash']
+  # # from timestamp => datetime
+  # print(datetime.fromtimestamp(int(1605096000)))
+  print("###########################################################")
 
-  # price_history = cg.get_coin_market_chart_by_id(id='bitcoin', vs_currency='usd', days=5)
-  # print("============>", price_history)
+  #**********************************************
+  # NEW CODE
+
+  # start_date = userTransactions[0].to_dict()["created_at"].date()
+  # end_date = date.today() +timedelta(days=2)
+  # history = {start_date: {"cash" : 0}}
+  # old_dict = {start_date: {"cash" : 0}}
+
+  # user_coins = User.query.get(current_user.id).to_dict()['crypto']
+  # for crypto in user_coins:
+  #   # getting prices array with subarrays for timestamp and price
+  #   prices = cg.get_coin_market_chart_range_by_id(id=crypto,vs_currency='usd',from_timestamp=datetime.fromisoformat(str(start_date)).timestamp(),to_timestamp=datetime.fromisoformat(str(end_date)).timestamp())['prices']
+
+  #   for timestamp in prices:
+  #     day = date.fromtimestamp(int(timestamp[0]/1000))
+  #     price = timestamp[1]
+  #     txns = list(filter(lambda t: t.to_dict()["created_at"].date() == day, userTransactions))
+
+  #     for txn in txns:
+  #       txn_id = Crypto.query.get(txn.crypto_id)
+  #       if txn_id == crypto:
+  #         print("@@@@@@@@@@@@@@@@@@@@@@", txn, "@@@@@@@@@@@@@@@@@@@@@@")
+
+
+
+
+
+        # if day in history:
+        #   history[day][crypto] = 0
+        # else:
+        #   new_dict = old_dict
+        #   new_dict['date'] = day
+
+        # if txn.crypto_id == None:
+        #   new_dict["cash"] = new_dict["cash"] + txn.amount
+
+        # elif str(txn.to_dict()["crypto"]["apiId"]) in new_dict:
+        #   new_dict[str(txn.to_dict()["crypto"]["apiId"])] += txn.quantity
+        #   new_dict["cash"] = new_dict["cash"] - txn.amount
+
+        # else:
+        #   new_dict[str(txn.to_dict()["crypto"]["apiId"])] = txn.quantity
+        #   new_dict["cash"] = new_dict["cash"] - txn.amount
+
+
+      # # print("********* HISTORY *********", history)
+      # history.append(new_dict.copy()) # move out of txn loop after
+      # old_dict = new_dict
+
+
+  #**********************************************
 
   return {'transactions': [day for day in history]}
     # print("DATE", day, userTransactions[day].to_dict(), date.today(), date(created))
