@@ -35,7 +35,7 @@ const AssetsTable = () => {
       }
       setData(newData)
     }).catch((error) => {
-      console.log(error)
+      // console.log(error)
     })
   }, [url])
 

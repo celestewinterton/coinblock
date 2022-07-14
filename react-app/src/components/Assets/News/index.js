@@ -12,7 +12,7 @@ const News = () => {
       const articles = response.data.Data.slice(0, 4)
       setData(articles)
     }).catch((error) => {
-      console.log(error)
+      // console.log(error)
     })
   }, [url])
 

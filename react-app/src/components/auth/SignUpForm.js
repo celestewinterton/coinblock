@@ -26,7 +26,7 @@ const SignUpForm = () => {
     if (password !== repeatPassword) setErrors({password: "Please make sure password and confirmed password match"})
     if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
-      console.log(data)
+      // console.log(data)
       if (data) {
         setErrors(data)
       }

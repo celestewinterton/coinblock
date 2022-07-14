@@ -35,7 +35,7 @@ const TradeForm = ({showModal, setShowModal, preSetId}) => {
         axios.get(url).then((response) => {
             setPrice(response.data[coin].usd)
         }).catch((error) => {
-            console.log(error)
+            // console.log(error)
         })
     }, [url])
 

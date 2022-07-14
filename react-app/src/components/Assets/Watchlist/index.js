@@ -31,7 +31,7 @@ const Watchlist = () => {
       }
       setData(newData)
     }).catch((error) => {
-      console.log(error)
+      // console.log(error)
     })
   }, [url])
       // console.log("WATCHLIST====>", data[apiIds[0]], cryptoId, watchlist)

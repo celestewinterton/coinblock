@@ -46,7 +46,7 @@ const SingleAsset = () => {
     axios.get(url).then((response) => {
       setData(response.data)
     }).catch((error) => {
-      console.log(error)
+      // console.log(error)
     })
   }, [url])
 

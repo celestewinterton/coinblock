@@ -56,7 +56,7 @@ const Chart = () => {
           setData(Object.values(chartData))
         })
       }).catch((error) => {
-        console.log("Getting API data", error)
+        // console.log("Getting API data", error)
         setErrors(error.error)
       })
     })
