@@ -59,27 +59,6 @@
 
 
 
-
-/* Search */
-
-.search-results-container {
-  background-color: var(--elements);
-  color: var(--black);
-  font-weight: 600;
-  z-index: 1;
-}
-
-.search-results-container > div {
-  padding: 2px 8px;
-}
-
-
-
-
-
-
-
-
 /* Misc */
 
 /* Single Asset Page */
