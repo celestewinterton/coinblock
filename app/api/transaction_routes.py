@@ -24,7 +24,7 @@ def get_user_transactions():
   userTransactions = [txn for txn in transactions if txn.user_id == current_user.id]
 
   start_date = userTransactions[0].to_dict()["created_at"].date()
-  end_date = date.today() +timedelta(days=1)
+  end_date = date.today() +timedelta(days=0)
   history = [{"date": start_date, "cash" : 0}]
   old_dict = {"date": start_date, "cash" : 0}
 
