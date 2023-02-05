@@ -28,7 +28,7 @@ const Chart = () => {
     dispatch(getTransactions());
   }, [dispatch]);
 
-  let url = `https://api.coingecko.com/api/v3/coins/${apiIds[0]}/market_chart?vs_currency=usd&days=90&interval=daily`;
+  // let url = `https://api.coingecko.com/api/v3/coins/${apiIds[0]}/market_chart?vs_currency=usd&days=90&interval=daily`;
 
   useEffect(() => {
     let chartData = {};
@@ -36,7 +36,7 @@ const Chart = () => {
     dispatch(getTransactions());
 
     apiIds.forEach((apiId) => {
-      url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart?vs_currency=usd&days=90&interval=daily`;
+      let url = `https://api.coingecko.com/api/v3/coins/${apiId}/market_chart?vs_currency=usd&days=90&interval=daily`;
 
       axios
         .get(url, {
@@ -70,16 +70,17 @@ const Chart = () => {
             }
             setData(Object.values(chartData));
             setFilteredData(Object.values(chartData));
+            console.log(data);
           });
         })
         .catch((error) => {
-          // console.log("Getting API data", error)
+          console.log("Getting API data", error);
           setErrors(error.error);
         });
     });
 
     // dispatch(authenticate());
-  }, [url]);
+  }, [user]);
 
   return (
     <>
