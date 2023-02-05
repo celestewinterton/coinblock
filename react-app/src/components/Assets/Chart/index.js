@@ -78,8 +78,6 @@ const Chart = () => {
           setErrors(error.error);
         });
     });
-
-    // dispatch(authenticate());
   }, [user]);
 
   return (

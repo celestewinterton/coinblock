@@ -10,7 +10,8 @@ const CryptoList = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const coins = useSelector((state) => state.crypto);
-  const watching = user.watchlist.map((item) => item.crypto.id);
+  const coinList = Object.values(coins).map((coin) => coin.apiId);
+  const watching = user.watchlist.map((item) => item.crypto.apiId);
   const [data, setData] = useState({}); // set by CoinGecko API data
   const [cryptoId, setCryptoId] = useState();
   const [resultsCount, setResultsCount] = useState(12);
@@ -19,8 +20,7 @@ const CryptoList = () => {
 
   const addToWatch = async (e) => {
     e.preventDefault();
-    // setCryptoId(e.target.id)
-    // console.log("val1", e.target.id, "val2", cryptoId)
+
     const formData = new FormData();
     formData.append("user_id", user.id);
     formData.append("crypto_id", cryptoId);
@@ -123,26 +123,26 @@ const CryptoList = () => {
                   <td>
                     {!watching.includes(crypto.id) && (
                       <button
-                        id={crypto.id}
+                        id={coinList.indexOf(crypto.id) + 1}
                         onClick={addToWatch}
                         className="unset"
                       >
                         <i
                           className="fa-regular fa-star"
-                          id={crypto.id}
+                          id={coinList.indexOf(crypto.id) + 1}
                           onMouseDown={(e) => setCryptoId(e.target.id)}
                         ></i>
                       </button>
                     )}
                     {watching.includes(crypto.id) && (
                       <button
-                        id={crypto.id}
+                        id={coinList.indexOf(crypto.id) + 1}
                         onClick={removeFromWatch}
                         className="unset"
                       >
                         <i
                           className="fa-solid fa-star"
-                          id={crypto.id}
+                          id={coinList.indexOf(crypto.id) + 1}
                           onMouseDown={(e) => setCryptoId(e.target.id)}
                         ></i>
                       </button>
