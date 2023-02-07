@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTransactions } from "../../../store/transactions";
-import ChartMaker from "./ChartMaker";
 import { bigNum, change } from "../../../utils/calc";
+import ChartMaker from "./ChartMaker";
 
 const Chart = () => {
   const dispatch = useDispatch();
