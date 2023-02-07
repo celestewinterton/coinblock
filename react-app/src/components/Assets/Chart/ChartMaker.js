@@ -16,8 +16,6 @@ const ChartMaker = ({ data }) => {
     return null;
   };
 
-  // const formatXAxis = (axis) => {format(axis, 'MMM d y')}
-
   return (
     <ResponsiveContainer height={400} width="100%">
       <LineChart
