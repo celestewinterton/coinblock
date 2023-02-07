@@ -78,7 +78,6 @@ const TradeForm = ({ showModal, setShowModal, preSetId }) => {
     data = await dispatch(postTransaction(formData));
     if (!data) setErrors({});
     if (data) setErrors(data.errors);
-    // console.log("MODAL????", showModal)
     if (data && showModal) setShowModal(true);
     if (!data && showModal) setShowModal(false);
 

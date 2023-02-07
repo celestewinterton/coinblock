@@ -4,7 +4,6 @@ import { round, currency } from "../../../utils/calc";
 const ChartMaker = ({ data }) => {
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
-      // console.log(payload, label, active)
       return (
         <div className="custom-tooltip card">
           <p className="tooltip-value">{`${

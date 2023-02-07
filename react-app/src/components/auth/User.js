@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getTransactions } from '../../store/transactions'
-import { useDispatch } from 'react-redux';
-
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getTransactions } from "../../store/transactions";
+import { useDispatch } from "react-redux";
 
 function User() {
   const [user, setUser] = useState({});
-  const { userId }  = useParams();
+  const { userId } = useParams();
   const dispatch = useDispatch();
   const transactions = user.transactions;
 
   useEffect(() => {
     dispatch(getTransactions());
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     if (!userId) {
@@ -28,8 +27,6 @@ function User() {
   if (!user) {
     return null;
   }
-
-  // console.log("User Transactions ===> ", transactions)
 
   return (
     <>
