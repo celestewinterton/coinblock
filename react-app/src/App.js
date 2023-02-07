@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, NavLink, Redirect, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import SplashNav from './components/NavBars/SplashNav';
-import Splash from './components/Splash';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/auth/UsersList';
-import User from './components/auth/User';
-import { authenticate } from './store/session';
-import notFound from './components/images/notFound.svg'
-import SideNav from './components/NavBars/SideNav';
-import NavBar from './components/NavBars';
-import Assets from './components/Assets';
-import Trade from './components/Trade';
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter,
+  NavLink,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import LoginForm from "./components/auth/LoginForm";
+import SignUpForm from "./components/auth/SignUpForm";
+import SplashNav from "./components/NavBars/SplashNav";
+import Splash from "./components/Splash";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UsersList from "./components/auth/UsersList";
+import User from "./components/auth/User";
+import { authenticate } from "./store/session";
+import notFound from "./components/images/notFound.svg";
+import SideNav from "./components/NavBars/SideNav";
+import NavBar from "./components/NavBars";
+import Assets from "./components/Assets";
+import Trade from "./components/Trade";
 
 function App() {
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -34,24 +40,25 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <SplashNav />
           <LoginForm />
         </Route>
-        <Route path='/signup' exact={true}>
+        <Route path="/signup" exact={true}>
           <SplashNav />
           <SignUpForm />
         </Route>
-        {!user &&
-        <Route path='/' exact={true}>
-          <SplashNav />
-          <Splash />
-        </Route>}
+        {!user && (
+          <Route path="/" exact={true}>
+            <SplashNav />
+            <Splash />
+          </Route>
+        )}
 
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
 
@@ -60,22 +67,22 @@ function App() {
           <div className="column">
             <NavBar title={`Welcome ${user?.firstName}`} />
             <Switch>
-              <ProtectedRoute path='/' exact={true} >
+              <ProtectedRoute path="/" exact={true}>
                 <Redirect to="/home" />
               </ProtectedRoute>
-              <ProtectedRoute path='/dashboard' exact={true} >
-                <NavBar title={"Assets"} />
-                <Assets user={user} title={"Assets"} />
+              <ProtectedRoute path="/dashboard" exact={true}>
+                <NavBar title={"My Assets"} />
+                <Assets user={user} title={"My Assets"} />
               </ProtectedRoute>
-              <ProtectedRoute path='/trade' exact={true} >
+              <ProtectedRoute path="/trade" exact={true}>
                 <NavBar title={"Trade"} />
                 <Trade />
               </ProtectedRoute>
-              <ProtectedRoute path='/home' exact={true} >
+              <ProtectedRoute path="/home" exact={true}>
                 <NavBar title={"Home"} />
                 <Assets user={user} title={"Home"} />
               </ProtectedRoute>
-              <ProtectedRoute path='/:id' exact={true} >
+              <ProtectedRoute path="/:id" exact={true}>
                 <NavBar />
                 <Assets user={user} />
               </ProtectedRoute>
@@ -84,11 +91,15 @@ function App() {
         </div>
 
         <Route>
-          <div className='column center padded'>
+          <div className="column center padded">
             <img src={notFound} alt=""></img>
             <div>Page Not Found</div>
-            <div className='muted1 padded'>Sorry we couldn't find what you were looking for.</div>
-            <NavLink to='/' className='button' exact={true}>Back to Coinblock</NavLink>
+            <div className="muted1 padded">
+              Sorry we couldn't find what you were looking for.
+            </div>
+            <NavLink to="/" className="button" exact={true}>
+              Back to Coinblock
+            </NavLink>
           </div>
         </Route>
       </Switch>

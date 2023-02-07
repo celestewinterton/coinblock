@@ -40,7 +40,7 @@ const SideNav = () => {
             activeClassName="activeTab"
           >
             <i className="fa-solid fa-chart-pie"></i>
-            Assets
+            My Assets
           </NavLink>
           <NavLink
             to="/trade"
@@ -52,22 +52,7 @@ const SideNav = () => {
             Trade
           </NavLink>
         </div>
-        {/* <NavLink to='/transactions' exact={true} className="sidenav" activeClassName='activeTab'>
-          <i className="fa-solid fa-credit-card"></i>
-          Transactions (Placeholder)
-        </NavLink>
-        <NavLink to='/watchlist' exact={true} className="sidenav" activeClassName='activeTab'>
-          <i className="fa-solid fa-star"></i>
-          Watchlist (Placeholder)
-        </NavLink>
-        <NavLink to='/news' exact={true} className="sidenav" activeClassName='activeTab'>
-          <i className="fa-solid fa-seedling"></i>
-          For You (Placeholder)
-        </NavLink>
-        <NavLink to='/wallet' exact={true} className="sidenav" activeClassName='activeTab'>
-          <i className="fa-solid fa-wallet"></i>
-          Wallet (Placeholder)
-        </NavLink> */}
+
         <div>
           <a
             className="navlink"
